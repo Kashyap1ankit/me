@@ -1,8 +1,7 @@
 import { cousine, gabarito } from "@/public/font";
 import Link from "next/link";
-import { BiDownload, BiNotepad } from "react-icons/bi";
+import { BiDownload } from "react-icons/bi";
 import { BsArrowRight } from "react-icons/bs";
-import { FaBriefcase } from "react-icons/fa";
 
 export default function AboutLanding() {
   return (
@@ -32,8 +31,7 @@ export default function AboutLanding() {
           href={"mailto:kashyap25ankit@gmail.com?subject=Work Enquiry"}
           className="flex gap-2  px-4 items-center bg-[#0879E7] dark:bg-[#0c1c32] text-white dark:text-[#0879E7]  p-2 w-fit text-sm rounded-md"
         >
-          <FaBriefcase />
-          <p>Open For Work</p>
+          <p>Work with me </p>
           <BsArrowRight />
         </Link>
 
@@ -46,7 +44,6 @@ export default function AboutLanding() {
           rel="noopener noreferre"
           download
         >
-          <BiNotepad />
           <p>CV</p>
           <BiDownload />
         </Link>

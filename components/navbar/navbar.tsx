@@ -1,11 +1,11 @@
+import { navLinks } from "@/lib/constant";
 import Image from "next/image";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
-import navLinks from "@/lib/navlinks.json";
 
 export default function Navbar() {
   return (
-    <div className="flex justify-between items-center  fixed top-4 left-1/2 -translate-x-1/2  w-11/12 md:w-1/2 ">
+    <div className="flex justify-between items-center  fixed top-4 left-1/2 -translate-x-1/2  w-11/12 md:w-1/2  ">
       <Link href={"/"}>
         <Image
           src={"/x.png"}
@@ -16,7 +16,7 @@ export default function Navbar() {
         />
       </Link>
 
-      <div className="flex gap-6 border border-neutral-700 px-4 py-2 rounded-full text-xs text-sm bg-black">
+      <div className="flex gap-6 border border-neutral-700 px-4 py-2 rounded-full text-xs text-sm bg-black  z-999">
         {navLinks.map((e, i: number) => {
           return (
             <Link

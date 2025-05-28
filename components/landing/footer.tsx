@@ -14,7 +14,7 @@ export default function Footer() {
       icon: FaTwitter,
     },
     {
-      link: "https://www.linkedin.com/in/ankit-kashyap-coder/",
+      link: "https://github.com/Kashyap1ankit/",
       icon: FaGithub,
     },
 
