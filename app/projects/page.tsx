@@ -87,7 +87,7 @@ export default function Projects() {
                   return (
                     <p
                       key={i}
-                      className="border dark:border-neutral-800 rounded-lg p-2 w-fit text-gray-400 text-xs bg-slate-200 dark:bg-transparent"
+                      className="border dark:border-neutral-800 rounded-xl p-2 w-fit text-gray-400 text-xs bg-slate-200 dark:bg-transparent"
                     >
                       {e}
                     </p>

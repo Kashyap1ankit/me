@@ -6,6 +6,7 @@ import Link from "next/link";
 import { BsArrowUpRight } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { GiClick } from "react-icons/gi";
 
 interface dataType {
   name: string;
@@ -19,14 +20,14 @@ interface dataType {
 export default function HomeProjects() {
   const router = useRouter();
   return (
-    <div id="projects">
+    <div id="projects" className="flex flex-col gap-6">
       <p
         className={`${gabarito.className} text-2xl text-black dark:text-white`}
       >
         Projects
       </p>
 
-      <div className="mt-12 grid grid-cols-1 md:grid-cols-2   gap-6">
+      <div className=" grid grid-cols-1 md:grid-cols-2   gap-6">
         {projectsData.map((e: dataType, i: number) => {
           return (
             <div
@@ -75,7 +76,7 @@ export default function HomeProjects() {
                   return (
                     <p
                       key={i}
-                      className="border dark:border-neutral-800 rounded-lg p-2 w-fit text-gray-400 text-xs bg-slate-200 dark:bg-transparent"
+                      className="border dark:border-neutral-800 rounded-xl p-2 w-fit text-gray-400 text-xs bg-slate-200 dark:bg-transparent"
                     >
                       {e}
                     </p>
@@ -88,10 +89,11 @@ export default function HomeProjects() {
       </div>
 
       <div
-        className="border dark:border-neutral-900  dark:hover:border-neutral-800 mt-6 text-center p-2 rounded-lg cursor-pointer duration-300 w-full hover:bg-slate-200 dark:hover:bg-gray-950 text-gray-400"
+        className="border dark:border-neutral-900  dark:hover:border-neutral-800  text-center p-2 rounded-xl cursor-pointer duration-300 w-fit  bg-lightBlue dark:bg-darkBlue hover:bg-lightBlue  dark:hover:bg-darkBlue dark:text-lightBlue text-white text-sm flex items-center gap-2 self-end"
         onClick={() => router.push("/projects")}
       >
-        See more
+        <p> See more</p>
+        <GiClick />
       </div>
     </div>
   );

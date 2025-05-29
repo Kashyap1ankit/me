@@ -2,20 +2,21 @@
 
 import { skills } from "@/lib/constant";
 import { gabarito } from "@/public/font";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 
 export default function Skills() {
   const [showMore, setShowMore] = useState(false);
 
   return (
-    <div>
+    <div className="flex flex-col gap-6">
       <p
         className={`${gabarito.className} text-2xl text-black dark:text-white`}
       >
         Skills
       </p>
 
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 overflow-x-hidden mt-6">
+      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 overflow-x-hidden  duration-300">
         {!showMore
           ? skills.slice(0, 12).map((skill, i) => {
               return (
@@ -47,17 +48,19 @@ export default function Skills() {
 
       {!showMore ? (
         <div
-          className="border dark:border-neutral-900  dark:hover:border-neutral-800 mt-6 text-center p-2 rounded-lg cursor-pointer duration-300 w-full hover:bg-slate-200 dark:hover:bg-gray-950 text-gray-400"
+          className="border dark:border-neutral-900  dark:hover:border-neutral-800  text-center p-2 rounded-xl cursor-pointer duration-300 w-fit  bg-lightBlue dark:bg-darkBlue hover:bg-lightBlue  dark:hover:bg-darkBlue dark:text-lightBlue text-white text-sm flex items-center gap-2 self-end"
           onClick={() => setShowMore(true)}
         >
-          See more
+          <p> See more</p>
+          <ChevronDown className="size-4" />
         </div>
       ) : (
         <div
-          className="border dark:border-neutral-900  dark:hover:border-neutral-800 mt-6 text-center p-2 rounded-lg cursor-pointer duration-300 w-full hover:bg-slate-200 dark:hover:bg-gray-950 text-gray-400"
+          className="border dark:border-neutral-900  dark:hover:border-neutral-800  text-center p-2 rounded-xl cursor-pointer duration-300 w-fit  bg-lightBlue dark:bg-darkBlue hover:bg-lightBlue  dark:hover:bg-darkBlue dark:text-lightBlue text-white text-sm flex items-center gap-2 self-end"
           onClick={() => setShowMore(false)}
         >
-          See Less
+          <p> See less</p>
+          <ChevronUp className="size-4" />
         </div>
       )}
     </div>

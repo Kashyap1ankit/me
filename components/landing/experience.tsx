@@ -1,12 +1,15 @@
 import { cousine, gabarito } from "@/public/font";
 import experienceData from "@/lib/experience.json";
-import { BiBriefcase } from "react-icons/bi";
+
+import Image from "next/image";
+import { FaCalendarAlt } from "react-icons/fa";
 
 interface dataType {
   company: string;
   about: string;
   role: string;
   timeframe: string;
+  image: string;
 }
 
 export default function Experience() {
@@ -25,25 +28,34 @@ export default function Experience() {
               key={i}
               className="p-4 border hover:border-slate-400 dark:border-neutral-900 dark:hover:border-neutral-800 duration-300 cursor-pointer rounded-md flex flex-col gap-8 w-fit"
             >
-              <div>
-                <div className="flex items-center gap-2">
-                  <BiBriefcase className="size-6 invert dark:invert-0" />
+              <div className="flex items-center gap-2">
+                <Image
+                  src={e.image}
+                  alt={`${e.company}-logo`}
+                  width={100}
+                  height={100}
+                  className="max-w-12 max-h-12 rounded-full"
+                />
+                <div>
                   <p
                     className={`${gabarito.className} text-xl text-black dark:text-white`}
                   >
-                    {e.role}
+                    {e.company}
                   </p>
-                </div>
-                <div className="flex justify-between mt-2">
-                  <p className="text-gray-400 text-sm">{e.company}</p>
-                  <p className="text-gray-400 text-sm">{e.timeframe}</p>
+                  <p className="text-gray-400 text-sm">{e.role}</p>
                 </div>
               </div>
+
               <p
                 className={`${cousine.className} text-sm text-gray-600 dark:text-gray-400`}
               >
                 {e.about}
               </p>
+
+              <div className="flex items-center gap-2 self-end">
+                <FaCalendarAlt />
+                <p className="text-gray-400 text-sm ">{e.timeframe}</p>
+              </div>
             </div>
           );
         })}

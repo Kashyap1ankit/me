@@ -48,7 +48,7 @@ export default function Contribution() {
                   return (
                     <div key={i} className="flex justify-between group">
                       <div className="flex gap-4">
-                        <GitMerge className="bg-purple-700 p-2 w-8 h-8 rounded-lg" />
+                        <GitMerge className="bg-purple-700 p-2 w-8 h-8 rounded-xl" />
                         <p
                           className={`${gabarito.className} text-black dark:text-white text-lg`}
                         >

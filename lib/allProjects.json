@@ -31,6 +31,15 @@
     ],
     "image": "https://res.cloudinary.com/ddnkrlfjn/image/upload/v1735482702/logofy_jk56al.svg"
   },
+
+  {
+    "name": "Puch Ai Revamp",
+    "description": "Implemented a cleaner UI, enhanced content structure, and improved user experience by highlighting core features, user benefits, and call-to-action elements. The new layout better communicates the products value proposition and aligns with current design trends, resulting in a more engaging and conversion-optimized landing page.",
+    "deployed": "puch.10xdevlab.in",
+    "github": "https://github.com/Kashyap1ankit/pai-revamp",
+    "tech": ["Next.js", "Typescript", "Tailwind", "Framer-Motion", "More..."],
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzput_4lc0HA7Il0fHd5zJsli4hy8lTCg6kg&s"
+  },
   {
     "name": "Techtalkies",
     "description": "Platform where user can come & write blogs. If user don't know what to write then they can use Ai to write blogs by giving topic name",
@@ -60,6 +69,32 @@
       "More..."
     ],
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4qY3zhR-L_urH_bkiZsRSqKE12F6MRwmqHA&s"
+  },
+
+  {
+    "name": "Vidstash",
+    "description": "Created the ui & authentication part of a video uploading platform where user can come .. create accounts and then upload videos and can share it to friends either publically or privately",
+    "deployed": "vidstash.10xdevlab.in/",
+    "github": "https://github.com/Kashyap1ankit/vidstash",
+    "tech": [
+      "Next.js",
+      "Typescript",
+      "Tailwind",
+      "Postgresql",
+      "Authjs",
+      "Framer-Motion",
+      "More..."
+    ],
+    "image": "https://vidstash-gamma.vercel.app/vidstash.png"
+  },
+
+  {
+    "name": "TechKareer Revamp",
+    "description": "Implemented a cleaner UI, enhanced content structure, and improved user experience by highlighting core features, user benefits, and call-to-action elements. The new layout better communicates the products value proposition and aligns with current design trends, resulting in a more engaging and conversion-optimized landing page.",
+    "deployed": "techkareer.10xdevlab.in",
+    "github": "https://github.com/Kashyap1ankit/techkareer-revamp",
+    "tech": ["Next.js", "Typescript", "Tailwind", "Framer-Motion", "More..."],
+    "image": "https://media.licdn.com/dms/image/v2/D560BAQHMza6tmMKMwA/company-logo_200_200/B56ZUb6YSDGQAI-/0/1739930043989?e=2147483647&v=beta&t=6BvEnLPxnIUGrse1bFs5GCYeb08sEr_yCh8ogsBiVyU"
   },
   {
     "name": "PayUsVia",

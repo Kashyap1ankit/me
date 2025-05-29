@@ -1,4 +1,7 @@
+import { BiHome } from "react-icons/bi";
+import { BsWindowDock } from "react-icons/bs";
 import { DiRedis } from "react-icons/di";
+import { GoGitMerge } from "react-icons/go";
 import { RiBearSmileFill } from "react-icons/ri";
 
 import {
@@ -26,6 +29,7 @@ import {
   SiTrpc,
   SiReactrouter,
   SiReactquery,
+  SiFramer,
 } from "react-icons/si";
 
 export const skills = [
@@ -135,19 +139,26 @@ export const skills = [
     title: "tRpc",
     icon: SiTrpc,
   },
+  {
+    title: "Framer Motion",
+    icon: SiFramer,
+  },
 ];
 
 export const navLinks = [
   {
     name: "About",
+    icon: BiHome,
     link: "/#about",
   },
   {
     name: "Projects",
+    icon: BsWindowDock,
     link: "/projects",
   },
   {
     name: "Contribution",
+    icon: GoGitMerge,
     link: "/contributions",
   },
 ];

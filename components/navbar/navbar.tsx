@@ -24,7 +24,7 @@ export default function Navbar() {
               key={i}
               className={` hover:text-blue-500 cursor-pointer duration-500 `}
             >
-              {e.name}
+              <e.icon className="size-4" />
             </Link>
           );
         })}
