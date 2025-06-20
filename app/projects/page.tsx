@@ -8,9 +8,9 @@ import Footer from "@/components/landing/footer";
 
 export default function Projects() {
   return (
-    <div className="mx-auto mt-12 text-black">
+    <div className="mx-auto pt-12 text-black">
       <p
-        className={`${gabarito.className} text-2xl text-black dark:text-white `}
+        className={`${gabarito.className} text-2xl text-black dark:text-white font-bold `}
       >
         Projects
       </p>

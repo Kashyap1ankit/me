@@ -1,5 +1,5 @@
 import { BiHome } from "react-icons/bi";
-import { BsWindowDock } from "react-icons/bs";
+import { GrProjects } from "react-icons/gr";
 import { DiRedis } from "react-icons/di";
 import { GoGitMerge } from "react-icons/go";
 import { RiBearSmileFill } from "react-icons/ri";
@@ -153,7 +153,7 @@ export const navLinks = [
   },
   {
     name: "Projects",
-    icon: BsWindowDock,
+    icon: GrProjects,
     link: "/projects",
   },
   {

@@ -22,7 +22,7 @@ export default function HomeProjects() {
   return (
     <div id="projects" className="flex flex-col gap-6">
       <p
-        className={`${gabarito.className} text-2xl text-black dark:text-white`}
+        className={`${gabarito.className} text-2xl text-black dark:text-white font-semibold bg-gray-200 dark:bg-titleBg p-2 border-l-8 border-black dark:border-gray-200`}
       >
         Projects
       </p>
@@ -55,7 +55,7 @@ export default function HomeProjects() {
                 </p>
 
                 <p
-                  className={`${cousine.className} text-gray-400 text-sm mt-2`}
+                  className={`${cousine.className} text-gray-500 text-sm mt-2`}
                 >
                   {e.description}
                 </p>
@@ -76,7 +76,7 @@ export default function HomeProjects() {
                   return (
                     <p
                       key={i}
-                      className="border dark:border-neutral-800 rounded-xl p-2 w-fit text-gray-400 text-xs bg-slate-200 dark:bg-transparent"
+                      className="border dark:border-neutral-800 rounded-xl p-2 w-fit text-gray-500 text-xs bg-slate-200 dark:bg-transparent"
                     >
                       {e}
                     </p>

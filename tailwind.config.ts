@@ -22,6 +22,8 @@ export default {
         foreground: "var(--foreground)",
         lightBlue: "#0879E7",
         darkBlue: "#0c1c32",
+        titleBg: "#151517",
+        titleBgWhite: "#101012",
       },
       animation: {
         wave: "wiggle 2s linear infinite",

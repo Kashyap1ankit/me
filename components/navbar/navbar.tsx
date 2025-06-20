@@ -1,41 +1,52 @@
 import { navLinks } from "@/lib/constant";
-import Image from "next/image";
 import Link from "next/link";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import Footer from "../landing/footer";
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function Navbar() {
-  return (
-    <div className="flex justify-between items-center  fixed top-4 left-1/2 -translate-x-1/2  w-11/12 md:w-1/2  ">
-      <Link href={"/"}>
-        <Image
-          src={"/x.png"}
-          width={500}
-          height={500}
-          className="w-10  rounded-full border border-neutral-900"
-          alt="my-img"
-        />
-      </Link>
+  const socials = [
+    {
+      link: "https://x.com/kashyap_tweetts",
+      icon: FaXTwitter,
+    },
+    {
+      link: "https://github.com/Kashyap1ankit/",
+      icon: FaGithub,
+    },
 
-      <div className="flex gap-6 border border-neutral-700 px-4 py-2 rounded-full text-xs text-sm bg-black  z-999">
+    {
+      link: "https://www.linkedin.com/in/ankit-kashyap-coder/",
+      icon: FaLinkedinIn,
+    },
+  ];
+
+  return (
+    <div className="flex justify-start gap-4 items-center  fixed bottom-4 left-1/2 -translate-x-1/2  w-fit border border-neutral-700 rounded-full z-999 bg-black py-2 px-4">
+      <div className="flex gap-4 items-center border-r pr-2">
         {navLinks.map((e, i: number) => {
           return (
             <Link
               href={e.link}
               key={i}
-              className={` hover:text-blue-500 cursor-pointer duration-500 `}
+              className={`cursor-pointer duration-500 `}
             >
               <e.icon className="size-4" />
             </Link>
           );
         })}
       </div>
+      <div className="flex gap-4 items-center border-r pr-2">
+        {socials.map((e, i: number) => {
+          return (
+            <Link key={i} href={e.link}>
+              <e.icon className="size-4  dark:text-white  " />
+            </Link>
+          );
+        })}
+      </div>
 
-      <Link
-        href={"https://github.com/Kashyap1ankit"}
-        className="hover:text-sky-700 invert dark:invert-0"
-      >
-        <FaGithub className="size-6" />
-      </Link>
+      <Footer />
     </div>
   );
 }

@@ -11,7 +11,7 @@ export default function Skills() {
   return (
     <div className="flex flex-col gap-6">
       <p
-        className={`${gabarito.className} text-2xl text-black dark:text-white`}
+        className={`${gabarito.className} text-2xl text-black dark:text-white font-semibold bg-gray-200 dark:bg-titleBg p-2 border-l-8 border-black dark:border-gray-200`}
       >
         Skills
       </p>
@@ -22,7 +22,7 @@ export default function Skills() {
               return (
                 <div
                   key={i}
-                  className="flex gap-2 justify-center items-center bg-slate-200 dark:bg-zinc-900 p-2 min-w-28 rounded-2xl cursor-pointer group"
+                  className="flex gap-2 justify-center items-center bg-slate-200 dark:bg-zinc-900 p-2 min-w-28 rounded-md cursor-pointer group"
                 >
                   <skill.icon className="size-4 text-black dark:text-white group-hover:-translate-x-2 duration-300" />
                   <p className="text-xs leading-[1.6] font-normal  text-black dark:text-white">
@@ -35,7 +35,7 @@ export default function Skills() {
               return (
                 <div
                   key={i}
-                  className="flex gap-2 justify-center items-center bg-slate-200 dark:bg-zinc-900 p-2 min-w-28 rounded-2xl cursor-pointer group"
+                  className="flex gap-2 justify-center items-center bg-slate-200 dark:bg-zinc-900 p-2 min-w-28 rounded-md cursor-pointer group"
                 >
                   <skill.icon className="size-4 text-black dark:text-white group-hover:-translate-x-2 duration-300" />
                   <p className="text-xs leading-[1.6] font-normal  text-black dark:text-white">
@@ -48,7 +48,7 @@ export default function Skills() {
 
       {!showMore ? (
         <div
-          className="border dark:border-neutral-900  dark:hover:border-neutral-800  text-center p-2 rounded-xl cursor-pointer duration-300 w-fit  bg-lightBlue dark:bg-darkBlue hover:bg-lightBlue  dark:hover:bg-darkBlue dark:text-lightBlue text-white text-sm flex items-center gap-2 self-end"
+          className="border dark:border-neutral-900  dark:hover:border-neutral-800  text-center p-2 rounded-md cursor-pointer duration-300 w-fit  bg-lightBlue dark:bg-darkBlue hover:bg-lightBlue  dark:hover:bg-darkBlue dark:text-lightBlue text-white text-sm flex items-center gap-2 self-end"
           onClick={() => setShowMore(true)}
         >
           <p> See more</p>

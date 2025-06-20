@@ -1,5 +1,6 @@
 import { cousine, gabarito } from "@/public/font";
 import { Dot } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { BiDownload } from "react-icons/bi";
 import { BsArrowRight } from "react-icons/bs";
@@ -7,24 +8,34 @@ import { BsArrowRight } from "react-icons/bs";
 export default function AboutLanding() {
   return (
     <div className="flex flex-col gap-6" id="about">
-      <div className="flex items-center border w-fit  px-2 rounded-full bg-green-200 ">
-        <Dot className="text-green-800 size-4 animate-ping duration-700 opacity-75" />
-        <p className="text-sm text-green-800">Available For Work</p>
-      </div>
+      <div className="flex justify-between items-center">
+        <div className="flex flex-col gap-4">
+          <p
+            className={` text-black dark:text-white text-2xl sm:text-3xl md:text-4xl ${gabarito.className} font-bold`}
+          >
+            I&apos;m{" "}
+            <span className="bg-gradient-to-r from-blue-400 to-lightBlue text-transparent bg-clip-text">
+              Ankit Kashyap !
+            </span>{" "}
+          </p>
 
-      <div className="flex justify-between">
-        <p
-          className={` text-black dark:text-white text-2xl ${gabarito.className}`}
-        >
-          I&apos;m{" "}
-          <span className="bg-gradient-to-r from-blue-400 to-lightBlue text-transparent bg-clip-text">
-            Ankit Kashyap !
-          </span>{" "}
-        </p>
+          <div className="flex items-center border w-fit  px-2 py-1 rounded-md bg-green-200 ">
+            <Dot className="text-green-800 size-4 animate-ping duration-700 opacity-75" />
+            <p className={`${cousine.className} text-xs text-green-800`}>
+              Available For Work
+            </p>
+          </div>
+        </div>
 
-        <p className="animate-wave">&#128075;</p>
+        <Image
+          src={"/x.png"}
+          width={200}
+          height={200}
+          className="rounded-full  w-24"
+          alt="profile"
+        />
       </div>
-      <p className={`${cousine.className} text-sm text-gray-400`}>
+      <p className={`${cousine.className} text-sm text-gray-500`}>
         I&apos;m a Full Stack Web Developer and Open Source Contributor with
         expertise in building scalable applications using Next.js, NoSql/Sql,
         and Tailwind CSS. Skilled in translating pixel-perfect Figma designs
