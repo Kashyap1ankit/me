@@ -147,9 +147,9 @@ export const skills = [
 
 export const navLinks = [
   {
-    name: "About",
+    name: "Home",
     icon: BiHome,
-    link: "/#about",
+    link: "/",
   },
   {
     name: "Projects",

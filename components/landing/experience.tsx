@@ -37,10 +37,10 @@ export default function Experience() {
           return (
             <div
               key={i}
-              className="p-4 cursor-pointer flex flex-col gap-4 w-full"
+              className="p-4 cursor-pointer flex flex-col gap-4 sm:gap-0 w-full"
             >
               <div
-                className="flex items-center justify-between"
+                className="flex flex-col sm:flex-row justify-center gap-4 sm:items-center justify-between"
                 onClick={() => toggleIndex(i)}
               >
                 <div className="flex items-center gap-2">
@@ -72,7 +72,7 @@ export default function Experience() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 ">
+                <div className="flex  place-self-end sm:place-self-start sm:items-center gap-2 ">
                   <p className={`${manrope.className} text-gray-500 text-sm`}>
                     {e.timeframe}
                   </p>

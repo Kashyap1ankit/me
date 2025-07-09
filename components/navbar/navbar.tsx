@@ -22,14 +22,14 @@ export default function Navbar() {
   ];
 
   return (
-    <div className="flex justify-start gap-4 items-center  fixed bottom-4 left-1/2 -translate-x-1/2  w-fit border border-neutral-700 rounded-full z-999 bg-black py-2 px-4">
-      <div className="flex gap-4 items-center border-r pr-2">
+    <div className="flex justify-start gap-4 items-center  fixed bottom-4 left-1/2 -translate-x-1/2   max-w-[280px] sm:max-w-fit border border-neutral-800 rounded-2xl z-999 bg-black py-2 px-4 overflow-x-scroll no-scrollbar">
+      <div className=" flex gap-4 items-center border-r pr-2">
         {navLinks.map((e, i: number) => {
           return (
             <Link
               href={e.link}
               key={i}
-              className={`cursor-pointer duration-500 `}
+              className={`cursor-pointer duration-500 bg-gray-900 p-2 rounded-full hover:mr-4`}
             >
               <e.icon className="size-4" />
             </Link>
@@ -39,7 +39,11 @@ export default function Navbar() {
       <div className="flex gap-4 items-center border-r pr-2">
         {socials.map((e, i: number) => {
           return (
-            <Link key={i} href={e.link}>
+            <Link
+              key={i}
+              href={e.link}
+              className="bg-gray-900 p-2 rounded-full"
+            >
               <e.icon className="size-4  dark:text-white  " />
             </Link>
           );

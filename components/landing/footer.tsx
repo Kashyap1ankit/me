@@ -1,5 +1,6 @@
 "use client";
-import { Moon, Sun } from "lucide-react";
+import { MdDarkMode } from "react-icons/md";
+import { CiLight } from "react-icons/ci";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
@@ -22,19 +23,19 @@ export default function Footer() {
   return (
     <div className="flex gap-2 items-center  duration-500">
       {[
-        { theme: "dark", icon: Moon },
-        { theme: "light", icon: Sun },
+        { theme: "dark", icon: MdDarkMode },
+        { theme: "light", icon: CiLight },
       ].map((item) => (
         <div
           key={item.theme}
-          className={`cursor-pointer flex items-center justify-center w-6 h-6 rounded-full duration-500 ${
+          className={`cursor-pointer flex items-center justify-center  rounded-full duration-500 p-2 ${
             active === item.theme
-              ? "bg-gray-300 dark:bg-gray-700 text-black dark:text-gray-300"
-              : "text-gray-400 dark:text-gray-300"
+              ? "bg-gray-900  dark:text-gray-300"
+              : "bg-transparent text-gray-400 dark:text-gray-300"
           }`}
           onClick={() => toggleTheme(item.theme as "light" | "dark" | "system")}
         >
-          <item.icon className="w-4 h-4 " />
+          <item.icon className="size-4 " />
         </div>
       ))}
     </div>
