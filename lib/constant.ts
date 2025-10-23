@@ -3,6 +3,12 @@ import { GrProjects } from "react-icons/gr";
 import { DiRedis } from "react-icons/di";
 import { GoGitMerge } from "react-icons/go";
 import { RiBearSmileFill } from "react-icons/ri";
+import {
+  IconBrandVscode,
+  IconCode,
+  IconGitMerge,
+  IconSmartHome,
+} from "@tabler/icons-react";
 
 import {
   SiJavascript,
@@ -148,17 +154,17 @@ export const skills = [
 export const navLinks = [
   {
     name: "Home",
-    icon: BiHome,
+    icon: IconSmartHome,
     link: "/",
   },
   {
     name: "Projects",
-    icon: GrProjects,
+    icon: IconCode,
     link: "/projects",
   },
   {
     name: "Contribution",
-    icon: GoGitMerge,
+    icon: IconGitMerge,
     link: "/contributions",
   },
 ];

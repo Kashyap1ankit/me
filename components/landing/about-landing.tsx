@@ -1,11 +1,23 @@
+"use client";
+
 import { cousine, gabarito } from "@/public/font";
 import { Dot } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Suspense, useEffect } from "react";
 import { BiDownload } from "react-icons/bi";
 import { BsArrowRight } from "react-icons/bs";
+import { Tweet, TweetSkeleton } from "react-tweet";
 
 export default function AboutLanding() {
+  useEffect(() => {
+    // Load Twitter script on client
+    const script = document.createElement("script");
+    script.src = "https://platform.twitter.com/widgets.js";
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
+
   return (
     <div className="flex flex-col gap-6" id="about">
       <div className="flex justify-between items-center">
@@ -42,7 +54,6 @@ export default function AboutLanding() {
         into responsive web pages. I bring a solution-driven approach to
         crafting impactful digital products.
       </p>
-
       <div className="flex gap-6">
         <Link
           href={"mailto:kashyap25ankit@gmail.com?subject=Work Enquiry"}

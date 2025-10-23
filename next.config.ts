@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "sanityesports.vercel.app",
+        hostname: "www.toornify.com",
       },
       {
         protocol: "https",

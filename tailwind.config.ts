@@ -24,6 +24,7 @@ export default {
         darkBlue: "#0c1c32",
         titleBg: "#151517",
         titleBgWhite: "#101012",
+        "custom-gray": "#363636",
       },
       animation: {
         wave: "wiggle 2s linear infinite",
