@@ -7,7 +7,7 @@ import Link from "next/link";
 import { Suspense, useEffect } from "react";
 import { BiDownload } from "react-icons/bi";
 import { BsArrowRight } from "react-icons/bs";
-import { Tweet, TweetSkeleton } from "react-tweet";
+import Footer from "../landing/footer";
 
 export default function AboutLanding() {
   useEffect(() => {
@@ -22,6 +22,13 @@ export default function AboutLanding() {
     <div className="flex flex-col gap-6" id="about">
       <div className="flex justify-between items-center">
         <div className="flex flex-col gap-4">
+          <div className="flex gap-x-2 items-center border w-fit  p-1 rounded-full bg-gray-900 shadow-inset ">
+            <div className="w-2 h-2 bg-green-900 rounded-full " />
+            <p className={`${cousine.className} text-xs text-green-900`}>
+              Available
+            </p>
+          </div>
+
           <p
             className={` text-black dark:text-white text-2xl sm:text-3xl md:text-4xl ${gabarito.className} font-bold`}
           >
@@ -30,13 +37,6 @@ export default function AboutLanding() {
               Ankit Kashyap !
             </span>{" "}
           </p>
-
-          <div className="flex items-center border w-fit  px-2 py-1 rounded-md bg-green-200 ">
-            <Dot className="text-green-800 size-4 animate-ping duration-700 opacity-75" />
-            <p className={`${cousine.className} text-xs text-green-800`}>
-              Available For Work
-            </p>
-          </div>
         </div>
 
         <Image
@@ -75,6 +75,8 @@ export default function AboutLanding() {
           <p>CV</p>
           <BiDownload />
         </Link>
+
+        <Footer />
       </div>
     </div>
   );

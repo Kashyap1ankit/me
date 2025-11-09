@@ -1,11 +1,18 @@
+"use client";
+
 import { navLinks } from "@/lib/constant";
 import Link from "next/link";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
-import Footer from "../landing/footer";
+
 import { FaXTwitter } from "react-icons/fa6";
 import { cousine, manrope } from "@/public/font";
+import { useState } from "react";
 
 export default function Navbar() {
+  const [activeTab, setActiveTab] = useState<
+    "home" | "projects" | "contribution"
+  >("home");
+
   const socials = [
     {
       link: "https://x.com/kashyap_tweetts",
@@ -23,30 +30,30 @@ export default function Navbar() {
   ];
 
   return (
-    <div className="fixed bottom-4 left-1/2 -translate-x-1/2   max-w-[280px] sm:max-w-fit  border border-neutral-700   rounded-full z-999  bg-gray-900/50  p-1 overflow-x-scroll no-scrollbar shadow-inner shadow-white/20">
-      <div className="flex justify-start gap-4 items-center  sm:max-w-fit border border-neutral-800 rounded-full z-999   bg-black py-2 px-4 overflow-x-scroll no-scrollbar ">
+    <div className="fixed bottom-4 left-1/2 -translate-x-1/2   max-w-[280px] sm:max-w-fit  border dark:border-neutral-700   rounded-full z-999 bg-white/50  dark:bg-gray-900/50  p-1 overflow-x-scroll no-scrollbar shadow-inner shadow-white/20 ">
+      <div className="flex justify-start gap-4 items-center  sm:max-w-fit border dark:border-neutral-800 rounded-full z-999  bg-white dark:bg-black px-4 py-1 overflow-x-scroll no-scrollbar ">
         <div className=" flex gap-2 items-center ">
           {navLinks.map((e, i: number) => {
             return (
-              <div
-                key={i}
-                className={`cursor-pointer duration-500 ${
-                  i === 0 ? "bg-gray-900" : "bg-transparent"
-                } py-2 px-4 rounded-full  hover:scale-125 flex flex-row items-center justify-center gap-2`}
-              >
-                <Link href={e.link}>
+              <Link href={e.link} key={i}>
+                <div
+                  className={`cursor-pointer duration-500 ${
+                    activeTab === e.value
+                      ? "bg-gray-300 dark:bg-gray-900"
+                      : "bg-transparent"
+                  } p-2 px-4 rounded-full flex flex-row items-center justify-center gap-1`}
+                  onClick={() => setActiveTab(e.value)}
+                >
                   <e.icon
-                    color={i === 0 ? "white" : "gray"}
                     stroke={1}
-                    size={24}
+                    size={20}
+                    className="text-black dark:text-white"
                   />
-                </Link>
-              </div>
+                </div>
+              </Link>
             );
           })}
         </div>
-
-        {/* <Footer /> */}
       </div>
     </div>
   );

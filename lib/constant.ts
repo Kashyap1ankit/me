@@ -156,15 +156,18 @@ export const navLinks = [
     name: "Home",
     icon: IconSmartHome,
     link: "/",
+    value: "home",
   },
   {
     name: "Projects",
     icon: IconCode,
     link: "/projects",
+    value: "projects",
   },
   {
     name: "Contribution",
     icon: IconGitMerge,
     link: "/contributions",
+    value: "contribution",
   },
 ];
