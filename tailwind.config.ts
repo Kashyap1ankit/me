@@ -28,6 +28,7 @@ export default {
       },
       animation: {
         wave: "wiggle 2s linear infinite",
+        come: "come 0.15s linear ",
         scroll:
           "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
       },
@@ -39,6 +40,17 @@ export default {
         scroll: {
           to: {
             transform: "translate(calc(-50% - 0.5rem))",
+          },
+        },
+        come: {
+          "0%": {
+            opacity: 0,
+            transform: "translateX(50px)",
+          },
+
+          "100%": {
+            opacity: 1,
+            transform: "translateX(0px)",
           },
         },
       },

@@ -34,7 +34,7 @@ export default function Projects() {
           return (
             <div
               key={i}
-              className="p-4 rounded-md border hover:border-blue-200 dark:border-neutral-900 cursor-pointer dark:hover:border-neutral-800 dark:hover:shadow-sm dark:hover:shadow-fuchsia-950 duration-300 flex flex-col gap-6 group"
+              className="p-4 rounded-md border hover:border-blue-200 dark:border-neutral-900 cursor-pointer dark:hover:border-neutral-800 dark:hover:shadow-xs dark:hover:shadow-fuchsia-950 duration-300 flex flex-col gap-6 group"
             >
               <div className="flex justify-between items-center">
                 <Image

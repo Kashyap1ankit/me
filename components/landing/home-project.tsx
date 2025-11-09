@@ -22,7 +22,7 @@ export default function HomeProjects() {
   return (
     <div id="projects" className="flex flex-col gap-6">
       <p
-        className={`${gabarito.className} text-2xl text-black dark:text-white font-semibold bg-gray-200 dark:bg-titleBg p-2 border-l-8 border-black dark:border-gray-200`}
+        className={`${gabarito.className} text-2xl text-black dark:text-white font-semibold bg-gray-200 dark:bg-title-bg p-2 border-l-8 border-black dark:border-gray-200`}
       >
         Projects
       </p>
@@ -32,7 +32,7 @@ export default function HomeProjects() {
           return (
             <div
               key={i}
-              className="p-4 rounded-md border hover:border-blue-200 dark:border-neutral-900 cursor-pointer dark:hover:border-neutral-800 dark:hover:shadow-sm dark:hover:shadow-fuchsia-950 duration-300 flex flex-col gap-6 group"
+              className="p-4 rounded-md border hover:border-blue-200 dark:border-neutral-900 cursor-pointer dark:hover:border-neutral-800 dark:hover:shadow-xs dark:hover:shadow-fuchsia-950 duration-300 flex flex-col gap-6 group"
             >
               <div className="flex justify-between items-center">
                 <Image
@@ -89,7 +89,7 @@ export default function HomeProjects() {
       </div>
 
       <div
-        className="border dark:border-neutral-900  dark:hover:border-neutral-800  text-center p-2 rounded-xl cursor-pointer duration-300 w-fit  bg-lightBlue dark:bg-darkBlue hover:bg-lightBlue  dark:hover:bg-darkBlue dark:text-lightBlue text-white text-sm flex items-center gap-2 self-end"
+        className="border dark:border-neutral-900  dark:hover:border-neutral-800  text-center p-2 rounded-xl cursor-pointer duration-300 w-fit  bg-light-blue dark:bg-dark-blue hover:bg-light-blue  dark:hover:bg-dark-blue dark:text-light-blue text-white text-sm flex items-center gap-2 self-end"
         onClick={() => router.push("/projects")}
       >
         <p> See more</p>

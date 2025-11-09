@@ -11,7 +11,7 @@ export default function Skills() {
   return (
     <div className="flex flex-col gap-6">
       <p
-        className={`${gabarito.className} text-2xl text-black dark:text-white font-semibold bg-gray-200 dark:bg-titleBg p-2 border-l-8 border-black dark:border-gray-200`}
+        className={`${gabarito.className} text-2xl text-black dark:text-white font-semibold bg-gray-200 dark:bg-title-bg p-2 border-l-8 border-black dark:border-gray-200`}
       >
         Skills
       </p>
@@ -48,7 +48,7 @@ export default function Skills() {
 
       {!showMore ? (
         <div
-          className="border dark:border-neutral-900  dark:hover:border-neutral-800  text-center p-2 rounded-md cursor-pointer duration-300 w-fit  bg-lightBlue dark:bg-darkBlue hover:bg-lightBlue  dark:hover:bg-darkBlue dark:text-lightBlue text-white text-sm flex items-center gap-2 self-end"
+          className="border dark:border-neutral-900  dark:hover:border-neutral-800  text-center p-2 rounded-md cursor-pointer duration-300 w-fit  bg-light-blue dark:bg-dark-blue hover:bg-light-blue  dark:hover:bg-dark-blue dark:text-light-blue text-white text-sm flex items-center gap-2 self-end"
           onClick={() => setShowMore(true)}
         >
           <p> See more</p>
@@ -56,7 +56,7 @@ export default function Skills() {
         </div>
       ) : (
         <div
-          className="border dark:border-neutral-900  dark:hover:border-neutral-800  text-center p-2 rounded-xl cursor-pointer duration-300 w-fit  bg-lightBlue dark:bg-darkBlue hover:bg-lightBlue  dark:hover:bg-darkBlue dark:text-lightBlue text-white text-sm flex items-center gap-2 self-end"
+          className="border dark:border-neutral-900  dark:hover:border-neutral-800  text-center p-2 rounded-xl cursor-pointer duration-300 w-fit  bg-light-blue dark:bg-dark-blue hover:bg-light-blue  dark:hover:bg-dark-blue dark:text-light-blue text-white text-sm flex items-center gap-2 self-end"
           onClick={() => setShowMore(false)}
         >
           <p> See less</p>

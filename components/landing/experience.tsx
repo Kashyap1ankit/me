@@ -25,7 +25,7 @@ export default function Experience() {
   return (
     <div id="experience">
       <p
-        className={`${gabarito.className} text-2xl text-black dark:text-white font-semibold bg-gray-200 dark:bg-titleBg p-2 border-l-8 border-black dark:border-gray-200`}
+        className={`${gabarito.className} text-2xl text-black dark:text-white font-semibold bg-gray-200 dark:bg-title-bg p-2 border-l-8 border-black dark:border-gray-200`}
       >
         Experience
       </p>

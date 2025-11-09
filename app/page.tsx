@@ -16,7 +16,7 @@ export default function Home() {
         <HomeProjects />
         <div className="flex flex-col gap-6 mb-12">
           <p
-            className={`${gabarito.className} text-2xl text-black dark:text-white font-semibold bg-gray-200 dark:bg-titleBg p-2 border-l-8 border-black dark:border-gray-200`}
+            className={`${gabarito.className} text-2xl text-black dark:text-white font-semibold bg-gray-200 dark:bg-title-bg p-2 border-l-8 border-black dark:border-gray-200`}
           >
             Github Contribution
           </p>

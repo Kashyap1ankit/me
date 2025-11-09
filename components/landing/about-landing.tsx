@@ -1,6 +1,6 @@
 "use client";
 
-import { cousine, gabarito } from "@/public/font";
+import { cousine, gabarito, manrope } from "@/public/font";
 import { Dot } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,6 +8,11 @@ import { Suspense, useEffect } from "react";
 import { BiDownload } from "react-icons/bi";
 import { BsArrowRight } from "react-icons/bs";
 import Footer from "../landing/footer";
+import {
+  IconArrowBadgeRight,
+  IconCalendarWeek,
+  IconPointer,
+} from "@tabler/icons-react";
 
 export default function AboutLanding() {
   useEffect(() => {
@@ -22,12 +27,22 @@ export default function AboutLanding() {
     <div className="flex flex-col gap-6" id="about">
       <div className="flex justify-between items-center">
         <div className="flex flex-col gap-4">
-          <div className="flex gap-x-2 items-center border w-fit  p-1 rounded-full bg-gray-900 shadow-inset ">
-            <div className="w-2 h-2 bg-green-900 rounded-full " />
-            <p className={`${cousine.className} text-xs text-green-900`}>
+          <Link
+            href={"https://cal.com/kashyap-ankit"}
+            target="_blank"
+            className=" duration-500 flex gap-x-2 items-center border w-fit  p-2 rounded-full bg-black inset-shadow-sm inset-shadow-white/50 group active:scale-75"
+          >
+            <IconCalendarWeek color="white" size={16} />
+            <p className={`${manrope.className} text-sm text-white/80  `}>
               Available
             </p>
-          </div>
+
+            <IconArrowBadgeRight
+              color="white"
+              size={16}
+              className=" hidden group-hover:block group-hover:animate-come"
+            />
+          </Link>
 
           <p
             className={` text-black dark:text-white text-2xl sm:text-3xl md:text-4xl ${gabarito.className} font-bold`}

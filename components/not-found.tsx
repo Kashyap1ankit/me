@@ -11,7 +11,7 @@ export default function NotFound({ text }: { text: string }) {
       </p>
 
       <Link href={"/"}>
-        <div className="bg-gradient-to-t from-blue-700 to-blue-900 w-fit py-2 px-4 mt-16 mx-auto text-sm rounded-full ">
+        <div className="bg-linear-to-t from-blue-700 to-blue-900 w-fit py-2 px-4 mt-16 mx-auto text-sm rounded-full ">
           Back to Home
         </div>
       </Link>
