@@ -35,6 +35,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+::view-transition-group(root) {
+  animation-duration: 50s;
+}
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }

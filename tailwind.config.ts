@@ -20,11 +20,6 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        lightBlue: "#0879E7",
-        darkBlue: "#0c1c32",
-        titleBg: "#151517",
-        titleBgWhite: "#101012",
-        "custom-gray": "#363636",
       },
       animation: {
         wave: "wiggle 2s linear infinite",

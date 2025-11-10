@@ -22,7 +22,7 @@ export default function HomeProjects() {
   return (
     <div id="projects" className="flex flex-col gap-6">
       <p
-        className={`${gabarito.className} text-2xl text-black dark:text-white font-semibold bg-gray-200 dark:bg-title-bg p-2 border-l-8 border-black dark:border-gray-200`}
+        className={`${gabarito.className} text-2xl text-black dark:text-white font-semibold bg-gray-200 dark:bg-titleBg p-2 border-l-8 border-black dark:border-gray-200`}
       >
         Projects
       </p>

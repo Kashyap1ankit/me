@@ -7,12 +7,13 @@ import Link from "next/link";
 import { Suspense, useEffect } from "react";
 import { BiDownload } from "react-icons/bi";
 import { BsArrowRight } from "react-icons/bs";
-import Footer from "../landing/footer";
+
 import {
   IconArrowBadgeRight,
   IconCalendarWeek,
   IconPointer,
 } from "@tabler/icons-react";
+import { ThemeToggleButton } from "../theme";
 
 export default function AboutLanding() {
   useEffect(() => {
@@ -30,17 +31,21 @@ export default function AboutLanding() {
           <Link
             href={"https://cal.com/kashyap-ankit"}
             target="_blank"
-            className=" duration-500 flex gap-x-2 items-center border w-fit  p-2 rounded-full bg-black inset-shadow-sm inset-shadow-white/50 group active:scale-75"
+            className=" duration-500 flex gap-x-2 items-center  w-fit  p-2 rounded-full bg-black dark:bg-white/90 shadow-[inset_0_-4px_6px_rgba(255,255,255,0.5)] dark:shadow-[inset_0_-4px_6px_rgba(0,0,0,0.45)] group active:scale-75"
           >
-            <IconCalendarWeek color="white" size={16} />
-            <p className={`${manrope.className} text-sm text-white/80  `}>
+            <IconCalendarWeek
+              size={16}
+              className="text-white dark:text-black"
+            />
+            <p
+              className={`${manrope.className} text-sm text-white/80 dark:text-black  `}
+            >
               Available
             </p>
 
             <IconArrowBadgeRight
-              color="white"
               size={16}
-              className=" hidden group-hover:block group-hover:animate-come"
+              className="text-white dark:text-black hidden group-hover:block group-hover:animate-come"
             />
           </Link>
 
@@ -91,7 +96,7 @@ export default function AboutLanding() {
           <BiDownload />
         </Link>
 
-        <Footer />
+        <ThemeToggleButton />
       </div>
     </div>
   );
