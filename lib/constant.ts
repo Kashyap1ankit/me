@@ -1,14 +1,6 @@
-import { BiHome } from "react-icons/bi";
-import { GrProjects } from "react-icons/gr";
 import { DiRedis } from "react-icons/di";
-import { GoGitMerge } from "react-icons/go";
 import { RiBearSmileFill } from "react-icons/ri";
-import {
-  IconBrandVscode,
-  IconCode,
-  IconGitMerge,
-  IconSmartHome,
-} from "@tabler/icons-react";
+import { IconCode, IconGitMerge, IconSmartHome } from "@tabler/icons-react";
 
 import {
   SiJavascript,
@@ -36,6 +28,7 @@ import {
   SiReactrouter,
   SiReactquery,
   SiFramer,
+  SiExpo,
 } from "react-icons/si";
 
 export const skills = [
@@ -51,13 +44,18 @@ export const skills = [
     title: "Node js",
     icon: SiNodedotjs,
   },
-  {
-    title: "Websockets",
-    icon: SiSocketdotio,
-  },
+
   {
     title: "React",
     icon: SiReact,
+  },
+  {
+    title: "React Native",
+    icon: SiReact,
+  },
+  {
+    title: "Expo",
+    icon: SiExpo,
   },
   {
     title: "Express.js",
@@ -82,6 +80,10 @@ export const skills = [
   {
     title: "Redis",
     icon: DiRedis,
+  },
+  {
+    title: "Websockets",
+    icon: SiSocketdotio,
   },
   {
     title: "Docker",

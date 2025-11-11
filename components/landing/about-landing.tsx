@@ -113,7 +113,7 @@ export default function AboutLanding() {
 
           <Link
             href={
-              "https://drive.google.com/file/d/1OtsYWPPPs6EyK56boMT8sXKe062HV1kj/view?usp=sharing"
+              "https://drive.google.com/file/d/1zsG0jFtzW2zpLr8ojBemGBb9gsUNhaCi/view?usp=sharing"
             }
             className="flex gap-2  px-4 items-center  p-2 w-fit bg-lightBlue dark:bg-darkBlue text-white dark:text-lightBlue text-sm rounded-lg inset-shadow-sm inset-shadow-white/50  dark:inset-shadow-white/20 "
             target="_blank"

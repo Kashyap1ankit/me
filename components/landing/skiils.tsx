@@ -48,7 +48,7 @@ export default function Skills() {
 
       {!showMore ? (
         <div
-          className="border dark:border-neutral-900  dark:hover:border-neutral-800  text-center p-2 rounded-md cursor-pointer duration-300 w-fit  bg-light-blue dark:bg-dark-blue hover:bg-light-blue  dark:hover:bg-dark-blue dark:text-light-blue text-white text-sm flex items-center gap-2 self-end"
+          className="border dark:border-neutral-900  dark:hover:border-neutral-800  text-center p-2 rounded-md cursor-pointer duration-300 w-fit  bg-lightBlue dark:bg-darkBlue hover:bg-light-blue  dark:hover:bg-dark-blue dark:text-light-blue text-white text-sm flex items-center gap-2 self-end"
           onClick={() => setShowMore(true)}
         >
           <p> See more</p>
