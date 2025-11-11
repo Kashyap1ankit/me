@@ -1,5 +1,5 @@
 "use client";
-import { cousine, gabarito } from "@/public/font";
+import { cousine, gabarito, hanken } from "@/public/font";
 import projectsData from "@/lib/projects.json";
 import { FaGithub } from "react-icons/fa";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import { BsArrowUpRight } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { GiClick } from "react-icons/gi";
+import { IconArrowBigDown } from "@tabler/icons-react";
 
 interface dataType {
   name: string;
@@ -89,11 +90,11 @@ export default function HomeProjects() {
       </div>
 
       <div
-        className="border dark:border-neutral-900  dark:hover:border-neutral-800  text-center p-2 rounded-xl cursor-pointer duration-300 w-fit  bg-light-blue dark:bg-dark-blue hover:bg-light-blue  dark:hover:bg-dark-blue dark:text-light-blue text-white text-sm flex items-center gap-2 self-end"
+        className="border dark:border-neutral-900  dark:hover:border-neutral-800  text-center p-2 rounded-lg inset-shadow-sm inset-shadow-white/50  dark:inset-shadow-white/20  cursor-pointer duration-300 w-fit  bg-lightBlue dark:bg-darkBlue hover:bg-lightBlue  dark:hover:bg-darkBlue dark:text-lightBlue text-white text-sm flex items-center gap-2 self-end mr-4 border"
         onClick={() => router.push("/projects")}
       >
-        <p> See more</p>
-        <GiClick />
+        <p className={`${hanken.className} font-bold`}> See more</p>
+        <IconArrowBigDown size={16} />
       </div>
     </div>
   );

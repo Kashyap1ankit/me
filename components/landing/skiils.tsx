@@ -1,7 +1,8 @@
 "use client";
 
 import { skills } from "@/lib/constant";
-import { gabarito } from "@/public/font";
+import { gabarito, hanken } from "@/public/font";
+import { IconArrowBigDown, IconArrowBigUp } from "@tabler/icons-react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 
@@ -16,16 +17,18 @@ export default function Skills() {
         Skills
       </p>
 
-      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 overflow-x-hidden  duration-300 px-4">
+      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 overflow-x-hidden  duration-300 px-4 h-full">
         {!showMore
           ? skills.slice(0, 12).map((skill, i) => {
               return (
                 <div
                   key={i}
-                  className="flex gap-2 justify-center items-center bg-slate-200 dark:bg-zinc-900 p-2 min-w-28 rounded-md cursor-pointer group"
+                  className="flex gap-2 justify-center items-center bg-slate-200 dark:bg-zinc-900 p-2 min-w-28 rounded-lg inset-shadow-sm inset-shadow-black/20 dark:inset-shadow-white/20 cursor-pointer group"
                 >
                   <skill.icon className="size-4 text-black dark:text-white group-hover:-translate-x-2 duration-300" />
-                  <p className="text-xs leading-[1.6] font-normal  text-black dark:text-white">
+                  <p
+                    className={`${hanken.className}  text-xs leading-[1.6] font-normal  text-black dark:text-white`}
+                  >
                     {skill.title}
                   </p>
                 </div>
@@ -35,10 +38,12 @@ export default function Skills() {
               return (
                 <div
                   key={i}
-                  className="flex gap-2 justify-center items-center bg-slate-200 dark:bg-zinc-900 p-2 min-w-28 rounded-md cursor-pointer group"
+                  className="flex gap-2 justify-center items-center bg-slate-200 dark:bg-zinc-900 p-2 min-w-28 rounded-lg inset-shadow-sm inset-shadow-black/20 dark:inset-shadow-white/20 cursor-pointer group"
                 >
                   <skill.icon className="size-4 text-black dark:text-white group-hover:-translate-x-2 duration-300" />
-                  <p className="text-xs leading-[1.6] font-normal  text-black dark:text-white">
+                  <p
+                    className={`${hanken.className}  text-xs leading-[1.6] font-normal  text-black dark:text-white`}
+                  >
                     {skill.title}
                   </p>
                 </div>
@@ -48,19 +53,19 @@ export default function Skills() {
 
       {!showMore ? (
         <div
-          className="border dark:border-neutral-900  dark:hover:border-neutral-800  text-center p-2 rounded-md cursor-pointer duration-300 w-fit  bg-lightBlue dark:bg-darkBlue hover:bg-light-blue  dark:hover:bg-dark-blue dark:text-light-blue text-white text-sm flex items-center gap-2 self-end"
+          className="border dark:border-neutral-900  dark:hover:border-neutral-800  text-center p-2 rounded-lg inset-shadow-sm inset-shadow-white/50  dark:inset-shadow-white/20  cursor-pointer duration-300 w-fit  bg-lightBlue dark:bg-darkBlue hover:bg-lightBlue  dark:hover:bg-darkBlue dark:text-lightBlue text-white text-sm flex items-center gap-2 self-end mr-4 border"
           onClick={() => setShowMore(true)}
         >
-          <p> See more</p>
-          <ChevronDown className="size-4" />
+          <p className={`${hanken.className} font-bold`}> See more</p>
+          <IconArrowBigDown size={16} />
         </div>
       ) : (
         <div
-          className="border dark:border-neutral-900  dark:hover:border-neutral-800  text-center p-2 rounded-xl cursor-pointer duration-300 w-fit  bg-light-blue dark:bg-dark-blue hover:bg-light-blue  dark:hover:bg-dark-blue dark:text-light-blue text-white text-sm flex items-center gap-2 self-end"
+          className="border dark:border-neutral-900  dark:hover:border-neutral-800  text-center p-2 rounded-lg inset-shadow-sm inset-shadow-white/50  dark:inset-shadow-white/20  cursor-pointer duration-300 w-fit  bg-lightBlue dark:bg-darkBlue hover:bg-lightBlue  dark:hover:bg-darkBlue dark:text-lightBlue text-white text-sm flex items-center gap-2 self-end mr-4 border"
           onClick={() => setShowMore(false)}
         >
-          <p> See less</p>
-          <ChevronUp className="size-4" />
+          <p className={`${hanken.className} font-bold`}> See less</p>
+          <IconArrowBigUp size={16} />
         </div>
       )}
     </div>
