@@ -7,7 +7,7 @@ import { BsArrowUpRight } from "react-icons/bs";
 
 export default function Projects() {
   return (
-    <div className="mx-auto pt-12 text-black">
+    <div className="mx-auto pt-12 text-black px-4">
       <p
         className={`${gabarito.className} text-2xl text-black dark:text-white font-bold `}
       >

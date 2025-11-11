@@ -7,7 +7,7 @@ import { GitMerge } from "lucide-react";
 import { BsArrowUpRight } from "react-icons/bs";
 export default function Contribution() {
   return (
-    <div>
+    <div className="px-4">
       <p
         className={`${gabarito.className} text-2xl text-black dark:text-white `}
       >
