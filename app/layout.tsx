@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 export const metadata: Metadata = {
   title: "Ankit Kashyap",
   description: "Ankit Kashyap Portfolio",
-  icons: "/x.png",
+  icons: "/x.webp",
 };
 
 export default function RootLayout({
@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <ReactLenis root>
         <body
-          className={` antialiased w-11/12 w-4xl max-w-4xl mx-auto bg-[#F6F5FE] dark:bg-[#000000] text-white border-x px-4 dark:border-zinc-900`}
+          className={` antialiased w-11/12 w-4xl max-w-4xl mx-auto bg-[#F6F5FE] dark:bg-[#000000] text-white border-x  dark:border-zinc-900`}
         >
           <ThemeProvider
             attribute={"class"}

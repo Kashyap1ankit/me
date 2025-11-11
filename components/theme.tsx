@@ -5,6 +5,7 @@ import { useTheme } from "next-themes";
 import React, { useCallback, useEffect, useState } from "react";
 import { MdDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
+import { IconBulb } from "@tabler/icons-react";
 
 export const useThemeToggle = ({
   variant = "circle",
@@ -151,7 +152,7 @@ export const ThemeToggleButton = ({
   return (
     <div
       className={cn(
-        "size-10 cursor-pointer  p-0 transition-all duration-300 active:scale-95",
+        "  cursor-pointer border border-neutral-200 dark:border-neutral-700 rounded-md p-2 m-auto group duration-200 z-[999] bg-white dark:bg-black inset-shadow-sm inset-shadow-black/20 dark:inset-shadow-white/50",
         className
       )}
       onClick={toggleTheme}
@@ -159,9 +160,12 @@ export const ThemeToggleButton = ({
     >
       <span className="sr-only">Toggle theme</span>
       {isDark ? (
-        <MdDarkMode className="size-4" />
+        <MdDarkMode className="size-4 sm:size-6 group-active:scale-50 duration-300" />
       ) : (
-        <CiLight className="size-4" />
+        <IconBulb
+          className="size-4 sm:size-6 group-active:scale-50 duration-300 fill-yellow-300"
+          stroke={1}
+        />
       )}
     </div>
   );

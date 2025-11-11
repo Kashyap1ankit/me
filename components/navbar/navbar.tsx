@@ -2,32 +2,13 @@
 
 import { navLinks } from "@/lib/constant";
 import Link from "next/link";
-import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 
-import { FaXTwitter } from "react-icons/fa6";
-import { cousine, manrope } from "@/public/font";
 import { useState } from "react";
 
 export default function Navbar() {
   const [activeTab, setActiveTab] = useState<
     "home" | "projects" | "contribution"
   >("home");
-
-  const socials = [
-    {
-      link: "https://x.com/kashyap_tweetts",
-      icon: FaXTwitter,
-    },
-    {
-      link: "https://github.com/Kashyap1ankit/",
-      icon: FaGithub,
-    },
-
-    {
-      link: "https://www.linkedin.com/in/ankit-kashyap-coder/",
-      icon: FaLinkedinIn,
-    },
-  ];
 
   return (
     <div className="fixed bottom-4 left-1/2 -translate-x-1/2   max-w-[280px] sm:max-w-fit  border dark:border-neutral-700   rounded-full z-999 bg-white/50  dark:bg-gray-900/50  p-1 overflow-x-scroll no-scrollbar shadow-inner shadow-white/20 ">
@@ -58,17 +39,3 @@ export default function Navbar() {
     </div>
   );
 }
-
-// <div className="flex gap-4 items-center border-r pr-2">
-// {socials.map((e, i: number) => {
-//   return (
-//     <Link
-//       key={i}
-//       href={e.link}
-//       className="bg-gray-900 p-2 rounded-full"
-//     >
-//       <e.icon className="size-4  dark:text-white  " />
-//     </Link>
-//   );
-// })}
-// </div>

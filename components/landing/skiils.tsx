@@ -16,7 +16,7 @@ export default function Skills() {
         Skills
       </p>
 
-      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 overflow-x-hidden  duration-300">
+      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6 overflow-x-hidden  duration-300 px-4">
         {!showMore
           ? skills.slice(0, 12).map((skill, i) => {
               return (

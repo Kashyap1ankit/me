@@ -30,7 +30,7 @@ export default function Experience() {
         Experience
       </p>
 
-      <div className="mt-12 flex flex-col gap-6">
+      <div className="mt-12 flex flex-col gap-6 px-4">
         {experienceData.map((e: dataType, i: number) => {
           const isOpen = openedIndex === i;
 
