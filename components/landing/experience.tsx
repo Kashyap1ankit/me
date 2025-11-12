@@ -3,6 +3,7 @@
 import { gabarito, hanken } from "@/public/font";
 import { experienceData } from "@/lib/experience";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import {
   IconBriefcase,
   IconCircleArrowDown,
@@ -32,74 +33,91 @@ export default function Experience() {
         Experience
       </p>
 
-      <div className=" flex flex-col items-start justify-start gap-6  w-full">
+      <div className=" flex flex-col items-start justify-start gap-6 sm:gap-8 md:gap-12  w-full">
         {experienceData.map((e: dataType, i: number) => {
           const isOpen = openedIndex === i;
 
           return (
             <div
+              className="flex flex-row items-start gap-x-2 px-4 w-full"
               key={i}
-              className="p-4 cursor-pointer flex flex-col gap-4 sm:gap-0 w-full "
             >
-              <div
-                className="flex flex-col sm:flex-row  gap-4 sm:items-center justify-between"
-                onClick={() => toggleIndex(i)}
-              >
-                <div className="flex items-center gap-2">
-                  <div>
-                    <IconBriefcase
-                      size={36}
-                      className="border border-neutral-200 dark:border-neutral-800 p-2 rounded-lg"
-                    />
-                  </div>
-                  <div>
-                    <div className="flex gap-4 items-center">
-                      <p
-                        className={`${gabarito.className} text-xl text-black dark:text-white`}
-                      >
-                        {e.company}
-                      </p>
-                      {isOpen ? (
-                        <IconCircleArrowDown
-                          size={24}
-                          className=" text-gray-500"
-                        />
-                      ) : (
+              <div>
+                <IconBriefcase
+                  size={36}
+                  className="border border-neutral-200 dark:border-neutral-800 p-2 rounded-lg"
+                />
+              </div>
+
+              {/* second one  */}
+              <div className=" cursor-pointer flex flex-col gap-4 sm:gap-0 w-full  ">
+                <div
+                  className="flex flex-col sm:flex-row  gap-4 sm:items-center sm:justify-between  w-full"
+                  onClick={() => toggleIndex(i)}
+                >
+                  <div className="flex items-center gap-2">
+                    <div>
+                      <div className="flex gap-4 items-center">
+                        <p
+                          className={`${gabarito.className} text-xl text-black dark:text-white`}
+                        >
+                          {e.company}
+                        </p>
+
                         <IconCircleArrowRight
                           size={24}
-                          className=" text-gray-500"
+                          className={`text-gray-500 ${
+                            isOpen ? "rotate-90" : ""
+                          }`}
                         />
-                      )}
+                      </div>
+                      <p
+                        className={`${hanken.className} text-gray-500 text-sm font-medium`}
+                      >
+                        {e.role}
+                      </p>
                     </div>
+                  </div>
+
+                  <div className="flex  place-self-end sm:place-self-start sm:items-center gap-2  ">
                     <p
                       className={`${hanken.className} text-gray-500 text-sm font-medium`}
                     >
-                      {e.role}
+                      {e.timeframe}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex  place-self-end sm:place-self-start sm:items-center gap-2  ">
-                  <p className={`${hanken.className} text-gray-500 text-sm`}>
-                    {e.timeframe}
-                  </p>
-                </div>
+                <motion.ul
+                  initial={{
+                    y: 20,
+                    opacity: 0,
+                    filter: "blur(10px)",
+                  }}
+                  whileInView={{
+                    y: 0,
+                    opacity: 1,
+                    filter: "blur(0px)",
+                  }}
+                  transition={{
+                    duration: 0.15,
+                    delay: 0,
+                    type: "tween",
+                  }}
+                  className={`duration-500 mx-auto w-full  ${
+                    isOpen ? "list-disc flex flex-col gap-4 mt-4" : "hidden"
+                  }`}
+                >
+                  {e.about.map((text: string, j: number) => (
+                    <li
+                      key={j}
+                      className={`${hanken.className} text-sm text-gray-600 dark:text-gray-500`}
+                    >
+                      {text}
+                    </li>
+                  ))}
+                </motion.ul>
               </div>
-
-              <ul
-                className={`duration-500 mx-auto w-full  ${
-                  isOpen ? "list-disc flex flex-col gap-4 mt-4" : "hidden"
-                }`}
-              >
-                {e.about.map((text: string, j: number) => (
-                  <li
-                    key={j}
-                    className={`${hanken.className} text-sm text-gray-600 dark:text-gray-400`}
-                  >
-                    {text}
-                  </li>
-                ))}
-              </ul>
             </div>
           );
         })}

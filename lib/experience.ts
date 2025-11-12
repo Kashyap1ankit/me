@@ -4,10 +4,10 @@ export const experienceData = [
     role: "Fullstack Developer",
     timeframe: "March 2025 - Current",
     about: [
-      "Delivered end-to-end freelance projects for clients, building responsive web and mobile applications using Next.js and React Native",
-      "Integrated scalable backends with MongoDB, Prisma, and AWS S3 for data management and media storage",
-      "Implemented secure authentication and user management using Clerk and custom API routes",
+      "Delivered end-to-end freelance projects for clients, building responsive web and mobile applications using Next.js and RN.",
       "Converted Figma designs into polished, high-performance user interfaces optimized for all devices",
+      "Integrated scalable backends with MongoDB, Prisma, and AWS S3 for data management and media storage",
+      "Implemented secure authentication and user management",
     ],
 
     image: "/stealth.jpeg",
