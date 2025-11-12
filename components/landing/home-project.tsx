@@ -6,7 +6,6 @@ import Link from "next/link";
 import { BsArrowUpRight } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { GiClick } from "react-icons/gi";
 import { IconArrowBigDown } from "@tabler/icons-react";
 
 interface dataType {

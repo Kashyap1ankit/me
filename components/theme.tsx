@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 import React, { useCallback, useEffect, useState } from "react";
 import { MdDarkMode } from "react-icons/md";
-import { CiLight } from "react-icons/ci";
 import { IconBulb } from "@tabler/icons-react";
 
 export const useThemeToggle = ({
@@ -28,7 +27,7 @@ export const useThemeToggle = ({
 
   const styleId = "theme-transition-styles";
 
-  const updateStyles = useCallback((css: string, name: string) => {
+  const updateStyles = useCallback((css: string) => {
     if (typeof window === "undefined") return;
 
     let styleElement = document.getElementById(styleId) as HTMLStyleElement;
@@ -47,7 +46,7 @@ export const useThemeToggle = ({
 
     const animation = createAnimation(variant, start, blur, gifUrl);
 
-    updateStyles(animation.css, animation.name);
+    updateStyles(animation.css);
 
     if (typeof window === "undefined") return;
 
@@ -78,7 +77,7 @@ export const useThemeToggle = ({
 
     const animation = createAnimation(variant, start, blur, gifUrl);
 
-    updateStyles(animation.css, animation.name);
+    updateStyles(animation.css);
 
     if (typeof window === "undefined") return;
 
@@ -99,7 +98,7 @@ export const useThemeToggle = ({
 
     const animation = createAnimation(variant, start, blur, gifUrl);
 
-    updateStyles(animation.css, animation.name);
+    updateStyles(animation.css);
 
     if (typeof window === "undefined") return;
 

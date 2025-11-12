@@ -1,16 +1,12 @@
 "use client";
 
-import { cousine, gabarito, hanken, manrope } from "@/public/font";
+import { gabarito, hanken } from "@/public/font";
 import { experienceData } from "@/lib/experience";
-
-import Image from "next/image";
 import { useState } from "react";
-import { ChevronDown, ChevronRight } from "lucide-react";
 import {
   IconBriefcase,
   IconCircleArrowDown,
   IconCircleArrowRight,
-  IconCircleArrowUpRight,
 } from "@tabler/icons-react";
 
 interface dataType {

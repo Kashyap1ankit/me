@@ -1,23 +1,17 @@
 "use client";
 
-import { cousine, gabarito, hanken, manrope } from "@/public/font";
-import { Dot } from "lucide-react";
+import { gabarito, hanken, manrope } from "@/public/font";
 import Image from "next/image";
 import Link from "next/link";
-import { Suspense, useEffect } from "react";
-import { BiDownload } from "react-icons/bi";
-import { BsArrowRight } from "react-icons/bs";
-
+import { useEffect } from "react";
 import {
   IconArrowBadgeRight,
   IconCalendarWeek,
   IconHeartHandshake,
   IconLicense,
-  IconPointer,
 } from "@tabler/icons-react";
 import { ThemeToggleButton } from "../theme";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
-
 import { FaXTwitter } from "react-icons/fa6";
 
 export default function AboutLanding() {

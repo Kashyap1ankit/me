@@ -3,7 +3,6 @@
 import { skills } from "@/lib/constant";
 import { gabarito, hanken } from "@/public/font";
 import { IconArrowBigDown, IconArrowBigUp } from "@tabler/icons-react";
-import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 
 export default function Skills() {

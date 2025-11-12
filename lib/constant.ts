@@ -1,6 +1,12 @@
 import { DiRedis } from "react-icons/di";
 import { RiBearSmileFill } from "react-icons/ri";
-import { IconCode, IconGitMerge, IconSmartHome } from "@tabler/icons-react";
+import {
+  Icon,
+  IconCode,
+  IconGitMerge,
+  IconProps,
+  IconSmartHome,
+} from "@tabler/icons-react";
 
 import {
   SiJavascript,
@@ -30,6 +36,7 @@ import {
   SiFramer,
   SiExpo,
 } from "react-icons/si";
+import { ForwardRefExoticComponent, RefAttributes } from "react";
 
 export const skills = [
   {
@@ -153,7 +160,7 @@ export const skills = [
   },
 ];
 
-export const navLinks = [
+export const navLinks: navLinksType[] = [
   {
     name: "Home",
     icon: IconSmartHome,
@@ -173,3 +180,10 @@ export const navLinks = [
     value: "contribution",
   },
 ];
+
+export interface navLinksType {
+  name: string;
+  icon: ForwardRefExoticComponent<IconProps & RefAttributes<Icon>>;
+  link: string;
+  value: "home" | "projects" | "contribution";
+}
