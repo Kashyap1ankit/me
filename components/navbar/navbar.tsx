@@ -1,14 +1,12 @@
 "use client";
 
 import { navLinks, navLinksType } from "@/lib/constant";
+import { useActiveTab } from "@/store/store";
 import Link from "next/link";
 
-import { useState } from "react";
-
 export default function Navbar() {
-  const [activeTab, setActiveTab] = useState<
-    "home" | "projects" | "contribution"
-  >("home");
+  const { activeTab, setActiveTab } = useActiveTab();
+  console.log("Acit", activeTab);
 
   return (
     <div className="fixed bottom-4 left-1/2 -translate-x-1/2   max-w-[280px] sm:max-w-fit  border dark:border-neutral-700   rounded-full z-999 bg-white/50  dark:bg-gray-900/50  p-1 overflow-x-scroll no-scrollbar shadow-inner shadow-white/20 ">

@@ -165,19 +165,19 @@ export const navLinks: navLinksType[] = [
     name: "Home",
     icon: IconSmartHome,
     link: "/",
-    value: "home",
+    value: "/",
   },
   {
     name: "Projects",
     icon: IconCode,
     link: "/projects",
-    value: "projects",
+    value: "/projects",
   },
   {
     name: "Contribution",
     icon: IconGitMerge,
     link: "/contributions",
-    value: "contribution",
+    value: "/contributions",
   },
 ];
 
@@ -185,5 +185,6 @@ export interface navLinksType {
   name: string;
   icon: ForwardRefExoticComponent<IconProps & RefAttributes<Icon>>;
   link: string;
-  value: "home" | "projects" | "contribution";
+  value: tabType;
 }
+export type tabType = "/" | "/projects" | "/contributions";
