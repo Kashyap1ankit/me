@@ -7,8 +7,6 @@ import { useEffect, useRef, useState } from "react";
 import {
   IconArrowBadgeRight,
   IconCalendarWeek,
-  IconHeadphones,
-  IconHeadphonesOff,
   IconHeartHandshake,
   IconLicense,
   IconMusic,
@@ -49,10 +47,11 @@ export default function AboutLanding() {
   function handleAudioPlayPause() {
     if (!audioRef) return;
     if (isPlaying) {
+      //@ts-expect-error not explained
       audioRef.current?.pause();
       setIsPlaying(false);
       return;
-    }
+    } //@ts-expect-error not explained
     audioRef.current?.play();
     setIsPlaying(true);
   }

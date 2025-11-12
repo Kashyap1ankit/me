@@ -4,11 +4,7 @@ import { gabarito, hanken } from "@/public/font";
 import { experienceData } from "@/lib/experience";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  IconBriefcase,
-  IconCircleArrowDown,
-  IconCircleArrowRight,
-} from "@tabler/icons-react";
+import { IconBriefcase, IconCircleArrowRight } from "@tabler/icons-react";
 
 interface dataType {
   company: string;
