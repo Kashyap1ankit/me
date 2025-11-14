@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar/navbar";
 import { ReactLenis } from "lenis/react";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Ankit Kashyap",
@@ -29,6 +30,7 @@ export default function RootLayout({
           >
             <Navbar />
             {children}
+            <Analytics />
           </ThemeProvider>
         </body>
       </ReactLenis>
