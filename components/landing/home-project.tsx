@@ -58,12 +58,16 @@ export default function HomeProjects() {
                   target="_blank"
                   className="absolute top-2 sm:top-4 right-4 bg-gray-100/80 dark:bg-gray-700/80  rounded-lg "
                 >
-                  <IconLink className="p-2 rounded-lg size-8" />
+                  <IconLink className="p-2 rounded-lg size-8 text-black dark:text-white" />
                 </Link>
 
                 <div className="rounded-lg p-2 px-2 w-fit bg-white dark:bg-black absolute -bottom-4 right-4 flex flex-row gap-x-2">
                   {e.tech.map((TechIcon, i) => (
-                    <TechIcon key={i} className="size-4" stroke={"1.5"} />
+                    <TechIcon
+                      key={i}
+                      className="size-4 text-black dark:text-white"
+                      stroke={"1.5"}
+                    />
                   ))}
                 </div>
               </div>

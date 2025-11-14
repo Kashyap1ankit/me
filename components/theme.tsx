@@ -154,18 +154,16 @@ export const ThemeToggleButton = ({
     >
       <span className="sr-only">Toggle theme</span>
       {isDark ? (
-        <MdDarkMode className="size-4 sm:size-6 group-active:scale-50 duration-300" />
+        <MdDarkMode className="text-black dark:text-white size-4 sm:size-6 group-active:scale-50 duration-300" />
       ) : (
         <IconBulb
-          className="size-4 sm:size-6 group-active:scale-50 duration-300 fill-yellow-300"
+          className="text-black dark:text-white size-4 sm:size-6 group-active:scale-50 duration-300 fill-yellow-300"
           stroke={1}
         />
       )}
     </div>
   );
 };
-
-// ///////////////////////////////////////////////////////////////////////////
 
 export type AnimationVariant =
   | "circle"

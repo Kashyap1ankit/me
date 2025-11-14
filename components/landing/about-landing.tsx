@@ -161,7 +161,7 @@ export default function AboutLanding() {
                 className="bg-gray-200 dark:bg-gray-900 p-2 rounded-lg"
                 target="_blank"
               >
-                <e.icon className="size-4  dark:text-white  " />
+                <e.icon className="size-4 text-black dark:text-white  " />
               </Link>
             );
           })}

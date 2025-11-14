@@ -38,7 +38,7 @@ export default function Contribution() {
                 </div>
 
                 <Link href={e.organisation_github} target="_blank">
-                  <FaGithub className="size-6" />
+                  <FaGithub className="size-6 text-black dark:text-white" />
                 </Link>
               </div>
               <hr className=" border-gray-800 my-4" />
