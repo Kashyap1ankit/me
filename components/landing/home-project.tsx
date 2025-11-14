@@ -1,12 +1,12 @@
 "use client";
-import { cousine, gabarito, hanken } from "@/public/font";
-import projectsData from "@/lib/projects.json";
-import { FaGithub } from "react-icons/fa";
+import { gabarito, hanken } from "@/public/font";
+
 import Link from "next/link";
-import { BsArrowUpRight } from "react-icons/bs";
+
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { IconArrowBigDown } from "@tabler/icons-react";
+import { IconArrowBigDown, IconLink } from "@tabler/icons-react";
+import { allProjects } from "@/lib/constant";
 
 interface dataType {
   name: string;
@@ -19,6 +19,9 @@ interface dataType {
 
 export default function HomeProjects() {
   const router = useRouter();
+
+  console.log(allProjects.length);
+
   return (
     <div id="projects" className="flex flex-col gap-6">
       <p
@@ -28,60 +31,54 @@ export default function HomeProjects() {
       </p>
 
       <div className=" grid grid-cols-1 md:grid-cols-2   gap-6 px-4">
-        {projectsData.map((e: dataType, i: number) => {
+        {allProjects.slice(0, 2).map((e: dataType, i: number) => {
           return (
             <div
               key={i}
-              className="p-4 rounded-lg border hover:border-blue-200 dark:border-neutral-800 cursor-pointer dark:hover:border-neutral-800  duration-300 flex flex-col gap-6 group"
+              className="p-2 rounded-xl border dark:border-neutral-800 cursor-pointer dark:hover:border-neutral-800  duration-300 flex flex-col gap-6 group"
             >
-              <div className="flex justify-between items-center">
+              <div className="relative">
                 <Image
                   src={e.image}
                   width={500}
                   height={500}
                   alt="logo"
-                  className="w-12 rounded-full "
+                  className="w-full rounded-2xl "
                 />
-                <Link href={e.github} className="hover:text-gray-400">
-                  <FaGithub className="size-6 text-black dark:text-white" />
+
+                <Link
+                  href={`https://${e.deployed}`}
+                  target="_blank"
+                  className="absolute top-4 right-4 bg-gray-100/80 dark:bg-gray-700/80  rounded-lg "
+                >
+                  <IconLink className="p-2 rounded-lg size-8" />
                 </Link>
+
+                <div className="rounded-lg p-2 px-2 w-fit bg-white dark:bg-black absolute -bottom-4 right-4 flex flex-row gap-x-2">
+                  {e.tech.map((TechIcon, i) => (
+                    <TechIcon key={i} className="size-4" stroke={1.5} />
+                  ))}
+                </div>
               </div>
 
               <div>
-                <p
-                  className={`${gabarito.className} text-xl font-bold font-bold text-black dark:text-white`}
-                >
-                  {e.name}
-                </p>
+                <div className="flex flex-row items-center justify-start gap-x-4">
+                  <p
+                    className={`${hanken.className} text-black dark:text-white font-bold text-lg `}
+                  >
+                    {e.name}
+                  </p>
 
-                <p
-                  className={`${cousine.className} text-gray-500 text-sm mt-2`}
-                >
+                  <p
+                    className={`${hanken.className} p-1 rounded-lg  bg-gray-200 text-black/50 dark:text-white  text-xs `}
+                  >
+                    #{e.category}
+                  </p>
+                </div>
+
+                <p className={`${hanken.className} text-gray-500 text-sm `}>
                   {e.description}
                 </p>
-              </div>
-
-              <Link
-                href={`https://${e.deployed}`}
-                className={`${cousine.className} text-sm text-gray-400 flex gap-2 items-center group-hover:text-blue-500`}
-                target="_blank"
-              >
-                <p>{e.deployed}</p>
-
-                <BsArrowUpRight />
-              </Link>
-
-              <div className="flex gap-2 flex-wrap">
-                {e.tech.map((e: string, i: number) => {
-                  return (
-                    <p
-                      key={i}
-                      className="border dark:border-neutral-800 rounded-xl p-2 w-fit text-gray-500 text-xs bg-slate-200 dark:bg-transparent"
-                    >
-                      {e}
-                    </p>
-                  );
-                })}
               </div>
             </div>
           );
@@ -89,11 +86,11 @@ export default function HomeProjects() {
       </div>
 
       <div
-        className="border dark:border-neutral-900  dark:hover:border-neutral-800  text-center p-2 rounded-lg inset-shadow-sm inset-shadow-white/50  dark:inset-shadow-white/20  cursor-pointer duration-300 w-fit  bg-lightBlue dark:bg-darkBlue hover:bg-lightBlue  dark:hover:bg-darkBlue dark:text-lightBlue text-white text-sm flex items-center gap-2 self-end mr-4 border"
+        className="border dark:border-neutral-900  dark:hover:border-neutral-800  text-center p-2 rounded-lg inset-shadow-sm inset-shadow-white/50  dark:inset-shadow-white/20  cursor-pointer duration-300 w-fit  bg-lightBlue dark:bg-darkBlue hover:bg-lightBlue  dark:hover:bg-darkBlue dark:text-lightBlue text-white text-sm flex items-center gap-2 self-end mr-4 border group"
         onClick={() => router.push("/projects")}
       >
         <p className={`${hanken.className} font-bold`}> See more</p>
-        <IconArrowBigDown size={16} />
+        <IconArrowBigDown size={16} className="group-hover:rotate-180" />
       </div>
     </div>
   );

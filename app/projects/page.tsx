@@ -1,13 +1,15 @@
-import { cousine, gabarito } from "@/public/font";
-import allProjects from "@/lib/allProjects.json";
+import { cousine, gabarito, hanken } from "@/public/font";
+
 import Image from "next/image";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 import { BsArrowUpRight } from "react-icons/bs";
+import { allProjects } from "@/lib/constant";
+import { IconLink } from "@tabler/icons-react";
 
 export default function Projects() {
   return (
-    <div className="mx-auto pt-12 text-black px-4">
+    <div className="mx-auto pt-12 text-black px-4 mb-16">
       <p
         className={`${gabarito.className} text-2xl text-black dark:text-white font-bold `}
       >
@@ -33,65 +35,53 @@ export default function Projects() {
           return (
             <div
               key={i}
-              className="p-4 rounded-md border hover:border-blue-200 dark:border-neutral-900 cursor-pointer dark:hover:border-neutral-800 dark:hover:shadow-xs dark:hover:shadow-fuchsia-950 duration-300 flex flex-col gap-6 group"
+              className="p-2 rounded-xl border dark:border-neutral-800 cursor-pointer dark:hover:border-neutral-800  duration-300 flex flex-col gap-6 group"
             >
-              <div className="flex justify-between items-center">
+              <div className="relative">
                 <Image
-                  src={
-                    e.image ||
-                    "https://res.cloudinary.com/ddnkrlfjn/image/upload/v1735489606/pexels-photo-993020_wrn7ou.jpg"
-                  }
+                  src={e.image}
                   width={500}
                   height={500}
                   alt="logo"
-                  className="w-12 h-12 rounded-full  "
+                  className="w-full rounded-2xl "
                 />
-                <Link href={e.github} className="hover:text-gray-400">
-                  <FaGithub className="size-6 text-black dark:text-white" />
+
+                <Link
+                  href={`https://${e.deployed}`}
+                  target="_blank"
+                  className="absolute top-4 right-4 bg-gray-100/80 dark:bg-gray-700/80  rounded-lg "
+                >
+                  <IconLink className="p-2 rounded-lg size-8" />
                 </Link>
+
+                <div className="rounded-lg p-2 px-2 w-fit bg-white dark:bg-black absolute -bottom-4 right-4 flex flex-row gap-x-2">
+                  {e.tech.map((TechIcon, i) => (
+                    <TechIcon
+                      key={i}
+                      className="size-4 text-black dark:text-white"
+                      stroke={1.5}
+                    />
+                  ))}
+                </div>
               </div>
 
               <div>
-                <p
-                  className={`${gabarito.className} text-xl font-bold font-bold text-black dark:text-white`}
-                >
-                  {e.name}
-                </p>
+                <div className="flex flex-row items-center justify-start gap-x-4">
+                  <p
+                    className={`${hanken.className} text-black dark:text-white font-bold text-lg `}
+                  >
+                    {e.name}
+                  </p>
 
-                <p
-                  className={`${cousine.className} text-gray-400 text-sm mt-2`}
-                >
+                  <p
+                    className={`${hanken.className} p-1 rounded-lg  bg-gray-200 text-black/50 dark:text-white  text-xs `}
+                  >
+                    #{e.category}
+                  </p>
+                </div>
+                <p className={`${hanken.className} text-gray-500 text-sm `}>
                   {e.description}
                 </p>
-              </div>
-
-              {e.deployed ? (
-                <Link
-                  href={`https://${e.deployed}`}
-                  className={`${cousine.className} text-sm text-gray-400 flex gap-2 items-center group-hover:text-blue-500`}
-                  target="_blank"
-                >
-                  <p>{e.deployed}</p>
-
-                  <BsArrowUpRight />
-                </Link>
-              ) : (
-                <p className="text-gray-400 dark:text-gray-400 text-sm">
-                  Not Deployed
-                </p>
-              )}
-
-              <div className="flex gap-2 flex-wrap">
-                {e.tech.map((e: string, i: number) => {
-                  return (
-                    <p
-                      key={i}
-                      className="border dark:border-neutral-800 rounded-xl p-2 w-fit text-gray-400 text-xs bg-slate-200 dark:bg-transparent"
-                    >
-                      {e}
-                    </p>
-                  );
-                })}
               </div>
             </div>
           );

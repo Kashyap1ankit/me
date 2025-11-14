@@ -8,12 +8,12 @@ import Skills from "@/components/landing/skiils";
 export default function Home() {
   return (
     <>
-      <div className="mx-auto pt-12 flex flex-col gap-18">
+      <div className="mx-auto pt-12 flex flex-col gap-18 mb-12">
         <AboutLanding />
         <Skills />
         <Experience />
         <HomeProjects />
-        <div className="flex flex-col gap-6 mb-12">
+        <div className="flex flex-col gap-6 ">
           <p
             className={`${gabarito.className} text-2xl text-black dark:text-white font-semibold bg-gray-200 dark:bg-titleBg p-2 border-l-8 border-black dark:border-gray-200`}
           >
