@@ -76,7 +76,7 @@ export default function AboutLanding() {
         />
       </Link>
 
-      <div className="flex flex-row flex-wrap-reverse gap-y-2 justify-between items-center ">
+      <div className="flex flex-row flex-wrap-reverse gap-y-4 justify-between items-center ">
         <div className="flex flex-col gap-4">
           <div className="flex flex-row items-center justify-start gap-x-4">
             <p
@@ -101,18 +101,18 @@ export default function AboutLanding() {
         </div>
 
         <div className="flex flex-row items-center gap-x-4 ">
-          <ThemeToggleButton />
-
           <div
             className="cursor-pointer border border-neutral-200 dark:border-neutral-700 rounded-md p-2 m-auto group duration-200 z-[999] bg-white dark:bg-black inset-shadow-sm inset-shadow-black/20 dark:inset-shadow-white/50"
             onClick={handleAudioPlayPause}
           >
-            {isPlaying ? (
+            {!isPlaying ? (
               <IconMusicOff className="size-4 sm:size-6" />
             ) : (
               <IconMusic className="size-4 sm:size-6" />
             )}
           </div>
+
+          <ThemeToggleButton />
 
           <audio loop ref={audioRef} className="hidden">
             <source src="/audio.mp3" type="audio/mpeg" />

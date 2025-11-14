@@ -344,7 +344,7 @@ export const allProjects = [
       SiExpress,
     ],
     image: "/gh.webp",
-    category: "Tool",
+    category: "Product",
   },
 
   {
@@ -408,7 +408,7 @@ export const allProjects = [
       IconBrandMongodb,
     ],
     image: "/paytm.webp",
-    category: "Project",
+    category: "Product",
   },
   {
     name: "Airbnb Clone",

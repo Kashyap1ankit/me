@@ -5,22 +5,31 @@ import Link from "next/link";
 
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { IconArrowBigDown, IconLink } from "@tabler/icons-react";
+import {
+  Icon,
+  IconArrowBigDown,
+  IconLink,
+  IconProps,
+} from "@tabler/icons-react";
 import { allProjects } from "@/lib/constant";
+import { ForwardRefExoticComponent, RefAttributes } from "react";
+import { IconType } from "react-icons";
 
 interface dataType {
   name: string;
   description: string;
-  deployed: string;
-  github: string;
-  tech: string[];
+  deployed: string | null;
+  github: string | null;
+  tech: (
+    | ForwardRefExoticComponent<IconProps & RefAttributes<Icon>>
+    | IconType
+  )[];
   image: string;
+  category: string;
 }
 
 export default function HomeProjects() {
   const router = useRouter();
-
-  console.log(allProjects.length);
 
   return (
     <div id="projects" className="flex flex-col gap-6">
@@ -49,33 +58,32 @@ export default function HomeProjects() {
                 <Link
                   href={`https://${e.deployed}`}
                   target="_blank"
-                  className="absolute top-4 right-4 bg-gray-100/80 dark:bg-gray-700/80  rounded-lg "
+                  className="absolute top-2 sm:top-4 right-4 bg-gray-100/80 dark:bg-gray-700/80  rounded-lg "
                 >
                   <IconLink className="p-2 rounded-lg size-8" />
                 </Link>
 
                 <div className="rounded-lg p-2 px-2 w-fit bg-white dark:bg-black absolute -bottom-4 right-4 flex flex-row gap-x-2">
                   {e.tech.map((TechIcon, i) => (
-                    <TechIcon key={i} className="size-4" stroke={1.5} />
+                    <TechIcon key={i} className="size-4" stroke={"1.5"} />
                   ))}
                 </div>
               </div>
 
-              <div>
+              <div className="flex flex-col gap-y-4">
                 <div className="flex flex-row items-center justify-start gap-x-4">
                   <p
-                    className={`${hanken.className} text-black dark:text-white font-bold text-lg `}
+                    className={`${hanken.className} text-black dark:text-white font-bold text-xl sm:text-2xl`}
                   >
                     {e.name}
                   </p>
 
                   <p
-                    className={`${hanken.className} p-1 rounded-lg  bg-gray-200 text-black/50 dark:text-white  text-xs `}
+                    className={`${hanken.className} p-1 rounded-lg  bg-gray-200 dark:bg-gray-900 text-black/50 dark:text-white  text-xs `}
                   >
-                    #{e.category}
+                    #{e.category.toLowerCase()}
                   </p>
                 </div>
-
                 <p className={`${hanken.className} text-gray-500 text-sm `}>
                   {e.description}
                 </p>

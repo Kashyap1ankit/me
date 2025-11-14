@@ -7,14 +7,14 @@ import { GitMerge } from "lucide-react";
 import { BsArrowUpRight } from "react-icons/bs";
 export default function Contribution() {
   return (
-    <div className="px-4">
+    <div className="mx-auto pt-6 md:pt-12 text-black  mb-24">
       <p
-        className={`${gabarito.className} text-2xl text-black dark:text-white `}
+        className={`${gabarito.className} text-lg sm:text-2xl text-black dark:text-white font-semibold bg-gray-200 dark:bg-titleBg p-2 border-l-8 border-black dark:border-gray-200`}
       >
         Open Source Contributions
       </p>
 
-      <div className="grid gird-cols-1  gap-8 mt-12">
+      <div className="grid gird-cols-1  gap-8 mt-12 px-4">
         {contriubutionData.map((e, i: number) => {
           return (
             <div
@@ -31,13 +31,13 @@ export default function Contribution() {
                     className="w-10 h-10 rounded-full"
                   />
                   <p
-                    className={`${gabarito.className} text-2xl text-black dark:text-white`}
+                    className={`${gabarito.className} text-2xl text-black dark:text-white font-bold`}
                   >
                     {e.organisation}
                   </p>
                 </div>
 
-                <Link href={e.organisation_github}>
+                <Link href={e.organisation_github} target="_blank">
                   <FaGithub className="size-6" />
                 </Link>
               </div>
@@ -46,11 +46,14 @@ export default function Contribution() {
               <div className="flex flex-col gap-6">
                 {e.contribution.map((e, i) => {
                   return (
-                    <div key={i} className="flex justify-between group">
-                      <div className="flex gap-4">
-                        <GitMerge className="bg-purple-700 p-2 w-8 h-8 rounded-xl" />
+                    <div
+                      key={i}
+                      className="flex justify-between group items-center"
+                    >
+                      <div className="flex gap-4 items-center">
+                        <GitMerge className=" text-white bg-purple-700 p-2 size-8  rounded-lg" />
                         <p
-                          className={`${gabarito.className} text-black dark:text-white text-lg`}
+                          className={`${gabarito.className} text-black dark:text-white text-md sm:text-lg`}
                         >
                           {e.title}
                         </p>

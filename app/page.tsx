@@ -8,7 +8,7 @@ import Skills from "@/components/landing/skiils";
 export default function Home() {
   return (
     <>
-      <div className="mx-auto pt-12 flex flex-col gap-18 mb-12">
+      <div className="mx-auto pt-12 flex flex-col gap-18 mb-24 ">
         <AboutLanding />
         <Skills />
         <Experience />
