@@ -1,10 +1,10 @@
 import { gabarito } from "@/public/font";
-import contriubutionData from "@/lib/contributions.json";
 import Image from "next/image";
 import { FaGithub } from "react-icons/fa";
 import Link from "next/link";
 import { GitMerge } from "lucide-react";
 import { BsArrowUpRight } from "react-icons/bs";
+import { contriubutionData } from "@/lib/constant";
 export default function Contribution() {
   return (
     <div className="mx-auto pt-6 md:pt-12 text-black  mb-24">

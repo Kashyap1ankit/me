@@ -421,3 +421,126 @@ export const allProjects = [
     category: "Product",
   },
 ];
+
+export const contriubutionData = [
+  {
+    organisation: "100xdev",
+    logo: "https://appx-wsb-gcp-mcdn.akamai.net.in/subject/2023-01-17-0.3698267942851394.jpg",
+    organisation_github: "https://github.com/code100x",
+    contribution: [
+      {
+        title: "Created the notification system & web app ",
+        link: "https://github.com/code100x/job-board/pull/544",
+      },
+      {
+        title: "Fixed the overall performace of the website",
+        link: "https://github.com/code100x/job-board/pull/557",
+      },
+      {
+        title: "Created the bookmark functionality for saving job postings",
+        link: "https://github.com/code100x/job-board/pull/518",
+      },
+      {
+        title: "Added the checks before deleting account ensuring security",
+        link: "https://github.com/code100x/job-board/pull/513",
+      },
+      {
+        title: "Fixed Bug for account deletion",
+        link: "https://github.com/code100x/job-board/pull/508",
+      },
+    ],
+  },
+  {
+    organisation: "Sanity",
+    logo: "https://www.toornify.com/sanity_esports_logo.jpg",
+    organisation_github: "https://github.com/dinxsh/sanity",
+    contribution: [
+      {
+        title: "Revamped the contact page",
+        link: "https://github.com/dinxsh/sanity/pull/156",
+      },
+      {
+        title: "Created the notification Dialog ",
+        link: "https://github.com/dinxsh/sanity/pull/136",
+      },
+      {
+        title: "Fixed dependency issue in codebase",
+        link: "https://github.com/dinxsh/sanity/pull/134",
+      },
+      {
+        title: "Revamped the teams page & added search functionality",
+        link: "https://github.com/dinxsh/sanity/pull/150",
+      },
+      {
+        title: "Added husky & pretteir for formatting code in development",
+        link: "https://github.com/dinxsh/sanity/pull/151",
+      },
+      {
+        title: "Added the backend logic for contact email",
+        link: "https://github.com/dinxsh/sanity/pull/159",
+      },
+      {
+        title: "Ensured Authorization on tournament & bracket creation",
+        link: "https://github.com/dinxsh/sanity/pull/186",
+      },
+      {
+        title: "Fixed the responsiveness & few bugs on landing page",
+        link: "https://github.com/dinxsh/sanity/pull/182",
+      },
+      {
+        title: "Fixed the navbar scroll white line issue",
+        link: "https://github.com/dinxsh/sanity/pull/172",
+      },
+      {
+        title: "Changed the join community btn to signup button",
+        link: "https://github.com/dinxsh/sanity/pull/171",
+      },
+      {
+        title: "Changed the icon & removed the tick/cross button",
+        link: "https://github.com/dinxsh/sanity/pull/170",
+      },
+      {
+        title: "Increased the accesibility from 83 to 94",
+        link: "https://github.com/dinxsh/sanity/pull/163",
+      },
+    ],
+  },
+];
+
+export const experienceData = [
+  {
+    company: "Freelancing",
+    role: "Fullstack Developer",
+    timeframe: "March 2025 - Current",
+    about: [
+      "Delivered end-to-end freelance projects for clients, building responsive web and mobile applications using Next.js and RN.",
+      "Converted Figma designs into polished, high-performance user interfaces optimized for all devices",
+      "Integrated scalable backends with MongoDB, Prisma, and AWS S3 for data management and media storage",
+      "Implemented secure authentication and user management",
+    ],
+
+    image: "/stealth.jpeg",
+  },
+  {
+    company: "SparkStrand",
+    role: "Fullstack Developer",
+    timeframe: "July 2024 - Oct 2024",
+    about: [
+      "Collaborated in a team of 7 to develop a full-stack web application using Next.js and MongoDB",
+      "Utilized tech like Prisma, AWS S3, and Clerk to create multiple API routes",
+      "Transformed pixel-perfect Figma designs into responsive, high-quality web pages",
+    ],
+    image: "/sparkstand.jpg",
+  },
+  {
+    company: "Stealth Startup",
+    role: "TA Intern",
+    timeframe: "Nov 2023 - Mar 2024",
+    about: [
+      "Resolved over 1,050 MERN stack queries for students, providing in-depth coding support",
+      "Assisted more than 5,000 students throughout their coding journeys",
+      "Achieved a 4.97/5 rating during my internship",
+    ],
+    image: "/stealth.jpeg",
+  },
+];
