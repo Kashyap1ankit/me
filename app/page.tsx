@@ -10,9 +10,9 @@ export default function Home() {
     <>
       <div className="mx-auto pt-12 flex flex-col gap-18 mb-24 ">
         <AboutLanding />
-        <Skills />
         <Experience />
         <HomeProjects />
+        <Skills />
         <div className="flex flex-col gap-6 ">
           <p
             className={`${gabarito.className} text-2xl text-black dark:text-white font-semibold bg-gray-200 dark:bg-titleBg p-2 border-l-8 border-black dark:border-gray-200`}

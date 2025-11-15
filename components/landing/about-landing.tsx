@@ -106,9 +106,9 @@ export default function AboutLanding() {
             onClick={handleAudioPlayPause}
           >
             {!isPlaying ? (
-              <IconMusicOff className="size-4 sm:size-6" />
+              <IconMusicOff className="text-black dark:text-white size-4 sm:size-6" />
             ) : (
-              <IconMusic className="size-4 sm:size-6" />
+              <IconMusic className="text-black dark:text-white size-4 sm:size-6" />
             )}
           </div>
 
@@ -120,7 +120,9 @@ export default function AboutLanding() {
           </audio>
         </div>
       </div>
-      <p className={`${hanken.className} text-sm text-gray-500`}>
+      <p
+        className={`${hanken.className} text-sm text-gray-500 dark:text-gray-400`}
+      >
         I&apos;m a Full Stack Web Developer and Open Source Contributor with
         expertise in building scalable applications using Next.js, NoSql/Sql,
         and Tailwind CSS. Skilled in translating pixel-perfect Figma designs

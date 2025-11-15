@@ -230,13 +230,22 @@ export const allProjects = [
     image: "/earnkit.webp",
     category: "Revamp",
   },
+  {
+    name: "Yuga",
+    description: "Developed multiple pages ui in the 7-day long freelancing. ",
+    deployed: "www.joinyuga.com/",
+    github: null,
+    tech: [IconBrandNextjs, IconBrandTypescript, IconBrandTailwind],
+    image: "/yuga.webp",
+    category: "Freelancing",
+  },
 
   {
     name: "Logofy",
     description:
       "Helps to generate professional logos for their company. Describe in few words what you want in the logo and get it as svg",
     deployed: "logofy.10xdevlab.in",
-    github: "/github-not-found",
+    github: null,
     tech: [
       IconBrandNextjs,
       IconBrandTypescript,

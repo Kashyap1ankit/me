@@ -41,7 +41,7 @@ export default function Experience() {
               <div>
                 <IconBriefcase
                   size={36}
-                  className="border border-neutral-200 dark:border-neutral-800 p-2 rounded-lg"
+                  className="border border-neutral-200 dark:border-neutral-800 p-2 rounded-lg text-black dark:text-white"
                 />
               </div>
 
