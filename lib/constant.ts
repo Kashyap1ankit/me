@@ -10,10 +10,7 @@ import {
   IconBrandReact,
   IconBrandTailwind,
   IconBrandTypescript,
-  IconCode,
-  IconGitMerge,
   IconProps,
-  IconSmartHome,
 } from "@tabler/icons-react";
 
 import {
@@ -45,7 +42,12 @@ import {
   SiExpo,
   SiEjs,
 } from "react-icons/si";
-import { ForwardRefExoticComponent, RefAttributes } from "react";
+import {
+  GitMergeIcon,
+  Home04Icon,
+  VisualStudioCodeIcon,
+} from "@hugeicons/core-free-icons";
+import { IconSvgElement } from "@hugeicons/react";
 
 export const skills = [
   {
@@ -172,19 +174,22 @@ export const skills = [
 export const navLinks: navLinksType[] = [
   {
     name: "Home",
-    icon: IconSmartHome,
+    icon: Home04Icon,
+    icon2: Home04Icon,
     link: "/",
     value: "/",
   },
   {
-    name: "Projects",
-    icon: IconCode,
+    name: "Project",
+    icon: VisualStudioCodeIcon,
+    icon2: VisualStudioCodeIcon,
     link: "/projects",
     value: "/projects",
   },
   {
-    name: "Contribution",
-    icon: IconGitMerge,
+    name: "OS",
+    icon: GitMergeIcon,
+    icon2: GitMergeIcon,
     link: "/contributions",
     value: "/contributions",
   },
@@ -192,7 +197,8 @@ export const navLinks: navLinksType[] = [
 
 export interface navLinksType {
   name: string;
-  icon: ForwardRefExoticComponent<IconProps & RefAttributes<Icon>>;
+  icon: IconSvgElement;
+  icon2: IconSvgElement;
   link: string;
   value: tabType;
 }
@@ -532,7 +538,7 @@ export const experienceData = [
   },
   {
     company: "SparkStrand",
-    role: "Fullstack Developer",
+    role: "Fullstack Intern",
     timeframe: "July 2024 - Oct 2024",
     about: [
       "Collaborated in a team of 7 to develop a full-stack web application using Next.js and MongoDB",
@@ -542,7 +548,7 @@ export const experienceData = [
     image: "/sparkstand.jpg",
   },
   {
-    company: "Stealth Startup",
+    company: "Edtech Startup",
     role: "TA Intern",
     timeframe: "Nov 2023 - Mar 2024",
     about: [

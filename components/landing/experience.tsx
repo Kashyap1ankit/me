@@ -1,6 +1,7 @@
 "use client";
 
 import { gabarito, hanken } from "@/public/font";
+
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { IconBriefcase, IconCircleArrowRight } from "@tabler/icons-react";
