@@ -78,7 +78,11 @@ export default function Experience() {
 
                   <div className="flex  place-self-end sm:place-self-start sm:items-center gap-2  ">
                     <p
-                      className={`${hanken.className} text-gray-500 text-sm font-medium`}
+                      className={`${hanken.className}  text-sm font-medium ${
+                        e.timeframe === "March 2025 - Current"
+                          ? "text-green-600"
+                          : "text-gray-500"
+                      }`}
                     >
                       {e.timeframe}
                     </p>

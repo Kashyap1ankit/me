@@ -30,7 +30,9 @@ export default function Projects() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 px-4">
         {allProjects.map((e, i) => {
           return (
-            <div
+            <Link
+              href={`https://${e.deployed}`}
+              target="_blank"
               key={i}
               className="p-2 rounded-xl border dark:border-neutral-800 cursor-pointer dark:hover:border-neutral-800  duration-300 flex flex-col gap-6 group"
             >
@@ -80,7 +82,7 @@ export default function Projects() {
                   {e.description}
                 </p>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

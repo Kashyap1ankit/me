@@ -1,7 +1,6 @@
 import { DiRedis } from "react-icons/di";
 import { RiBearSmileFill } from "react-icons/ri";
 import {
-  Icon,
   IconBrandCss3,
   IconBrandFramerMotion,
   IconBrandMongodb,
@@ -10,7 +9,6 @@ import {
   IconBrandReact,
   IconBrandTailwind,
   IconBrandTypescript,
-  IconProps,
 } from "@tabler/icons-react";
 
 import {
