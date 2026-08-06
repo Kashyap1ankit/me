@@ -3,7 +3,7 @@
 import { gabarito, hanken, manrope } from "@/public/font";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import {
   IconArrowBadgeRight,
   IconCalendarWeek,
@@ -15,9 +15,10 @@ import {
 import { ThemeToggleButton } from "../theme";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { useActiveAudio } from "@/store/store";
 
 export default function AboutLanding() {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const { isPlaying, setIsPlaying } = useActiveAudio();
   const audioRef = useRef(null);
 
   useEffect(() => {
@@ -142,7 +143,7 @@ export default function AboutLanding() {
 
           <Link
             href={
-              "https://drive.google.com/file/d/1zsG0jFtzW2zpLr8ojBemGBb9gsUNhaCi/view?usp=sharing"
+              "https://drive.google.com/file/d/1ekhmrVbdR95EXcP2B4PxksDN50dF-WYZ/view?usp=sharing"
             }
             className="flex gap-2  px-4 items-center  p-2 w-fit bg-lightBlue dark:bg-darkBlue text-white dark:text-lightBlue text-sm rounded-lg inset-shadow-sm inset-shadow-white/50  dark:inset-shadow-white/20 "
             target="_blank"

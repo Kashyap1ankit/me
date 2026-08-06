@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 
 export default function Navbar() {
   return (
-    <div className="fixed bottom-4 left-1/2 -translate-x-1/2 max-w-[280px] sm:max-w-fit z-999 bg-white  dark:bg-gray-900  p-1 overflow-x-scroll no-scrollbar shadow-inner shadow-white/20 gap-x-8 bg-white  rounded-[18px] w-fit ring-4 ring-black/5   ">
+    <div className="fixed bottom-4 left-1/2 -translate-x-1/2 max-w-[280px] sm:max-w-fit z-999 bg-white  dark:bg-gray-900  p-1 overflow-x-scroll no-scrollbar overflow-y-hidden shadow-inner shadow-white/20 gap-x-8 bg-white  rounded-[18px] w-fit ring-4 ring-black/5   ">
       <div className=" flex gap-2 items-center ">
         {navLinks.map((e: navLinksType, i: number) => {
           return <NavItemComp key={i} e={e} />;
@@ -31,7 +31,6 @@ function NavItemComp({ e }: { e: navLinksType }) {
 
     hover: {
       opacity: 0,
-
       y: 8,
     },
   };
@@ -67,8 +66,8 @@ function NavItemComp({ e }: { e: navLinksType }) {
           initial="initial"
           animate={hovered ? "hover" : "initial"}
           transition={{
-            duration: 0.2,
-            type: "spring",
+            duration: 0.01,
+            type: "tween",
           }}
           className=""
         >
@@ -81,7 +80,7 @@ function NavItemComp({ e }: { e: navLinksType }) {
           animate={hovered ? "hover" : "initial"}
           transition={{
             duration: 0.2,
-            type: "spring",
+            type: "tween",
             damping: 10,
           }}
           className="absolute inset-0 items-center justify-center flex flex-row gap-1"
