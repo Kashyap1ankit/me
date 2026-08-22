@@ -262,6 +262,21 @@ export const allProjects = [
   },
 
   {
+    name: "Classly",
+    description:
+      "One stop platform to track assignments,student progress and lot.",
+    deployed: "classly.10xdevlab.in/",
+    github: null,
+    tech: [
+      IconBrandNextjs,
+      IconBrandTypescript,
+      IconBrandTailwind,
+      SiPostgresql,
+    ],
+    image: "/classly.webp",
+    category: "Product",
+  },
+  {
     name: "Referrush",
     description: "Designed & coded landing page for earnkit",
     deployed: "referrush-five.vercel.app/",
@@ -308,6 +323,21 @@ export const allProjects = [
     ],
     image: "/docsmin.webp",
     category: "Revamp",
+  },
+
+  {
+    name: "Tudu",
+    description: "One stop platform to track attendance, tasks.",
+    deployed: "tudu-mu.vercel.app",
+    github: null,
+    tech: [
+      IconBrandNextjs,
+      IconBrandTypescript,
+      IconBrandTailwind,
+      SiPostgresql,
+    ],
+    image: "/tudu.webp",
+    category: "Product",
   },
 
   {
