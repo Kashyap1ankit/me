@@ -41,11 +41,22 @@ import {
   SiEjs,
 } from "react-icons/si";
 import {
+  File02Icon,
   GitMergeIcon,
   Home04Icon,
   VisualStudioCodeIcon,
 } from "@hugeicons/core-free-icons";
 import { IconSvgElement } from "@hugeicons/react";
+
+export interface navLinksType {
+  name: string;
+  icon: IconSvgElement;
+  icon2: IconSvgElement;
+  link: string;
+  value: tabType;
+}
+
+export type tabType = "/" | "/blog" | "/projects" | "/contributions";
 
 export const skills = [
   {
@@ -178,6 +189,13 @@ export const navLinks: navLinksType[] = [
     value: "/",
   },
   {
+    name: "Blog",
+    icon: File02Icon,
+    icon2: File02Icon,
+    link: "/blog",
+    value: "/blog",
+  },
+  {
     name: "Project",
     icon: VisualStudioCodeIcon,
     icon2: VisualStudioCodeIcon,
@@ -193,14 +211,41 @@ export const navLinks: navLinksType[] = [
   },
 ];
 
-export interface navLinksType {
-  name: string;
-  icon: IconSvgElement;
-  icon2: IconSvgElement;
-  link: string;
-  value: tabType;
-}
-export type tabType = "/" | "/projects" | "/contributions";
+export const allBlogs = [
+  {
+    title: "A Random Day in My Life",
+    description:
+      "Lets see how I spend my day in NIT Patna as a day scholar. So basically, its very hard to manage college, travelling, studies, assignments, and everything else when you are not staying on campus. Every day starts with getting ready early and planning everything around the college schedule.The journey to NIT Patna itself becomes a part of the routine. Once I reach the campus, the day gets busy with classes, practicals, assignments, and sometimes meetings or other college activities. Between all this, there are always small breaks where I get to spend time with friends, have some food, and just relax for a while.Being a day scholar also means that the day doesnt really end when college ends. After leaving campus, there is still the journey back home, followed by whatever work is left to complete. Sometimes it feels exhausting, especially after a long day of classes.But at the same time, being a day scholar has its own experience. You get to experience college life while still having your home routine. In this blog, Ill share what a typical day at NIT Patna looks like for me—from leaving home in the morning to finally getting back home at the end of the day.",
+    id: 1,
+    tag: ["Personal", "Engeering"],
+    date: new Date("2026-09-10T13:32:00.000Z"),
+  },
+
+  {
+    title: "A Random Day in My Life",
+    description:
+      "Lets see how I spend my day in NIT Patna as a day scholar. So basically, its very hard to manage college, travelling, studies, assignments, and everything else when you are not staying on campus. Every day starts with getting ready early and planning everything around the college schedule.The journey to NIT Patna itself becomes a part of the routine. Once I reach the campus, the day gets busy with classes, practicals, assignments, and sometimes meetings or other college activities. Between all this, there are always small breaks where I get to spend time with friends, have some food, and just relax for a while.Being a day scholar also means that the day doesnt really end when college ends. After leaving campus, there is still the journey back home, followed by whatever work is left to complete. Sometimes it feels exhausting, especially after a long day of classes.But at the same time, being a day scholar has its own experience. You get to experience college life while still having your home routine. In this blog, Ill share what a typical day at NIT Patna looks like for me—from leaving home in the morning to finally getting back home at the end of the day.",
+    id: 1,
+    tag: ["Personal", "Engeering"],
+    date: new Date("2026-09-10T13:32:00.000Z"),
+  },
+  {
+    title: "A Random Day in My Life",
+    description:
+      "Lets see how I spend my day in NIT Patna as a day scholar. So basically, its very hard to manage college, travelling, studies, assignments, and everything else when you are not staying on campus. Every day starts with getting ready early and planning everything around the college schedule.The journey to NIT Patna itself becomes a part of the routine. Once I reach the campus, the day gets busy with classes, practicals, assignments, and sometimes meetings or other college activities. Between all this, there are always small breaks where I get to spend time with friends, have some food, and just relax for a while.Being a day scholar also means that the day doesnt really end when college ends. After leaving campus, there is still the journey back home, followed by whatever work is left to complete. Sometimes it feels exhausting, especially after a long day of classes.But at the same time, being a day scholar has its own experience. You get to experience college life while still having your home routine. In this blog, Ill share what a typical day at NIT Patna looks like for me—from leaving home in the morning to finally getting back home at the end of the day.",
+    id: 1,
+    tag: ["Personal", "Engeering"],
+    date: new Date("2026-09-10T13:32:00.000Z"),
+  },
+  {
+    title: "A Random Day in My Life",
+    description:
+      "Lets see how I spend my day in NIT Patna as a day scholar. So basically, its very hard to manage college, travelling, studies, assignments, and everything else when you are not staying on campus. Every day starts with getting ready early and planning everything around the college schedule.The journey to NIT Patna itself becomes a part of the routine. Once I reach the campus, the day gets busy with classes, practicals, assignments, and sometimes meetings or other college activities. Between all this, there are always small breaks where I get to spend time with friends, have some food, and just relax for a while.Being a day scholar also means that the day doesnt really end when college ends. After leaving campus, there is still the journey back home, followed by whatever work is left to complete. Sometimes it feels exhausting, especially after a long day of classes.But at the same time, being a day scholar has its own experience. You get to experience college life while still having your home routine. In this blog, Ill share what a typical day at NIT Patna looks like for me—from leaving home in the morning to finally getting back home at the end of the day.",
+    id: 1,
+    tag: ["Personal", "Engeering"],
+    date: new Date("2026-09-10T13:32:00.000Z"),
+  },
+];
 
 export const allProjects = [
   {
