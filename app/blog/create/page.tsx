@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
 import {
   MDXEditor,
@@ -13,7 +13,6 @@ import {
   BoldItalicUnderlineToggles,
   toolbarPlugin,
   BlockTypeSelect,
-  ChangeAdmonitionType,
   ChangeCodeMirrorLanguage,
   CodeToggle,
   linkDialogPlugin,
@@ -41,15 +40,18 @@ export default function BlogCreate() {
   const markDown = ``;
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const refOF = useRef(null);
+
+  function handleSubmit() {
+    console.log(refOF?.current.getMarkdown());
+  }
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   const isDark = !mounted || resolvedTheme === "dark";
-  const editorClassName = isDark
-    ? "dark-theme dark-editor"
-    : "light-editor";
+  const editorClassName = isDark ? "dark-theme dark-editor" : "light-editor";
 
   async function imageUploader(File: File) {
     console.log(File);
@@ -57,72 +59,78 @@ export default function BlogCreate() {
   }
 
   return (
-    <MDXEditor
-      markdown={markDown}
-      className={editorClassName}
-      plugins={[
-        thematicBreakPlugin(),
-        headingsPlugin(),
-        listsPlugin(),
-        quotePlugin(),
-        thematicBreakPlugin(),
-        markdownShortcutPlugin(),
-        linkPlugin(),
-        searchPlugin(),
-        tablePlugin(),
-        codeBlockPlugin({ defaultCodeBlockLanguage: "js" }),
-        codeMirrorPlugin({
-          codeBlockLanguages: {
-            js: "JavaScript",
-            css: "CSS",
-            tsx: "TypeScript (React)",
-          },
-        }),
-        linkDialogPlugin(),
-        diffSourcePlugin({
-          viewMode: "rich-text",
-          readOnlyDiff: true,
-        }),
-        frontmatterPlugin(),
-        imagePlugin({ imageUploadHandler: imageUploader }),
-        directivesPlugin({
-          directiveDescriptors: [AdmonitionDirectiveDescriptor],
-        }),
+    <div
+      className="blog-editor-wrapper  xl:w-[1000px] xl:-mx-12  "
+      data-theme={isDark ? "dark" : "light"}
+    >
+      <button onClick={handleSubmit}>Submit</button>
+      <MDXEditor
+        ref={refOF}
+        key={resolvedTheme}
+        markdown={markDown}
+        className={editorClassName}
+        plugins={[
+          thematicBreakPlugin(),
+          headingsPlugin(),
+          listsPlugin(),
+          quotePlugin(),
+          markdownShortcutPlugin(),
+          linkPlugin(),
+          searchPlugin(),
+          tablePlugin(),
+          codeBlockPlugin({ defaultCodeBlockLanguage: "js" }),
+          codeMirrorPlugin({
+            codeBlockLanguages: {
+              js: "JavaScript",
+              css: "CSS",
+              tsx: "TypeScript (React)",
+            },
+          }),
+          linkDialogPlugin(),
+          diffSourcePlugin({
+            viewMode: "rich-text",
+            readOnlyDiff: true,
+          }),
+          frontmatterPlugin(),
+          imagePlugin({ imageUploadHandler: imageUploader }),
+          directivesPlugin({
+            directiveDescriptors: [AdmonitionDirectiveDescriptor],
+          }),
 
-        toolbarPlugin({
-          toolbarClassName: "my-classname",
-          toolbarContents: () => (
-            <>
-              <DiffSourceToggleWrapper>
-                <UndoRedo />
-                <BoldItalicUnderlineToggles />
-                <BlockTypeSelect />
-                <CodeToggle />
-                <CreateLink />
+          toolbarPlugin({
+            toolbarContents: () => (
+              <>
+                <DiffSourceToggleWrapper>
+                  <UndoRedo />
+                  <BoldItalicUnderlineToggles />
+                  <BlockTypeSelect />
+                  <CodeToggle />
+                  <CreateLink />
 
-                <ConditionalContents
-                  options={[
-                    {
-                      when: (editor) => editor?.editorType === "codeblock",
-                      contents: () => <ChangeCodeMirrorLanguage />,
-                    },
-                    {
-                      fallback: () => (
-                        <>
-                          <InsertImage />
-                          <InsertCodeBlock />
-                          <InsertTable />
-                          <InsertFrontmatter />
-                        </>
-                      ),
-                    },
-                  ]}
-                />
-              </DiffSourceToggleWrapper>
-            </>
-          ),
-        }),
-      ]}
-    />
+                  <ConditionalContents
+                    options={[
+                      {
+                        when: (editor) => editor?.editorType === "codeblock",
+                        contents: () => <ChangeCodeMirrorLanguage />,
+                      },
+                      {
+                        fallback: () => (
+                          <>
+                            <InsertImage />
+                            <InsertCodeBlock />
+                            <InsertTable />
+                            <InsertFrontmatter />
+                          </>
+                        ),
+                      },
+                    ]}
+                  />
+                </DiffSourceToggleWrapper>
+              </>
+            ),
+          }),
+        ]}
+      />
+    </div>
   );
 }

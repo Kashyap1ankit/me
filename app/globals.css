@@ -7,6 +7,7 @@
 @config '../tailwind.config.ts';
 
 @layer base {
+
   *,
   ::after,
   ::before,
@@ -33,10 +34,29 @@
   }
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Prevent Radix UI scroll-lock from shifting the page layout.
+   Radix adds inline overflow:hidden + padding-right to body when
+   a Select/Dialog opens, which removes the scrollbar and shifts content. */
+body[data-scroll-locked] {
+  overflow: auto !important;
+  padding-right: 0px !important;
+  margin-right: 0px !important;
+}
+
+/* Ensure the editor wrapper doesn't clip portaled dropdown content */
+.blog-editor-wrapper {
+  position: relative;
+  overflow: visible;
 }
 
 ::view-transition-group(root) {
@@ -97,7 +117,7 @@ body {
   --admonitionNoteBg: var(--mauve-4);
   --admonitionNoteBorder: var(--mauve-8);
 
-  --mdxditorRichTextEditor: #000000
+  --mdxditorRichTextEditor: #000000;
 
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -105,8 +125,25 @@ body {
     "Liberation Mono", "Courier New", monospace;
 
   color: var(--baseText);
-  --basePageBg: black;
+  --basePageBg: #000000;
   background: var(--basePageBg);
+}
+
+.dark-editor [contenteditable] {
+  background-color: #000000;
+  color: #ededed;
+}
+
+.dark-editor .cm-editor {
+  background-color: #282c34;
+}
+
+.dark-editor .cm-editor .cm-gutters {
+  background-color: #000000;
+}
+
+.dark-editor .cm-editor .cm-content {
+  color: #ededed;
 }
 
 .light-editor {
@@ -159,4 +196,120 @@ body {
   color: var(--baseText);
   --basePageBg: #ffffff;
   background: var(--basePageBg);
+}
+
+.light-editor [contenteditable] {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.light-editor .cm-editor {
+  background-color: #E8E8E8;
+}
+
+.light-editor .cm-editor .cm-gutters {
+  background-color: #E8E8E8;
+}
+
+.light-editor .cm-editor .cm-content {
+  color: #000000;
+}
+
+/* ===== Fix: Prevent dropdowns/modals from shrinking editor width ===== */
+
+/* Radix popper content wrappers (used by Select, Popover, Dialog) should
+   never participate in the editor's layout flow. position:fixed is set by
+   Radix inline styles, but we reinforce it here to avoid edge-case reflows
+   caused by the portal container. */
+.dark-editor [data-radix-popper-content-wrapper],
+.light-editor [data-radix-popper-content-wrapper] {
+  position: fixed !important;
+}
+
+/* Select/dropdown containers that are portaled into the editor root
+   must not contribute to scrollable width */
+.dark-editor [class*="selectContainer"],
+.dark-editor [class*="toolbarNodeKindSelectContainer"],
+.dark-editor [class*="toolbarButtonDropdownContainer"],
+.dark-editor [class*="toolbarCodeBlockLanguageSelectContent"],
+.light-editor [class*="selectContainer"],
+.light-editor [class*="toolbarNodeKindSelectContainer"],
+.light-editor [class*="toolbarButtonDropdownContainer"],
+.light-editor [class*="toolbarCodeBlockLanguageSelectContent"] {
+  position: absolute;
+  z-index: 10;
+}
+
+/* ===== Dark mode backgrounds for all dropdowns/dialogs/popovers ===== */
+
+/* Select dropdown containers */
+.dark-editor [class*="selectContainer"],
+.dark-editor [class*="toolbarNodeKindSelectContainer"],
+.dark-editor [class*="toolbarButtonDropdownContainer"],
+.dark-editor [class*="toolbarCodeBlockLanguageSelectContent"] {
+  background-color: #000000;
+  border: 1px solid #333333;
+}
+
+/* Select trigger buttons */
+.dark-editor [class*="selectTrigger"],
+.dark-editor [class*="toolbarNodeKindSelectTrigger"],
+.dark-editor [class*="toolbarButtonSelectTrigger"] {
+  background-color: #000000;
+  color: #ededed;
+}
+
+/* Select items (dropdown options) */
+.dark-editor [class*="selectItem"],
+.dark-editor [class*="toolbarNodeKindSelectItem"] {
+  color: #ededed;
+}
+
+.dark-editor [class*="selectItem"][data-highlighted],
+.dark-editor [class*="toolbarNodeKindSelectItem"][data-highlighted] {
+  background-color: #1a1a1a;
+}
+
+.dark-editor [class*="selectItem"][data-state="checked"],
+.dark-editor [class*="toolbarNodeKindSelectItem"][data-state="checked"] {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+/* Dialog content (link dialog, image dialog, etc.) */
+.dark-editor [class*="dialogContent"],
+.dark-editor [class*="largeDialogContent"] {
+  background-color: #000000;
+  border-color: #333333;
+  color: #ededed;
+}
+
+/* Popover content */
+.dark-editor [class*="popoverContent"] {
+  background-color: #000000;
+  border: 1px solid #333333;
+  color: #ededed;
+}
+
+/* Link dialog specifically */
+.dark-editor [class*="linkDialogPopoverContent"],
+.dark-editor [class*="tableColumnEditorPopoverContent"] {
+  background-color: #000000;
+  border-color: #333333;
+  color: #ededed;
+}
+
+/* Dialog/popover inputs */
+.dark-editor [class*="dialogContent"] input,
+.dark-editor [class*="largeDialogContent"] input,
+.dark-editor [class*="popoverContent"] input,
+.dark-editor [class*="linkDialogPopoverContent"] input {
+  background-color: #111111;
+  color: #ededed;
+  border-color: #444444;
+}
+
+/* Popover arrow */
+.dark-editor [class*="popoverArrow"] {
+  fill: #000000;
 }
