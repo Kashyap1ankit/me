@@ -16,10 +16,28 @@ export async function generaetOtp() {
   QRCode.toFile("qr.png", uri, () => console.log("Hello"));
 }
 
-export async function verifyOtp(code: string) {
+import { redirect } from "next/navigation";
+
+export async function verifyOtp(formData: FormData) {
+  const code = formData.get("code");
+  const next = formData.get("next");
+
+  console.log("code", code);
+
+  if (typeof code !== "string" || code.length !== 6) {
+    return { error: "Enter a valid 6-digit code." };
+  }
+
   const result = await verify({
     secret: process.env.TOTP_SECRET || "",
     token: code,
   });
-  console.log(result.valid);
+
+  console.log("resukt", result);
+
+  if (!result.valid) {
+    return { error: "Invalid code. Please try again." };
+  }
+
+  redirect(typeof next === "string" && next ? next : "/");
 }

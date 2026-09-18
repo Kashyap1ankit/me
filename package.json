@@ -17,6 +17,7 @@
     "clsx": "^2.1.1",
     "framer-motion": "^11.18.2",
     "gh-activity-card": "^1.0.3",
+    "jose": "^6.2.12",
     "lenis": "^1.3.11",
     "lucide-react": "^0.469.0",
     "next": "15.1.11",
