@@ -35,6 +35,7 @@ import {
   frontmatterPlugin,
 } from "@mdxeditor/editor";
 import "@mdxeditor/editor/style.css";
+import { generaetOtp } from "@/app/actions/qr";
 
 export default function BlogCreate() {
   const markDown = ``;
@@ -43,11 +44,12 @@ export default function BlogCreate() {
   const refOF = useRef(null);
 
   function handleSubmit() {
-    console.log(refOF?.current.getMarkdown());
+    console.log(refOF.current && refOF.current?.getMarkdown());
   }
 
   useEffect(() => {
     setMounted(true);
+    // generaetOtp();
   }, []);
 
   const isDark = !mounted || resolvedTheme === "dark";

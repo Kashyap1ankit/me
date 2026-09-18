@@ -1,9 +1,6 @@
 import BlogCard from "@/components/blog/blog-card";
 import { allBlogs } from "@/lib/constant";
 import { gabarito, hanken } from "@/public/font";
-import { PlusSignSquareIcon } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
-import Link from "next/link";
 
 export default function BlogPage() {
   return (
@@ -16,16 +13,6 @@ export default function BlogPage() {
         >
           Blogs
         </p>
-
-        <Link href={"/blog/create"}>
-          <HugeiconsIcon
-            icon={PlusSignSquareIcon}
-            size={28}
-            color="white"
-            fill="#0879e7"
-            cursor={"pointer"}
-          />
-        </Link>
       </div>
 
       <p className={`${hanken.className} text-gray-500 mt-6 text-sm px-4`}>
