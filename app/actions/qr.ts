@@ -22,7 +22,10 @@ export async function generaetOtp() {
   QRCode.toFile("/public/qr.png", uri, () => console.log("Hello"));
 }
 
-export async function verifyOtp(formData: FormData) {
+export async function verifyOtp(
+  previousState: { error: string } | null,
+  formData: FormData
+) {
   const code = formData.get("code");
   const next = formData.get("next");
 
@@ -59,5 +62,5 @@ export async function verifyOtp(formData: FormData) {
     path: "/",
   });
 
-  redirect(typeof next === "string" && next ? next : "/");
+  redirect(typeof next === "string" && next ? next : "/blog/create");
 }

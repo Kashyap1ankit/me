@@ -7,7 +7,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: "Ankit Kashyap",
@@ -21,10 +21,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={cn("font-sans", geist.variable)}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={cn("font-sans", geist.variable)}
+    >
       <ReactLenis root>
         <body
-          className={` antialiased w-11/12  max-w-4xl mx-auto bg-[#F6F5FE] dark:bg-[#000000] text-white border-x  dark:border-zinc-900`}
+          className={` antialiased w-11/12  max-w-4xl mx-auto bg-[#FFFFFF] dark:bg-[#000000] text-white border-x  dark:border-zinc-900`}
         >
           <ThemeProvider
             attribute={"class"}

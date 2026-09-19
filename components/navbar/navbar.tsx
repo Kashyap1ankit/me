@@ -69,7 +69,7 @@ function NavItemComp({ e }: { e: navLinksType }) {
             duration: 0.01,
             type: "tween",
           }}
-          className=""
+          className="text-black dark:text-white"
         >
           <HugeiconsIcon icon={e.icon} stroke="2" size={24} />
         </motion.div>
@@ -85,8 +85,17 @@ function NavItemComp({ e }: { e: navLinksType }) {
           }}
           className="absolute inset-0 items-center justify-center flex flex-row gap-1"
         >
-          <HugeiconsIcon icon={e.icon2} stroke="2" size={24} />
-          <p className={`${hanken.className} text-xs`}>{e.name}</p>
+          <HugeiconsIcon
+            icon={e.icon2}
+            stroke="2"
+            size={24}
+            className="text-black dark:text-white"
+          />
+          <p
+            className={`${hanken.className} text-xs text-black dark:text-white`}
+          >
+            {e.name}
+          </p>
         </motion.div>
       </div>
     </Link>
