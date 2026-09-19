@@ -33,15 +33,16 @@ import {
   searchPlugin,
   InsertFrontmatter,
   frontmatterPlugin,
+  type MDXEditorMethods,
 } from "@mdxeditor/editor";
+// @ts-expect-error The package provides the stylesheet at runtime without a TypeScript declaration.
 import "@mdxeditor/editor/style.css";
-import { generaetOtp } from "@/app/actions/qr";
 
 export default function BlogCreate() {
   const markDown = ``;
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const refOF = useRef(null);
+  const refOF = useRef<MDXEditorMethods | null>(null);
 
   function handleSubmit() {
     console.log(refOF.current && refOF.current?.getMarkdown());
@@ -49,7 +50,6 @@ export default function BlogCreate() {
 
   useEffect(() => {
     setMounted(true);
-    // generaetOtp();
   }, []);
 
   const isDark = !mounted || resolvedTheme === "dark";
