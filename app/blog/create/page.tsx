@@ -37,6 +37,7 @@ import {
 } from "@mdxeditor/editor";
 // @ts-expect-error The package provides the stylesheet at runtime without a TypeScript declaration.
 import "@mdxeditor/editor/style.css";
+import { tryout, uploadImage } from "@/app/actions/storage";
 
 export default function BlogCreate() {
   const markDown = ``;
@@ -45,7 +46,9 @@ export default function BlogCreate() {
   const refOF = useRef<MDXEditorMethods | null>(null);
 
   function handleSubmit() {
-    console.log(refOF.current && refOF.current?.getMarkdown());
+    if (refOF.current) {
+      tryout(refOF.current?.getMarkdown(), 1);
+    }
   }
 
   useEffect(() => {
@@ -57,7 +60,8 @@ export default function BlogCreate() {
 
   async function imageUploader(File: File) {
     console.log(File);
-    return "https://images.unsplash.com/photo-1526779259212-939e64788e3c?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZnJlZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D";
+    const url = uploadImage(File);
+    return url;
   }
 
   return (
