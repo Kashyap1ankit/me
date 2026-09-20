@@ -1,6 +1,6 @@
 "use server";
 
-import { verify, generateURI, generateSecret } from "otplib";
+import { verify, generateURI } from "otplib";
 import QRCode from "qrcode";
 import { redirect } from "next/navigation";
 import * as jose from "jose";
@@ -8,11 +8,6 @@ import { SignJWT } from "jose";
 import { cookies } from "next/headers";
 
 export async function generaetOtp() {
-  // otp secret generation and
-
-  const secret = generateSecret();
-  console.log("scrent is", secret);
-
   const uri = generateURI({
     issuer: "Portfoilio",
     label: "10xdevlab.in",
@@ -24,7 +19,7 @@ export async function generaetOtp() {
 
 export async function verifyOtp(
   previousState: { error: string } | null,
-  formData: FormData
+  formData: FormData,
 ) {
   const code = formData.get("code");
   const next = formData.get("next");
