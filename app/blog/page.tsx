@@ -1,8 +1,11 @@
 import BlogCard from "@/components/blog/blog-card";
 import { allBlogs } from "@/lib/constant";
 import { gabarito, hanken } from "@/public/font";
+import { getBlogs } from "../actions/storage";
 
 export default function BlogPage() {
+  getBlogs();
+
   return (
     <div className="mx-auto pt-6 md:pt-12 text-black dark:text-white mb-24 ">
       <div
