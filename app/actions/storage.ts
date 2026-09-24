@@ -17,13 +17,23 @@ export async function uploadImage(File: any) {
   return blob.url;
 }
 
-export async function getBlogs() {
+export async function getAllBlogs() {
   const listOfBlobs = await list({
     limit: 1000,
     prefix: "blog/",
   });
 
-  const res = await fetch(listOfBlobs.blobs[0].url);
+  return listOfBlobs.blobs;
+}
+
+export async function getBlogWithId(id: number) {
+  const blogWithId = await get(`blog/${id}`, {
+    access: "public",
+  });
+
+  if (!blogWithId) return null;
+
+  const res = await fetch(blogWithId.blob.url);
   const text = await res.text();
   return text;
 }

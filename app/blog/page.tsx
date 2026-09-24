@@ -1,10 +1,36 @@
+"use client";
 import BlogCard from "@/components/blog/blog-card";
-import { allBlogs } from "@/lib/constant";
+// import { allBlogs } from "@/lib/constant";
 import { gabarito, hanken } from "@/public/font";
-import { getBlogs } from "../actions/storage";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { getAllBlogs } from "../actions/storage";
 
 export default function BlogPage() {
+  const [allBlogs, setAllBlogs] = useState([]);
+  useEffect(() => {
+    async function fn() {
+      const allBlogsArray = await getAllBlogs();
+      for (let blog of allBlogsArray) {
+        const res = await fetch(blog.url);
+        const text = await res.text();
+        setAllBlogs((prev) => {
+          return [
+            ...prev,
+            {
+              title: "A Random Day in My Life",
+              description: text,
+              id: blog.pathname.slice(4),
+              tag: ["Personal", "Engeering"],
+              date: blog.uploadedAt,
+            },
+          ];
+        });
+      }
+    }
+
+    fn();
+  }, []);
   return (
     <div className="mx-auto pt-6 md:pt-12 text-black dark:text-white mb-24 ">
       <div
@@ -24,7 +50,7 @@ export default function BlogPage() {
       <div className="flex flex-col gap-y-12 mt-12 px-4">
         {allBlogs.map((e, i) => {
           return (
-            <Link href={`/blog/${1}`}>
+            <Link href={`/blog/${e.id}`}>
               <BlogCard
                 key={i}
                 title={e.title}

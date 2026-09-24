@@ -37,6 +37,7 @@ import {
 // @ts-expect-error The package provides the stylesheet at runtime without a TypeScript declaration.
 import "@mdxeditor/editor/style.css";
 import { tryout, uploadImage } from "@/app/actions/storage";
+import random from "random";
 
 export default function Editor({
   readOnly,
@@ -50,11 +51,11 @@ export default function Editor({
   const [mounted, setMounted] = useState(false);
   const refOF = useRef<MDXEditorMethods | null>(null);
 
-  console.log("editor me aaya");
-
   function handleSubmit() {
     if (refOF.current) {
-      tryout(refOF.current?.getMarkdown(), 1);
+      const rand = random.int(0, 9);
+      console.log(rand);
+      tryout(refOF.current?.getMarkdown(), rand);
     }
   }
 
@@ -63,7 +64,6 @@ export default function Editor({
   }, []);
 
   useEffect(() => {
-    console.log("editor me check hua");
     setMarkDown(markDownText);
     if (refOF.current) {
       refOF.current.setMarkdown(markDownText);
@@ -74,7 +74,6 @@ export default function Editor({
   const editorClassName = isDark ? "dark-theme dark-editor" : "light-editor";
 
   async function imageUploader(File: File) {
-    console.log(File);
     const url = uploadImage(File);
 
     return url;
@@ -84,7 +83,14 @@ export default function Editor({
       className="blog-editor-wrapper  xl:w-[1000px] xl:-mx-12  "
       data-theme={isDark ? "dark" : "light"}
     >
-      {!readOnly && <button onClick={handleSubmit}>Submit</button>}
+      {!readOnly && (
+        <button
+          className="bg-lightBlue px-4 py-2 my-3 rounded-lg cursor-pointer"
+          onClick={handleSubmit}
+        >
+          Submit
+        </button>
+      )}
       <MDXEditor
         ref={refOF}
         readOnly={readOnly}
@@ -120,36 +126,39 @@ export default function Editor({
           }),
 
           toolbarPlugin({
-            toolbarContents: () => (
-              <>
-                <DiffSourceToggleWrapper>
-                  <UndoRedo />
-                  <BoldItalicUnderlineToggles />
-                  <BlockTypeSelect />
-                  <CodeToggle />
-                  <CreateLink />
+            toolbarContents: () =>
+              readOnly ? (
+                <></>
+              ) : (
+                <>
+                  <DiffSourceToggleWrapper>
+                    <UndoRedo />
+                    <BoldItalicUnderlineToggles />
+                    <BlockTypeSelect />
+                    <CodeToggle />
+                    <CreateLink />
 
-                  <ConditionalContents
-                    options={[
-                      {
-                        when: (editor) => editor?.editorType === "codeblock",
-                        contents: () => <ChangeCodeMirrorLanguage />,
-                      },
-                      {
-                        fallback: () => (
-                          <>
-                            <InsertImage />
-                            <InsertCodeBlock />
-                            <InsertTable />
-                            <InsertFrontmatter />
-                          </>
-                        ),
-                      },
-                    ]}
-                  />
-                </DiffSourceToggleWrapper>
-              </>
-            ),
+                    <ConditionalContents
+                      options={[
+                        {
+                          when: (editor) => editor?.editorType === "codeblock",
+                          contents: () => <ChangeCodeMirrorLanguage />,
+                        },
+                        {
+                          fallback: () => (
+                            <>
+                              <InsertImage />
+                              <InsertCodeBlock />
+                              <InsertTable />
+                              <InsertFrontmatter />
+                            </>
+                          ),
+                        },
+                      ]}
+                    />
+                  </DiffSourceToggleWrapper>
+                </>
+              ),
           }),
         ]}
       />
