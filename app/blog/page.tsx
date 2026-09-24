@@ -2,10 +2,9 @@ import BlogCard from "@/components/blog/blog-card";
 import { allBlogs } from "@/lib/constant";
 import { gabarito, hanken } from "@/public/font";
 import { getBlogs } from "../actions/storage";
+import Link from "next/link";
 
 export default function BlogPage() {
-  getBlogs();
-
   return (
     <div className="mx-auto pt-6 md:pt-12 text-black dark:text-white mb-24 ">
       <div
@@ -25,14 +24,16 @@ export default function BlogPage() {
       <div className="flex flex-col gap-y-12 mt-12 px-4">
         {allBlogs.map((e, i) => {
           return (
-            <BlogCard
-              key={i}
-              title={e.title}
-              description={e.description}
-              id={e.id}
-              tag={e.tag}
-              date={e.date}
-            />
+            <Link href={`/blog/${1}`}>
+              <BlogCard
+                key={i}
+                title={e.title}
+                description={e.description}
+                id={e.id}
+                tag={e.tag}
+                date={e.date}
+              />
+            </Link>
           );
         })}
       </div>

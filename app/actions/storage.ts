@@ -23,5 +23,7 @@ export async function getBlogs() {
     prefix: "blog/",
   });
 
-  console.log("all blogs");
+  const res = await fetch(listOfBlobs.blobs[0].url);
+  const text = await res.text();
+  return text;
 }

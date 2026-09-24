@@ -45,10 +45,12 @@ export default function Editor({
   readOnly: boolean;
   markDownText: string;
 }) {
-  const markDown = markDownText;
+  const [markDown, setMarkDown] = useState(markDownText);
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const refOF = useRef<MDXEditorMethods | null>(null);
+
+  console.log("editor me aaya");
 
   function handleSubmit() {
     if (refOF.current) {
@@ -59,6 +61,14 @@ export default function Editor({
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    console.log("editor me check hua");
+    setMarkDown(markDownText);
+    if (refOF.current) {
+      refOF.current.setMarkdown(markDownText);
+    }
+  }, [markDownText]);
 
   const isDark = !mounted || resolvedTheme === "dark";
   const editorClassName = isDark ? "dark-theme dark-editor" : "light-editor";
