@@ -4,7 +4,6 @@ import HomeProjects from "@/components/landing/home-project";
 import { gabarito } from "@/public/font";
 import GhActivityCard from "gh-activity-card/components/gh-activity-card";
 import Skills from "@/components/landing/skiils";
-import { cookies } from "next/headers";
 
 export default function Home() {
   return (

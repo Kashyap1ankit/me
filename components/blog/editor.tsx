@@ -34,7 +34,6 @@ import {
   frontmatterPlugin,
   type MDXEditorMethods,
 } from "@mdxeditor/editor";
-// @ts-expect-error The package provides the stylesheet at runtime without a TypeScript declaration.
 import "@mdxeditor/editor/style.css";
 import { tryout, uploadImage } from "@/app/actions/storage";
 import random from "random";

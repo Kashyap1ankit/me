@@ -4,13 +4,13 @@ import { put, get, list } from "@vercel/blob";
 import { randomUUID } from "crypto";
 
 export async function tryout(text: string, id: number) {
-  const blob = await put(`blog/${id}`, text, {
+  await put(`blog/${id}`, text, {
     access: "public",
   });
 }
 
-export async function uploadImage(File: any) {
-  const blob = await put(`image/${randomUUID()}`, File, {
+export async function uploadImage(file: File) {
+  const blob = await put(`image/${randomUUID()}`, file, {
     access: "public",
   });
 

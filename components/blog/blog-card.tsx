@@ -22,8 +22,11 @@ export default function BlogCard({
   date,
 }: BlogCardType) {
   return (
-    <div className="flex flex-col gap-y-2">
-      <p className={`${hanken.className} font-bold text-xl`}>{title}</p>
+    <div
+      className="flex flex-col gap-y-2"
+      id={typeof id === "string" ? id : String(id)}
+    >
+      <p className={`${hanken.className} font-bold text-xl`}>{title} </p>
 
       <p className={`${hanken.className} text-gray-500 text-sm `}>
         {description.slice(0, 250)}

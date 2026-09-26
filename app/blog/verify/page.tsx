@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/input-otp";
 
 export default function InputOTPForm() {
-  const [state, formAction, isPending] = useActionState(verifyOtp, null);
+  const [state, formAction] = useActionState(verifyOtp, null);
 
   return (
     <div className="min-h-screen flex items-center">

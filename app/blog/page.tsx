@@ -1,20 +1,36 @@
 "use client";
 import BlogCard from "@/components/blog/blog-card";
-// import { allBlogs } from "@/lib/constant";
+
 import { gabarito, hanken } from "@/public/font";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getAllBlogs } from "../actions/storage";
 
+interface prevType {
+  title: string;
+  description: string;
+  id: string;
+  tag: string[];
+  date: Date;
+}
+
 export default function BlogPage() {
-  const [allBlogs, setAllBlogs] = useState([]);
+  const [allBlogs, setAllBlogs] = useState<prevType[] | []>([]);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   useEffect(() => {
     async function fn() {
       const allBlogsArray = await getAllBlogs();
-      for (let blog of allBlogsArray) {
+
+      for (const blog of allBlogsArray) {
         const res = await fetch(blog.url);
+
         const text = await res.text();
-        setAllBlogs((prev) => {
+        setAllBlogs((prev: prevType[]) => {
           return [
             ...prev,
             {
@@ -29,8 +45,8 @@ export default function BlogPage() {
       }
     }
 
-    fn();
-  }, []);
+    if (mounted) fn();
+  }, [mounted]);
   return (
     <div className="mx-auto pt-6 md:pt-12 text-black dark:text-white mb-24 ">
       <div
@@ -50,9 +66,8 @@ export default function BlogPage() {
       <div className="flex flex-col gap-y-12 mt-12 px-4">
         {allBlogs.map((e, i) => {
           return (
-            <Link href={`/blog/${e.id}`}>
+            <Link href={`/blog/${e.id}`} key={i}>
               <BlogCard
-                key={i}
                 title={e.title}
                 description={e.description}
                 id={e.id}
