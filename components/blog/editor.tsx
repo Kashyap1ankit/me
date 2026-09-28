@@ -38,6 +38,9 @@ import "@mdxeditor/editor/style.css";
 import { tryout, uploadImage } from "@/app/actions/storage";
 import random from "random";
 
+import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+
 export default function Editor({
   readOnly,
   markDownText,
@@ -46,6 +49,7 @@ export default function Editor({
   markDownText: string;
 }) {
   const [markDown, setMarkDown] = useState(markDownText);
+  const [title, setTitle] = useState("A RANDOM BLOG");
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const refOF = useRef<MDXEditorMethods | null>(null);
@@ -54,7 +58,12 @@ export default function Editor({
     if (refOF.current) {
       const rand = random.int(0, 9);
       console.log(rand);
-      tryout(refOF.current?.getMarkdown(), rand);
+      const blogObject = {
+        title: title,
+        description: refOF.current?.getMarkdown(),
+        createdAt: Date.now(),
+      };
+      tryout(JSON.stringify(blogObject), rand);
     }
   }
 
@@ -79,16 +88,31 @@ export default function Editor({
   }
   return (
     <div
-      className="blog-editor-wrapper  xl:w-[1000px] xl:-mx-12  "
+      className={`${!readOnly ? "blog-editor-wrapper  xl:w-[1000px] xl:-mx-12  " : ""}`}
       data-theme={isDark ? "dark" : "light"}
     >
       {!readOnly && (
-        <button
-          className="bg-lightBlue px-4 py-2 my-3 rounded-lg cursor-pointer"
-          onClick={handleSubmit}
-        >
-          Submit
-        </button>
+        <div className="flex justify-between items-center  gap-x-6">
+          <Field>
+            <FieldLabel htmlFor="input-field-username text-black">
+              Username
+            </FieldLabel>
+            <Input
+              id="input-field-username"
+              type="text"
+              placeholder="Give it a Title"
+              className="text-black fon-bold text-xl ring-0 outline-0 focus-0"
+              onChange={(e) => setTitle(e.currentTarget.value)}
+            />
+          </Field>
+
+          <button
+            className="bg-lightBlue px-4 py-2 my-3 rounded-lg cursor-pointer"
+            onClick={handleSubmit}
+          >
+            Submit
+          </button>
+        </div>
       )}
       <MDXEditor
         ref={refOF}

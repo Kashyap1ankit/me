@@ -29,13 +29,14 @@ export default function BlogPage() {
       for (const blog of allBlogsArray) {
         const res = await fetch(blog.url);
 
-        const text = await res.text();
+        const text = await res.json();
+
         setAllBlogs((prev: prevType[]) => {
           return [
             ...prev,
             {
-              title: "A Random Day in My Life",
-              description: text,
+              title: text.title,
+              description: text.description,
               id: blog.pathname.slice(4),
               tag: ["Personal", "Engeering"],
               date: blog.uploadedAt,

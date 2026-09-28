@@ -34,6 +34,8 @@ export async function getBlogWithId(id: number) {
   if (!blogWithId) return null;
 
   const res = await fetch(blogWithId.blob.url);
-  const text = await res.text();
+
+  const text = await res.json();
+  console.log("Response", text);
   return text;
 }

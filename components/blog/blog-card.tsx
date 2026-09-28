@@ -46,9 +46,7 @@ export default function BlogCard({
           })}
         </div>
 
-        <Link href={`blog/1`}>
-          <HugeiconsIcon icon={SquareArrowUpRightIcon} />
-        </Link>
+        <HugeiconsIcon icon={SquareArrowUpRightIcon} />
       </div>
 
       <div className="flex flex-row items-center justify-start gap-x-2">
