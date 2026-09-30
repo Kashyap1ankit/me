@@ -88,26 +88,23 @@ export default function Editor({
   }
   return (
     <div
-      className={`${!readOnly ? "blog-editor-wrapper  xl:w-[1000px] xl:-mx-12  " : ""}`}
+      className={`${!readOnly ? " flex flex-col gap-y-4 " : ""}`}
       data-theme={isDark ? "dark" : "light"}
     >
       {!readOnly && (
-        <div className="flex justify-between items-center  gap-x-6">
-          <Field>
-            <FieldLabel htmlFor="input-field-username text-black">
-              Username
-            </FieldLabel>
+        <div className="flex justify-between items-center  gap-x-6 px-2">
+          <Field className="w-85 ">
             <Input
               id="input-field-username"
               type="text"
               placeholder="Give it a Title"
-              className="text-black fon-bold text-xl ring-0 outline-0 focus-0"
+              className="text-black fon-bolder focus-visible:border-ring focus-visible:ring-0 border-0 text-xl md:text-xl "
               onChange={(e) => setTitle(e.currentTarget.value)}
             />
           </Field>
 
           <button
-            className="bg-lightBlue px-4 py-2 my-3 rounded-lg cursor-pointer"
+            className=" bg-lightBlue dark:bg-darkBlue text-white dark:text-lightBlue  p-2 w-fit text-sm rounded-lg inset-shadow-sm inset-shadow-white/50  dark:inset-shadow-white/20 px-4 py-2 my-3 rounded-lg cursor-pointer"
             onClick={handleSubmit}
           >
             Submit
