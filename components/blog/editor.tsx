@@ -33,12 +33,14 @@ import {
   InsertFrontmatter,
   frontmatterPlugin,
   type MDXEditorMethods,
+  ListsToggle,
+  Separator,
 } from "@mdxeditor/editor";
 import "@mdxeditor/editor/style.css";
 import { tryout, uploadImage } from "@/app/actions/storage";
 import random from "random";
 
-import { Field, FieldDescription, FieldLabel } from "@/components/ui/field";
+import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 
 export default function Editor({
@@ -117,6 +119,7 @@ export default function Editor({
         key={resolvedTheme}
         markdown={markDown}
         className={editorClassName}
+        contentEditableClassName="mdx-content"
         plugins={[
           thematicBreakPlugin(),
           headingsPlugin(),
@@ -124,6 +127,7 @@ export default function Editor({
           quotePlugin(),
           markdownShortcutPlugin(),
           linkPlugin(),
+
           searchPlugin(),
           tablePlugin(),
           codeBlockPlugin({ defaultCodeBlockLanguage: "js" }),
@@ -153,11 +157,15 @@ export default function Editor({
                 <>
                   <DiffSourceToggleWrapper>
                     <UndoRedo />
+                    <Separator />
                     <BoldItalicUnderlineToggles />
+                    <Separator />
+                    <ListsToggle />
                     <BlockTypeSelect />
                     <CodeToggle />
                     <CreateLink />
 
+                    <Separator />
                     <ConditionalContents
                       options={[
                         {
