@@ -35,13 +35,19 @@ import {
   type MDXEditorMethods,
   ListsToggle,
   Separator,
+  InsertThematicBreak,
+  InsertAdmonition,
 } from "@mdxeditor/editor";
 import "@mdxeditor/editor/style.css";
 import { tryout, uploadImage } from "@/app/actions/storage";
 import random from "random";
-
+import { toast } from "@/components/ui/toast";
 import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { redirect, useRouter } from "next/navigation";
+import { HugeiconsIcon } from "@hugeicons/react";
+
+import { LocationUpdateFreeIcons } from "@hugeicons/core-free-icons";
 
 export default function Editor({
   readOnly,
@@ -55,17 +61,31 @@ export default function Editor({
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const refOF = useRef<MDXEditorMethods | null>(null);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   function handleSubmit() {
-    if (refOF.current) {
-      const rand = random.int(0, 9);
-      console.log(rand);
-      const blogObject = {
-        title: title,
-        description: refOF.current?.getMarkdown(),
-        createdAt: Date.now(),
-      };
-      tryout(JSON.stringify(blogObject), rand);
+    try {
+      setLoading(true);
+      if (refOF.current) {
+        const rand = random.int(0, 9);
+        console.log(rand);
+        const blogObject = {
+          title: title,
+          description: refOF.current?.getMarkdown(),
+          createdAt: Date.now(),
+        };
+        tryout(JSON.stringify(blogObject), rand);
+        router.push("/blog");
+      }
+    } catch (error) {
+      toast.add({
+        type: "error",
+        title: "Error occured",
+      });
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -108,8 +128,16 @@ export default function Editor({
           <button
             className=" bg-lightBlue dark:bg-darkBlue text-white dark:text-lightBlue  p-2 w-fit text-sm rounded-lg inset-shadow-sm inset-shadow-white/50  dark:inset-shadow-white/20 px-4 py-2 my-3 rounded-lg cursor-pointer"
             onClick={handleSubmit}
+            disabled={loading}
           >
-            Submit
+            {loading ? (
+              <div>
+                <HugeiconsIcon icon={LocationUpdateFreeIcons} />
+                <p>Submitting...</p>
+              </div>
+            ) : (
+              <p>Submit</p>
+            )}
           </button>
         </div>
       )}
@@ -121,12 +149,16 @@ export default function Editor({
         className={editorClassName}
         contentEditableClassName="mdx-content"
         plugins={[
+          directivesPlugin({
+            directiveDescriptors: [AdmonitionDirectiveDescriptor],
+          }),
           thematicBreakPlugin(),
           headingsPlugin(),
           listsPlugin(),
           quotePlugin(),
           markdownShortcutPlugin(),
           linkPlugin(),
+          thematicBreakPlugin(),
 
           searchPlugin(),
           tablePlugin(),
@@ -159,6 +191,7 @@ export default function Editor({
                     <UndoRedo />
                     <Separator />
                     <BoldItalicUnderlineToggles />
+                    <InsertThematicBreak />
                     <Separator />
                     <ListsToggle />
                     <BlockTypeSelect />
@@ -178,7 +211,7 @@ export default function Editor({
                               <InsertImage />
                               <InsertCodeBlock />
                               <InsertTable />
-                              <InsertFrontmatter />
+                              <InsertAdmonition />
                             </>
                           ),
                         },

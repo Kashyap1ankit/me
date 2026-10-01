@@ -4,7 +4,7 @@ import {
   SquareArrowUpRightIcon,
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
-import Link from "next/link";
+import MarkdownPreview from "@uiw/react-markdown-preview";
 
 interface BlogCardType {
   title: string;
@@ -28,9 +28,14 @@ export default function BlogCard({
     >
       <p className={`${hanken.className} font-bold text-xl`}>{title} </p>
 
-      <p className={`${hanken.className} text-gray-500 text-sm `}>
+      <MarkdownPreview
+        source={description.slice(0, 250)}
+        style={{ padding: 0, fontSize: 12, color: "#6a7282" }}
+      />
+
+      {/* <p className={`${hanken.className} text-gray-500 text-sm `}>
         {description.slice(0, 250)}
-      </p>
+      </p> */}
 
       <div className="flex flex-row justify-between">
         <div className="flex flex-row items-center justify-start gap-x-4">

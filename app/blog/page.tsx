@@ -25,6 +25,7 @@ export default function BlogPage() {
   useEffect(() => {
     async function fn() {
       const allBlogsArray = await getAllBlogs();
+      console.log(allBlogsArray);
 
       for (const blog of allBlogsArray) {
         const res = await fetch(blog.url);
@@ -37,7 +38,7 @@ export default function BlogPage() {
             {
               title: text.title,
               description: text.description,
-              id: blog.pathname.slice(4),
+              id: blog.pathname.slice(5),
               tag: ["Personal", "Engeering"],
               date: blog.uploadedAt,
             },
@@ -48,6 +49,7 @@ export default function BlogPage() {
 
     if (mounted) fn();
   }, [mounted]);
+
   return (
     <div className="mx-auto pt-6 md:pt-12 text-black dark:text-white mb-24 ">
       <div
