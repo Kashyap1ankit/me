@@ -51,7 +51,7 @@ export default function BlogPage() {
   }, [mounted]);
 
   return (
-    <div className="mx-auto pt-6 md:pt-12 text-black dark:text-white mb-24 ">
+    <div className="mx-auto pt-6 text-black dark:text-white mb-12 ">
       <div
         className={` p-2 border-l-8 border-black dark:border-gray-200 bg-gray-200 dark:bg-titleBg flex justify-between`}
       >

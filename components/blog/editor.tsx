@@ -30,7 +30,6 @@ import {
   AdmonitionDirectiveDescriptor,
   directivesPlugin,
   searchPlugin,
-  InsertFrontmatter,
   frontmatterPlugin,
   type MDXEditorMethods,
   ListsToggle,
@@ -42,12 +41,28 @@ import "@mdxeditor/editor/style.css";
 import { tryout, uploadImage } from "@/app/actions/storage";
 import random from "random";
 import { toast } from "@/components/ui/toast";
-import { Field } from "@/components/ui/field";
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { redirect, useRouter } from "next/navigation";
-import { HugeiconsIcon } from "@hugeicons/react";
-
-import { LocationUpdateFreeIcons } from "@hugeicons/core-free-icons";
+import { useRouter } from "next/navigation";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { hanken } from "@/public/font";
+import { blogTags } from "@/lib/constant";
+import { X } from "lucide-react";
 
 export default function Editor({
   readOnly,
@@ -57,6 +72,9 @@ export default function Editor({
   markDownText: string;
 }) {
   const [markDown, setMarkDown] = useState(markDownText);
+  const [selectedCategory, setSelectedCategory] = useState<
+    { label: string; value: string }[] | null
+  >(null);
   const [title, setTitle] = useState("A RANDOM BLOG");
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -108,6 +126,13 @@ export default function Editor({
 
     return url;
   }
+
+  function removeCategory(value: string) {
+    setSelectedCategory((prev) => {
+      return prev?.filter((item) => item.value !== value);
+    });
+  }
+
   return (
     <div
       className={`${!readOnly ? " flex flex-col gap-y-4 " : ""}`}
@@ -115,30 +140,88 @@ export default function Editor({
     >
       {!readOnly && (
         <div className="flex justify-between items-center  gap-x-6 px-2">
-          <Field className="w-85 ">
+          <Field className=" dark:bg-black dark:rounded-0">
             <Input
               id="input-field-username"
               type="text"
-              placeholder="Give it a Title"
-              className="text-black fon-bolder focus-visible:border-ring focus-visible:ring-0 border-0 text-xl md:text-xl "
+              placeholder="Title"
+              className="text-black dark:text-white focus-visible:border-ring focus-visible:ring-0 border-0 text-xl md:text-xl dark:bg-black dark:rounded-0 "
+              autoFocus
               onChange={(e) => setTitle(e.currentTarget.value)}
             />
           </Field>
 
-          <button
-            className=" bg-lightBlue dark:bg-darkBlue text-white dark:text-lightBlue  p-2 w-fit text-sm rounded-lg inset-shadow-sm inset-shadow-white/50  dark:inset-shadow-white/20 px-4 py-2 my-3 rounded-lg cursor-pointer"
-            onClick={handleSubmit}
-            disabled={loading}
-          >
-            {loading ? (
-              <div>
-                <HugeiconsIcon icon={LocationUpdateFreeIcons} />
-                <p>Submitting...</p>
-              </div>
-            ) : (
-              <p>Submit</p>
-            )}
-          </button>
+          <Dialog>
+            <DialogTrigger>
+              <button
+                className=" bg-lightBlue dark:bg-darkBlue text-white dark:text-lightBlue  p-2 w-fit text-sm rounded-lg inset-shadow-sm inset-shadow-white/50  dark:inset-shadow-white/20 px-4 py-2 my-3 rounded-lg cursor-pointer"
+                // onClick={handleSubmit}
+              >
+                <p>Next</p>
+              </button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Select Category for this blog</DialogTitle>
+
+                <DialogDescription>
+                  <Select
+                    items={blogTags}
+                    multiple
+                    onValueChange={(e) =>
+                      setSelectedCategory(() => {
+                        return e.map((element) => {
+                          return {
+                            label:
+                              element.slice(0, 1).toUpperCase() +
+                              element.slice(1).toLowerCase(),
+                            value: e,
+                          };
+                        });
+                      })
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Category" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        {blogTags.map((item) => (
+                          <SelectItem key={item.value} value={item.value}>
+                            {item.label}
+                          </SelectItem>
+                        ))}
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+
+                  {selectedCategory && selectedCategory.length > 0 ? (
+                    <div className="flex flex-row items-center justify-start gap-x-4  mt-4">
+                      {selectedCategory.map(
+                        (e: { label: string; value: string }, i: number) => {
+                          return (
+                            <div className="flex flex-row items-center justify-between gap-x-2 py-0 px-2 bg-gray-200 rounded-md">
+                              <p
+                                key={i}
+                                className={`${hanken.className} text-[10px] text-gray-600 `}
+                              >
+                                {e.label}
+                              </p>
+
+                              <X
+                                className="w-3 cursor-pointer"
+                                onClick={() => removeCategory(e.value)}
+                              />
+                            </div>
+                          );
+                        },
+                      )}
+                    </div>
+                  ) : null}
+                </DialogDescription>
+              </DialogHeader>
+            </DialogContent>
+          </Dialog>
         </div>
       )}
       <MDXEditor

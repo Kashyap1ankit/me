@@ -2,7 +2,6 @@
 
 import { useActionState } from "react";
 import { verifyOtp } from "@/app/actions/qr";
-
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -93,7 +92,7 @@ export default function InputOTPForm() {
                 size={"lg"}
                 className="cursor-pointer w-full hover:bg-lightBlue hover:dark:bg-darkBlue bg-lightBlue dark:bg-darkBlue text-white dark:text-lightBlue text-sm rounded-lg inset-shadow-sm inset-shadow-white/50  dark:inset-shadow-white/20  p-4"
               >
-                Verify
+                <p>Verify</p>
               </Button>
             </Field>
           </CardFooter>

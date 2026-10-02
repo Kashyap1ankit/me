@@ -26,31 +26,29 @@ export default function BlogCard({
       className="flex flex-col gap-y-2"
       id={typeof id === "string" ? id : String(id)}
     >
-      <p className={`${hanken.className} font-bold text-xl`}>{title} </p>
-
-      <MarkdownPreview
-        source={description.slice(0, 250)}
-        style={{ padding: 0, fontSize: 12, color: "#6a7282" }}
-      />
-
-      {/* <p className={`${hanken.className} text-gray-500 text-sm `}>
-        {description.slice(0, 250)}
-      </p> */}
-
       <div className="flex flex-row justify-between">
-        <div className="flex flex-row items-center justify-start gap-x-4">
+        <p className={`${hanken.className} font-bold text-xl`}>{title} </p>
+
+        <div className="flex flex-row items-center justify-start gap-x-4 ">
           {tag.map((e: string, i: number) => {
             return (
               <p
                 key={i}
-                className={`${hanken.className} text-[10px] text-gray-600 p-2 bg-gray-200 rounded-lg `}
+                className={`${hanken.className} text-[8px] text-gray-600 py-1 px-2 bg-gray-200 rounded-sm `}
               >
                 {e}
               </p>
             );
           })}
         </div>
+      </div>
 
+      <MarkdownPreview
+        source={description.slice(0, 250)}
+        style={{ padding: 0, fontSize: 12, color: "#6a7282" }}
+      />
+
+      <div className="flex flex-row justify-between">
         <HugeiconsIcon icon={SquareArrowUpRightIcon} />
       </div>
 

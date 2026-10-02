@@ -58,6 +58,20 @@ export interface navLinksType {
 
 export type tabType = "/" | "/blog" | "/projects" | "/contributions";
 
+export const blogTags = [
+  { label: "All", value: "all" },
+  { label: "DSA", value: "dsa" },
+  { label: "Frontend", value: "frontend" },
+  { label: "Career", value: "career" },
+  { label: "Backend", value: "backend" },
+  { label: "Core", value: "core" },
+  { label: "JS", value: "js" },
+  { label: "Random", value: "random" },
+  { label: "Opinion", value: "opinion" },
+  { label: "Project", value: "project" },
+  { label: "Security", value: "security" },
+];
+
 export const skills = [
   {
     title: "Javascript",
