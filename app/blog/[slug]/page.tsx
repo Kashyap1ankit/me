@@ -3,9 +3,13 @@ import { getBlogWithId } from "@/app/actions/storage";
 import Editor from "@/components/blog/editor";
 import { hanken, manrope } from "@/public/font";
 import { Calendar03Icon } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
 import { use, useEffect, useState } from "react";
 import { toast } from "@/components/ui/toast";
+import { blogDataType } from "@/lib/types";
+import { HugeiconsIcon } from "@hugeicons/react";
+
+import Link from "next/link";
+import { ChevronsLeft } from "lucide-react";
 
 export default function BlogPostPage({
   params,
@@ -14,7 +18,7 @@ export default function BlogPostPage({
 }) {
   const { slug } = use(params);
   const [loading, setLoading] = useState(true);
-  const [res, setRes] = useState({});
+  const [res, setRes] = useState<blogDataType | null>();
 
   useEffect(() => {
     async function fn() {
@@ -40,14 +44,34 @@ export default function BlogPostPage({
   if (loading) return <div>Hi</div>;
 
   return (
-    <div className="mx-4 flex flex-col gap-y-4">
-      <p className={`${manrope.className} mt-2  text-5xl text-black font-bold`}>
-        {res.title}
-      </p>
+    <div className="flex flex-col gap-y-6 pt-8">
+      <Link
+        href={"/blog"}
+        className="flex justify-start gap-x-1 items-center mx-2 group "
+      >
+        <ChevronsLeft className="text-black/50 dark:text-white/50 size-4 group-hover:text-black" />
+        <p
+          className={`${hanken.className} text-md text-gray-500 text-md group-hover:text-black`}
+        >
+          Return to blogs
+        </p>
+      </Link>
 
-      <div className="flex flex-row justify-between items-center">
+      <div className="flex flex-col gap-y-4 mx-2">
+        <p
+          className={`${manrope.className} mt-2  text-4xl text-black font-bold `}
+        >
+          {res?.title}
+        </p>
+
+        <p className={`${hanken.className} text-md text-gray-500 text-md`}>
+          {res?.shortDes}
+        </p>
+      </div>
+
+      <div className="flex flex-row justify-between items-center px-2">
         <div className="flex flex-row items-center justify-start gap-x-4 ">
-          {res?.tag?.map((e: string, i: number) => {
+          {res?.tag?.map((e: { label: string; value: string }, i: number) => {
             return (
               <p
                 key={i}
@@ -66,12 +90,14 @@ export default function BlogPostPage({
             className="text-black dark:text-white"
           />
           <p className={`${hanken.className} text-sm text-gray-500`}>
-            {new Date(res?.createdAt).toLocaleDateString()}
+            {res?.createdAt != null
+              ? new Date(res.createdAt).toDateString()
+              : ""}
           </p>
         </div>
       </div>
 
-      <Editor readOnly={true} markDownText={`${res.description}`} />
+      <Editor readOnly={true} markDownText={`${res?.description}`} />
     </div>
   );
 }

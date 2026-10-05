@@ -62,6 +62,7 @@ import {
 import { hanken } from "@/public/font";
 import { blogTags } from "@/lib/constant";
 import { X } from "lucide-react";
+import { blogtagType } from "@/lib/types";
 
 export default function Editor({
   readOnly,
@@ -71,9 +72,7 @@ export default function Editor({
   markDownText: string;
 }) {
   const [markDown, setMarkDown] = useState(markDownText);
-  const [selectedCategory, setSelectedCategory] = useState<
-    { label: string; value: string }[] | null
-  >(null);
+  const [selectedCategory, setSelectedCategory] = useState<blogtagType>(null);
   const [title, setTitle] = useState("A RANDOM BLOG");
   const [shortDes, setShortDes] = useState("");
   const { resolvedTheme } = useTheme();
@@ -127,8 +126,9 @@ export default function Editor({
   }
 
   function removeCategory(value: string) {
-    setSelectedCategory((prev) =>
-      prev?.filter((item) => !item.value.includes(value)),
+    setSelectedCategory(
+      (prev: blogtagType) =>
+        prev && prev?.filter((item) => !item.value.includes(value)),
     );
   }
 
