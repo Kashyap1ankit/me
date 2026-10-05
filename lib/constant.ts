@@ -46,17 +46,8 @@ import {
   Home04Icon,
   VisualStudioCodeIcon,
 } from "@hugeicons/core-free-icons";
-import { IconSvgElement } from "@hugeicons/react";
 
-export interface navLinksType {
-  name: string;
-  icon: IconSvgElement;
-  icon2: IconSvgElement;
-  link: string;
-  value: tabType;
-}
-
-export type tabType = "/" | "/blog" | "/projects" | "/contributions";
+import { navLinksType } from "./types";
 
 export const blogTags = [
   { label: "DSA", value: "dsa" },

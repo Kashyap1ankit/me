@@ -39,9 +39,8 @@ import {
 } from "@mdxeditor/editor";
 import "@mdxeditor/editor/style.css";
 import { tryout, uploadImage } from "@/app/actions/storage";
-import random from "random";
 import { toast } from "@/components/ui/toast";
-import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
+import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import {
@@ -76,6 +75,7 @@ export default function Editor({
     { label: string; value: string }[] | null
   >(null);
   const [title, setTitle] = useState("A RANDOM BLOG");
+  const [shortDes, setShortDes] = useState("");
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const refOF = useRef<MDXEditorMethods | null>(null);
@@ -86,14 +86,14 @@ export default function Editor({
     try {
       setLoading(true);
       if (refOF.current) {
-        const rand = random.int(0, 9);
-        console.log(rand);
         const blogObject = {
           title: title,
           description: refOF.current?.getMarkdown(),
+          tag: selectedCategory,
           createdAt: Date.now(),
+          shortDes: shortDes,
         };
-        tryout(JSON.stringify(blogObject), rand);
+        tryout(JSON.stringify(blogObject));
         router.push("/blog");
       }
     } catch (error) {
@@ -101,7 +101,6 @@ export default function Editor({
         type: "error",
         title: "Error occured",
       });
-      console.log(error);
     } finally {
       setLoading(false);
     }
@@ -128,9 +127,9 @@ export default function Editor({
   }
 
   function removeCategory(value: string) {
-    setSelectedCategory((prev) => {
-      return prev?.filter((item) => item.value !== value);
-    });
+    setSelectedCategory((prev) =>
+      prev?.filter((item) => !item.value.includes(value)),
+    );
   }
 
   return (
@@ -142,6 +141,7 @@ export default function Editor({
         <div className="flex justify-between items-center  gap-x-6 px-2">
           <Field className=" dark:bg-black dark:rounded-0">
             <Input
+              required
               id="input-field-username"
               type="text"
               placeholder="Title"
@@ -153,10 +153,7 @@ export default function Editor({
 
           <Dialog>
             <DialogTrigger>
-              <button
-                className=" bg-lightBlue dark:bg-darkBlue text-white dark:text-lightBlue  p-2 w-fit text-sm rounded-lg inset-shadow-sm inset-shadow-white/50  dark:inset-shadow-white/20 px-4 py-2 my-3 rounded-lg cursor-pointer"
-                // onClick={handleSubmit}
-              >
+              <button className=" bg-lightBlue dark:bg-darkBlue text-white dark:text-lightBlue  p-2 w-fit text-sm rounded-lg inset-shadow-sm inset-shadow-white/50  dark:inset-shadow-white/20 px-4 py-2 my-3 rounded-lg cursor-pointer">
                 <p>Next</p>
               </button>
             </DialogTrigger>
@@ -165,61 +162,93 @@ export default function Editor({
                 <DialogTitle>Select Category for this blog</DialogTitle>
 
                 <DialogDescription>
-                  <Select
-                    items={blogTags}
-                    multiple
-                    onValueChange={(e) =>
-                      setSelectedCategory(() => {
-                        return e.map((element) => {
-                          return {
-                            label:
-                              element.slice(0, 1).toUpperCase() +
-                              element.slice(1).toLowerCase(),
-                            value: e,
-                          };
-                        });
-                      })
-                    }
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Category" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
-                        {blogTags.map((item) => (
-                          <SelectItem key={item.value} value={item.value}>
-                            {item.label}
-                          </SelectItem>
-                        ))}
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-
-                  {selectedCategory && selectedCategory.length > 0 ? (
-                    <div className="flex flex-row items-center justify-start gap-x-4  mt-4">
-                      {selectedCategory.map(
-                        (e: { label: string; value: string }, i: number) => {
-                          return (
-                            <div className="flex flex-row items-center justify-between gap-x-2 py-0 px-2 bg-gray-200 rounded-md">
-                              <p
-                                key={i}
-                                className={`${hanken.className} text-[10px] text-gray-600 `}
-                              >
-                                {e.label}
-                              </p>
-
-                              <X
-                                className="w-3 cursor-pointer"
-                                onClick={() => removeCategory(e.value)}
-                              />
-                            </div>
-                          );
-                        },
-                      )}
-                    </div>
-                  ) : null}
+                  Select one or more categories for this blog.
                 </DialogDescription>
               </DialogHeader>
+
+              <div className="flex flex-col gap-y-3 w-full min-w-0">
+                <Select
+                  items={blogTags}
+                  multiple
+                  value={selectedCategory?.map((item) => item.value) ?? []}
+                  onValueChange={(values: string[]) => {
+                    const selected = values.map((val) => {
+                      const found = blogTags.find((tag) => tag.value === val);
+                      return (
+                        found || {
+                          label:
+                            val.slice(0, 1).toUpperCase() +
+                            val.slice(1).toLowerCase(),
+                          value: val,
+                        }
+                      );
+                    });
+                    setSelectedCategory(selected);
+                  }}
+                >
+                  <SelectTrigger className="w-full min-w-0 overflow-hidden">
+                    <SelectValue
+                      placeholder="Category"
+                      className="truncate block"
+                    />
+                  </SelectTrigger>
+                  <SelectContent className="max-h-60 overflow-y-auto">
+                    <SelectGroup>
+                      {blogTags.map((item) => (
+                        <SelectItem key={item.value} value={item.value}>
+                          {item.label}
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+
+                {selectedCategory && selectedCategory.length > 0 ? (
+                  <div className="flex flex-wrap items-center gap-2 mt-2 max-h-32 overflow-y-auto">
+                    {selectedCategory.map(
+                      (e: { label: string; value: string }) => {
+                        return (
+                          <div
+                            key={e.value}
+                            className="flex flex-row items-center gap-x-2 py-1 px-2 bg-gray-200 dark:bg-zinc-800 rounded-md shrink-0"
+                          >
+                            <p
+                              className={`${hanken.className} text-[10px] text-gray-600 dark:text-gray-300`}
+                            >
+                              {e.label}
+                            </p>
+
+                            <X
+                              className="w-3 h-3 cursor-pointer text-gray-500 hover:text-gray-800 dark:hover:text-gray-200 transition-colors"
+                              onClick={() => {
+                                removeCategory(e.value);
+                              }}
+                            />
+                          </div>
+                        );
+                      },
+                    )}
+                  </div>
+                ) : null}
+              </div>
+
+              <Field className=" dark:bg-black dark:rounded-0">
+                <Input
+                  required
+                  id="input-field-short-description"
+                  type="text"
+                  placeholder="Short description of blog"
+                  className="text-black dark:text-white focus-visible:border-ring focus-visible:ring-0 border-0 text-md md:text-md dark:bg-black dark:rounded-0 "
+                  onChange={(e) => setShortDes(e.currentTarget.value)}
+                />
+              </Field>
+
+              <button
+                className=" bg-lightBlue dark:bg-darkBlue text-white dark:text-lightBlue  p-2 w-fit text-sm rounded-lg inset-shadow-sm inset-shadow-white/50  dark:inset-shadow-white/20 px-4 py-2 my-3 rounded-lg cursor-pointer w-full"
+                onClick={handleSubmit}
+              >
+                <p>Submit Blog</p>
+              </button>
             </DialogContent>
           </Dialog>
         </div>

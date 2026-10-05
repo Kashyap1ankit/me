@@ -5,17 +5,18 @@ import { gabarito, hanken } from "@/public/font";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getAllBlogs } from "../actions/storage";
+import { blogDataType } from "@/lib/types";
 
-interface prevType {
-  title: string;
-  description: string;
-  id: string;
-  tag: string[];
-  date: Date;
-}
+// interface prevType {
+//   title: string;
+//   description: string;
+//   id: string;
+//   tag: string[];
+//   createdAt: Number;
+// }
 
 export default function BlogPage() {
-  const [allBlogs, setAllBlogs] = useState<prevType[] | []>([]);
+  const [allBlogs, setAllBlogs] = useState<blogDataType[] | []>([]);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -25,22 +26,21 @@ export default function BlogPage() {
   useEffect(() => {
     async function fn() {
       const allBlogsArray = await getAllBlogs();
-      console.log(allBlogsArray);
 
       for (const blog of allBlogsArray) {
         const res = await fetch(blog.url);
-
         const text = await res.json();
 
-        setAllBlogs((prev: prevType[]) => {
+        setAllBlogs((prev: blogDataType[]) => {
           return [
             ...prev,
             {
               title: text.title,
               description: text.description,
               id: blog.pathname.slice(5),
-              tag: ["Personal", "Engeering"],
-              date: blog.uploadedAt,
+              tag: text.tag,
+              createdAt: text.createdAt,
+              shortDes: text.shortDes,
             },
           ];
         });
@@ -75,7 +75,8 @@ export default function BlogPage() {
                 description={e.description}
                 id={e.id}
                 tag={e.tag}
-                date={e.date}
+                createdAt={e.createdAt}
+                shortDes={e.shortDes}
               />
             </Link>
           );

@@ -3,8 +3,8 @@
 import { put, get, list } from "@vercel/blob";
 import { randomUUID } from "crypto";
 
-export async function tryout(text: string, id: number) {
-  await put(`blog/${id}`, text, {
+export async function tryout(text: string) {
+  await put(`blog/${randomUUID()}`, text, {
     access: "public",
   });
 }
@@ -26,7 +26,7 @@ export async function getAllBlogs() {
   return listOfBlobs.blobs;
 }
 
-export async function getBlogWithId(id: number) {
+export async function getBlogWithId(id: string) {
   const blogWithId = await get(`blog/${id}`, {
     access: "public",
   });
