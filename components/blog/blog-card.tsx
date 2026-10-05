@@ -1,3 +1,5 @@
+"use client";
+
 import { hanken } from "@/public/font";
 import {
   Calendar03Icon,
@@ -5,6 +7,8 @@ import {
 } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import MarkdownPreview from "@uiw/react-markdown-preview";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 interface BlogCardType {
   title: string;
@@ -21,6 +25,15 @@ export default function BlogCard({
   tag,
   date,
 }: BlogCardType) {
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isDark = !mounted || resolvedTheme === "dark";
+
   return (
     <div
       className="flex flex-col gap-y-2"
@@ -45,16 +58,29 @@ export default function BlogCard({
 
       <MarkdownPreview
         source={description.slice(0, 250)}
-        style={{ padding: 0, fontSize: 12, color: "#6a7282" }}
+        style={{
+          padding: 0,
+          fontSize: 12,
+          color: isDark ? "#9ca3af" : "#6a7282",
+          backgroundColor: "transparent",
+        }}
+        wrapperElement={{
+          "data-color-mode": isDark ? "dark" : "light",
+        }}
+        className="!bg-transparent"
       />
 
-      <div className="flex flex-row justify-between">
-        <HugeiconsIcon icon={SquareArrowUpRightIcon} />
-      </div>
+      <div className="flex flex-row items-center justify-between">
+        <div className="flex flex-row items-center justify-start gap-x-2">
+          <HugeiconsIcon icon={Calendar03Icon} size={12} />
+          <p className={`${hanken.className} text-xs`}>
+            {date.toLocaleString()}
+          </p>
+        </div>
 
-      <div className="flex flex-row items-center justify-start gap-x-2">
-        <HugeiconsIcon icon={Calendar03Icon} size={12} />
-        <p className={`${hanken.className} text-xs`}>{date.toLocaleString()}</p>
+        <div className="flex flex-row justify-between">
+          <HugeiconsIcon icon={SquareArrowUpRightIcon} />
+        </div>
       </div>
     </div>
   );

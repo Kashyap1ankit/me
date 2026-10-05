@@ -59,7 +59,6 @@ export interface navLinksType {
 export type tabType = "/" | "/blog" | "/projects" | "/contributions";
 
 export const blogTags = [
-  { label: "All", value: "all" },
   { label: "DSA", value: "dsa" },
   { label: "Frontend", value: "frontend" },
   { label: "Career", value: "career" },
