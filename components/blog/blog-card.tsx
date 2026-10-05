@@ -11,13 +11,12 @@ import { useEffect, useState } from "react";
 
 export default function BlogCard({
   title,
-  description,
   id,
   tag,
   createdAt,
   shortDes,
 }: blogDataType) {
-  const [_, setMounted] = useState(false);
+  const [, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);

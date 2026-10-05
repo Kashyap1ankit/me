@@ -1,12 +1,13 @@
 "use client";
 
-import { navLinks, navLinksType } from "@/lib/constant";
+import { navLinks } from "@/lib/constant";
 import { useActiveTab } from "@/store/store";
 import Link from "next/link";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useState } from "react";
 import { hanken } from "@/public/font";
 import { motion } from "framer-motion";
+import { navLinksType } from "@/lib/types";
 
 export default function Navbar() {
   return (

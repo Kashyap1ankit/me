@@ -4,7 +4,7 @@ import * as React from "react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { usePathname } from "next/navigation";
 import { useActiveTab } from "@/store/store";
-import { tabType } from "@/lib/constant";
+import { tabType } from "@/lib/types";
 
 export function ThemeProvider({
   children,

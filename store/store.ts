@@ -1,4 +1,4 @@
-import { tabType } from "@/lib/constant";
+import { tabType } from "@/lib/types";
 import { create } from "zustand";
 
 interface useActiveTabType {

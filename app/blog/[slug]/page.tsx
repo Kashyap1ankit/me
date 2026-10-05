@@ -28,7 +28,7 @@ export default function BlogPostPage({
         if (!text) return ``;
 
         setRes(text);
-      } catch (error) {
+      } catch {
         toast.add({
           type: "error",
           title: "Error occured",
@@ -59,7 +59,7 @@ export default function BlogPostPage({
 
       <div className="flex flex-col gap-y-4 mx-2">
         <p
-          className={`${manrope.className} mt-2  text-4xl text-black font-bold `}
+          className={`${manrope.className} mt-2  text-4xl text-black font-bold dark:text-white `}
         >
           {res?.title}
         </p>
@@ -75,7 +75,7 @@ export default function BlogPostPage({
             return (
               <p
                 key={i}
-                className={`${hanken.className} text-xs text-gray-600 py-1 px-2 bg-gray-200 rounded-sm `}
+                className={`${hanken.className} text-xs text-gray-600 py-1 px-2 bg-gray-200 dark:bg-gray-900 dark:text-white rounded-sm `}
               >
                 #{e.label}
               </p>

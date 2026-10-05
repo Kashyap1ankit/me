@@ -78,7 +78,7 @@ export default function Editor({
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const refOF = useRef<MDXEditorMethods | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
   const router = useRouter();
 
   function handleSubmit() {
@@ -95,7 +95,7 @@ export default function Editor({
         tryout(JSON.stringify(blogObject));
         router.push("/blog");
       }
-    } catch (error) {
+    } catch {
       toast.add({
         type: "error",
         title: "Error occured",
