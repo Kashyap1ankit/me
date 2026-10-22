@@ -2,11 +2,14 @@
 
 import { put, get, list } from "@vercel/blob";
 import { randomUUID } from "crypto";
+import { unstable_cache, revalidateTag } from "next/cache";
 
 export async function tryout(text: string) {
   await put(`blog/${randomUUID()}`, text, {
     access: "public",
   });
+
+  revalidateTag("blogs");
 }
 
 export async function uploadImage(file: File) {
@@ -17,25 +20,41 @@ export async function uploadImage(file: File) {
   return blob.url;
 }
 
-export async function getAllBlogs() {
-  const listOfBlobs = await list({
-    limit: 1000,
-    prefix: "blog/",
-  });
+export const getAllBlogs = unstable_cache(
+  async () => {
+    const { blobs } = await list({
+      limit: 1000,
+      prefix: "blog/",
+    });
 
-  return listOfBlobs.blobs;
-}
+    return blobs;
+  },
+  ["all-blogs"],
+  {
+    revalidate: 3600,
+    tags: ["blogs"],
+  },
+);
 
-export async function getBlogWithId(id: string) {
-  const blogWithId = await get(`blog/${id}`, {
-    access: "public",
-  });
+export const getBlogWithId = unstable_cache(
+  async (id: string) => {
+    const blog = await get(`blog/${id}`, {
+      access: "public",
+    });
 
-  if (!blogWithId) return null;
+    if (!blog) return null;
 
-  const res = await fetch(blogWithId.blob.url);
+    const response = await fetch(blog.blob.url);
 
-  const text = await res.json();
+    if (!response.ok) {
+      throw new Error(`Failed to fetch blog: ${id}`);
+    }
 
-  return text;
-}
+    return response.json();
+  },
+  ["blog-content"],
+  {
+    revalidate: 3600,
+    tags: ["blogs"],
+  },
+);
