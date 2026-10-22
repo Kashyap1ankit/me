@@ -1,7 +1,7 @@
 "use client";
 import { getBlogWithId } from "@/app/actions/storage";
 import Editor from "@/components/blog/editor";
-import { hanken, manrope } from "@/public/font";
+import { hanken, manrope, space } from "@/public/font";
 import { Calendar03Icon } from "@hugeicons/core-free-icons";
 import { use, useEffect, useState } from "react";
 import { toast } from "@/components/ui/toast";
@@ -49,9 +49,9 @@ export default function BlogPostPage({
         href={"/blog"}
         className="flex justify-start gap-x-1 items-center mx-2 group "
       >
-        <ChevronsLeft className="text-black/50 dark:text-white/50 size-4 group-hover:text-black" />
+        <ChevronsLeft className="text-black/50 dark:text-white/50 size-4 group-hover:text-black dark:group-hover:text-white" />
         <p
-          className={`${hanken.className} text-md text-gray-500 text-md group-hover:text-black`}
+          className={`${manrope.className} text-sm md:text-md text-gray-500 text-md group-hover:text-black dark:group-hover:text-white`}
         >
           Return to blogs
         </p>
@@ -59,12 +59,14 @@ export default function BlogPostPage({
 
       <div className="flex flex-col gap-y-4 mx-2">
         <p
-          className={`${manrope.className} mt-2  text-4xl text-black font-bold dark:text-white `}
+          className={`${space.className} mt-2  text-2xl md:text-4xl text-black font-bold dark:text-white `}
         >
           {res?.title}
         </p>
 
-        <p className={`${hanken.className} text-md text-gray-500 text-md`}>
+        <p
+          className={`${manrope.className} text-sm md:text-md text-gray-500 text-md`}
+        >
           {res?.shortDes}
         </p>
       </div>
@@ -75,9 +77,9 @@ export default function BlogPostPage({
             return (
               <p
                 key={i}
-                className={`${hanken.className} text-xs text-gray-600 py-1 px-2 bg-gray-200 dark:bg-gray-900 dark:text-white rounded-sm `}
+                className={`${manrope.className} text-xs text-gray-600 py-1 px-2 bg-gray-200 dark:bg-gray-900 dark:text-white rounded-sm `}
               >
-                #{e.label}
+                {e.label}
               </p>
             );
           })}
@@ -89,7 +91,9 @@ export default function BlogPostPage({
             size={18}
             className="text-black dark:text-white"
           />
-          <p className={`${hanken.className} text-sm text-gray-500`}>
+          <p
+            className={`${manrope.className} text-xs md:text-sm text-gray-500`}
+          >
             {res?.createdAt != null
               ? new Date(res.createdAt).toDateString()
               : ""}

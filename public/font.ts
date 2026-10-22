@@ -3,9 +3,14 @@ import {
   Bricolage_Grotesque,
   Manrope,
   Hanken_Grotesk,
+  Space_Grotesk,
 } from "next/font/google";
 
 export const gabarito = Bricolage_Grotesque({
+  subsets: ["latin"],
+});
+
+export const space = Space_Grotesk({
   subsets: ["latin"],
 });
 

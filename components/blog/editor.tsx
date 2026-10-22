@@ -293,46 +293,46 @@ export default function Editor({
             directiveDescriptors: [AdmonitionDirectiveDescriptor],
           }),
 
-          toolbarPlugin({
-            toolbarContents: () =>
-              readOnly ? (
-                <></>
-              ) : (
-                <>
-                  <DiffSourceToggleWrapper>
-                    <UndoRedo />
-                    <Separator />
-                    <BoldItalicUnderlineToggles />
-                    <InsertThematicBreak />
-                    <Separator />
-                    <ListsToggle />
-                    <BlockTypeSelect />
-                    <CodeToggle />
-                    <CreateLink />
+          ...(readOnly
+            ? []
+            : [
+                toolbarPlugin({
+                  toolbarContents: () => (
+                    <DiffSourceToggleWrapper>
+                      <UndoRedo />
+                      <Separator />
+                      <BoldItalicUnderlineToggles />
+                      <InsertThematicBreak />
+                      <Separator />
+                      <ListsToggle />
+                      <BlockTypeSelect />
+                      <CodeToggle />
+                      <CreateLink />
+                      <Separator />
 
-                    <Separator />
-                    <ConditionalContents
-                      options={[
-                        {
-                          when: (editor) => editor?.editorType === "codeblock",
-                          contents: () => <ChangeCodeMirrorLanguage />,
-                        },
-                        {
-                          fallback: () => (
-                            <>
-                              <InsertImage />
-                              <InsertCodeBlock />
-                              <InsertTable />
-                              <InsertAdmonition />
-                            </>
-                          ),
-                        },
-                      ]}
-                    />
-                  </DiffSourceToggleWrapper>
-                </>
-              ),
-          }),
+                      <ConditionalContents
+                        options={[
+                          {
+                            when: (editor) =>
+                              editor?.editorType === "codeblock",
+                            contents: () => <ChangeCodeMirrorLanguage />,
+                          },
+                          {
+                            fallback: () => (
+                              <>
+                                <InsertImage />
+                                <InsertCodeBlock />
+                                <InsertTable />
+                                <InsertAdmonition />
+                              </>
+                            ),
+                          },
+                        ]}
+                      />
+                    </DiffSourceToggleWrapper>
+                  ),
+                }),
+              ]),
         ]}
       />
     </div>

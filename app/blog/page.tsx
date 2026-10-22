@@ -8,14 +8,6 @@ import { getAllBlogs } from "../actions/storage";
 import { blogDataType } from "@/lib/types";
 import { blogTags } from "@/lib/constant";
 
-// interface prevType {
-//   title: string;
-//   description: string;
-//   id: string;
-//   tag: string[];
-//   createdAt: Number;
-// }
-
 export default function BlogPage() {
   const [allBlogs, setAllBlogs] = useState<blogDataType[] | []>([]);
   const [mounted, setMounted] = useState(false);
@@ -52,6 +44,13 @@ export default function BlogPage() {
     if (mounted) fn();
   }, [mounted]);
 
+  const filteredBlogs =
+    activeTag === "All"
+      ? allBlogs
+      : allBlogs.filter((blog) =>
+          blog.tag?.some((tag) => tag.value === activeTag.toLowerCase()),
+        );
+
   function handleTagClick(label: string) {
     setActiveTag(label);
   }
@@ -79,7 +78,7 @@ export default function BlogPage() {
             onClick={() => handleTagClick("All")}
             className={`${hanken.className} blog-tag cursor-pointer
         bg-gray-200 dark:bg-gray-900 text-black/50 dark:text-white
-        py-1 px-2 rounded-lg text-sm transition-all duration-200 min-w-24 text-center  ${activeTag !== "All" ? "blur-xs" : ""}`}
+        py-1 px-2 rounded-lg text-xs md:text-sm transition-all duration-200 min-w-16 md:min-w-24 text-center  ${activeTag !== "All" ? "blur-xs" : ""}`}
           >
             All
           </p>
@@ -90,7 +89,7 @@ export default function BlogPage() {
                 key={e.label}
                 className={`${hanken.className} blog-tag cursor-pointer
         bg-gray-200 dark:bg-gray-900 text-black/50 dark:text-white
-        py-1 px-2 rounded-lg text-sm transition-all duration-200 min-w-24 text-center ${activeTag !== e.label && activeTag !== "All" ? "blur-xs" : ""}`}
+        py-1 px-2 rounded-lg text-xs md:text-sm transition-all duration-200 min-w-16 md:min-w-24 text-center ${activeTag !== e.label && activeTag !== "All" ? "blur-xs" : ""}`}
               >
                 {e.label}
               </p>
@@ -98,7 +97,7 @@ export default function BlogPage() {
           })}
         </div>
 
-        {allBlogs.map((e, i) => {
+        {filteredBlogs.map((e, i) => {
           return (
             <Link href={`/blog/${e.id}`} key={i}>
               <BlogCard
