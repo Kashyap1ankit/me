@@ -58,6 +58,7 @@ export default function ShareButton({
             </button>
           }
         />
+
         <DialogContent className="sm:max-w-md dark:bg-[#212121] ">
           <DialogHeader>
             <DialogTitle

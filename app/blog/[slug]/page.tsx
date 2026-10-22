@@ -1,6 +1,7 @@
 "use client";
 import { getBlogWithId } from "@/app/actions/storage";
 import Editor from "@/components/blog/editor";
+import BlogPostSkeleton from "@/components/blog/blog-post-skeleton";
 import { manrope, space } from "@/public/font";
 import { Calendar03Icon } from "@hugeicons/core-free-icons";
 import { use, useEffect, useState } from "react";
@@ -40,9 +41,7 @@ export default function BlogPostPage({
     }
 
     fn();
-  }, []);
-
-  if (loading) return <div>Hi</div>;
+  }, [slug]);
 
   return (
     <div className="flex flex-col gap-y-6 pt-8 pb-16">
@@ -58,61 +57,54 @@ export default function BlogPostPage({
         </p>
       </Link>
 
-      <div className="flex flex-col gap-y-4 mx-2">
-        <p
-          className={`${space.className} mt-2  text-2xl md:text-4xl text-black font-bold dark:text-white `}
-        >
-          {res?.title}
-        </p>
+      {loading ? (
+        <BlogPostSkeleton />
+      ) : (
+        <>
+          <div className="flex flex-col gap-y-4 mx-2">
+            <p
+              className={`${space.className} mt-2  text-2xl md:text-4xl text-black font-bold dark:text-white `}
+            >
+              {res?.title}
+            </p>
 
-        <p
-          className={`${manrope.className} text-sm md:text-md text-gray-500 text-md`}
-        >
-          {res?.shortDes}
-        </p>
-      </div>
+            <p
+              className={`${manrope.className} text-sm md:text-md text-gray-500 text-md`}
+            >
+              {res?.shortDes}
+            </p>
+          </div>
 
-      <div className="flex flex-row justify-between items-center px-2">
-        {/* <div className="flex flex-row items-center justify-start gap-x-4 ">
-          {res?.tag?.map((e: { label: string; value: string }, i: number) => {
-            return (
+          <div className="flex flex-row justify-between items-center px-2">
+            <div className="flex flex-row items-center justify-start gap-x-2">
+              <HugeiconsIcon
+                icon={Calendar03Icon}
+                size={18}
+                className="text-black dark:text-white"
+              />
               <p
-                key={i}
-                className={`${manrope.className} text-xs text-gray-600 py-1 px-2 bg-gray-200 dark:bg-gray-900 dark:text-white rounded-sm `}
+                className={`${manrope.className} text-xs md:text-sm text-gray-500`}
               >
-                {e.label}
+                {res?.createdAt != null
+                  ? new Date(res.createdAt).toDateString()
+                  : ""}
               </p>
-            );
-          })}
-        </div> */}
+            </div>
 
-        <div className="flex flex-row items-center justify-start gap-x-2">
-          <HugeiconsIcon
-            icon={Calendar03Icon}
-            size={18}
-            className="text-black dark:text-white"
-          />
-          <p
-            className={`${manrope.className} text-xs md:text-sm text-gray-500`}
-          >
-            {res?.createdAt != null
-              ? new Date(res.createdAt).toDateString()
-              : ""}
-          </p>
-        </div>
+            <div>
+              <ShareButton
+                id={slug}
+                title={res?.title || "READ THIS BLOG FROM ANKIT KASHYAP "}
+                shortDes={res?.shortDes}
+              />
+            </div>
+          </div>
 
-        <div>
-          <ShareButton
-            id={slug}
-            title={res?.title || "READ THIS BLOG FROM ANKIT KASHYAP "}
-            shortDes={res?.shortDes}
-          />
-        </div>
-      </div>
+          <div className=" w-full border border-zinc-200 dark:border-zinc-800" />
 
-      <div className=" w-full border border-zinc-200 dark:border-zinc-800" />
-
-      <Editor readOnly={true} markDownText={`${res?.description}`} />
+          <Editor readOnly={true} markDownText={`${res?.description}`} />
+        </>
+      )}
     </div>
   );
 }

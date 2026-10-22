@@ -1,5 +1,6 @@
 "use client";
 import BlogCard from "@/components/blog/blog-card";
+import BlogCardSkeleton from "@/components/blog/blog-card-skeleton";
 
 import { gabarito, hanken } from "@/public/font";
 import Link from "next/link";
@@ -8,10 +9,18 @@ import { getAllBlogs } from "../actions/storage";
 import { blogDataType } from "@/lib/types";
 import { blogTags } from "@/lib/constant";
 
+const SKELETON_ITEMS = [
+  { titleWidth: "w-3/5 md:w-1/2", descWidth1: "w-11/12", descWidth2: "w-2/3" },
+  { titleWidth: "w-4/5 md:w-3/5", descWidth1: "w-full", descWidth2: "w-1/2" },
+  { titleWidth: "w-1/2 md:w-2/5", descWidth1: "w-10/12", descWidth2: "w-3/5" },
+  { titleWidth: "w-3/4 md:w-1/2", descWidth1: "w-11/12", descWidth2: "w-4/6" },
+];
+
 export default function BlogPage() {
   const [allBlogs, setAllBlogs] = useState<blogDataType[] | []>([]);
   const [mounted, setMounted] = useState(false);
   const [activeTag, setActiveTag] = useState("All");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setMounted(true);
@@ -19,25 +28,36 @@ export default function BlogPage() {
 
   useEffect(() => {
     async function fn() {
-      const allBlogsArray = await getAllBlogs();
+      try {
+        setLoading(true);
+        const allBlogsArray = await getAllBlogs();
 
-      for (const blog of allBlogsArray) {
-        const res = await fetch(blog.url);
-        const text = await res.json();
+        const blogs = (
+          await Promise.all(
+            allBlogsArray.map(async (blog) => {
+              try {
+                const res = await fetch(blog.url);
+                const text = await res.json();
+                return {
+                  title: text.title,
+                  description: text.description,
+                  id: blog.pathname.slice(5),
+                  tag: text.tag,
+                  createdAt: text.createdAt,
+                  shortDes: text.shortDes,
+                };
+              } catch {
+                return null;
+              }
+            })
+          )
+        ).filter(Boolean) as blogDataType[];
 
-        setAllBlogs((prev: blogDataType[]) => {
-          return [
-            ...prev,
-            {
-              title: text.title,
-              description: text.description,
-              id: blog.pathname.slice(5),
-              tag: text.tag,
-              createdAt: text.createdAt,
-              shortDes: text.shortDes,
-            },
-          ];
-        });
+        setAllBlogs(blogs);
+      } catch {
+        console.log("Error happened");
+      } finally {
+        setLoading(false);
       }
     }
 
@@ -48,8 +68,8 @@ export default function BlogPage() {
     activeTag === "All"
       ? allBlogs
       : allBlogs.filter((blog) =>
-          blog.tag?.some((tag) => tag.value === activeTag.toLowerCase()),
-        );
+        blog.tag?.some((tag) => tag.value === activeTag.toLowerCase()),
+      );
 
   function handleTagClick(label: string) {
     setActiveTag(label);
@@ -97,26 +117,39 @@ export default function BlogPage() {
           })}
         </div>
 
-        <div className="flex flex-col gap-y-12 group [&:has(.blog-card:hover)_.blog-card:not(:hover)]:blur-xs">
-          {filteredBlogs.map((e, i) => {
-            return (
-              <Link
-                href={`/blog/${e.id}`}
+        {loading ? (
+          <div className="flex flex-col gap-y-12">
+            {SKELETON_ITEMS.map((item, i) => (
+              <BlogCardSkeleton
                 key={i}
-                className="blog-card transition-all duration-200"
-              >
-                <BlogCard
-                  title={e.title}
-                  description={e.description}
-                  id={e.id}
-                  tag={e.tag}
-                  createdAt={e.createdAt}
-                  shortDes={e.shortDes}
-                />
-              </Link>
-            );
-          })}
-        </div>
+                titleWidth={item.titleWidth}
+                descWidth1={item.descWidth1}
+                descWidth2={item.descWidth2}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="flex flex-col gap-y-12 group [&:has(.blog-card:hover)_.blog-card:not(:hover)]:blur-xs">
+            {filteredBlogs.map((e, i) => {
+              return (
+                <Link
+                  href={`/blog/${e.id}`}
+                  key={i}
+                  className="blog-card transition-all duration-200"
+                >
+                  <BlogCard
+                    title={e.title}
+                    description={e.description}
+                    id={e.id}
+                    tag={e.tag}
+                    createdAt={e.createdAt}
+                    shortDes={e.shortDes}
+                  />
+                </Link>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );
