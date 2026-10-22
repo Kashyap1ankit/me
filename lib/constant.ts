@@ -518,7 +518,7 @@ export const contriubutionData = [
   {
     organisation: "100xdev",
     logo: "https://appx-wsb-gcp-mcdn.akamai.net.in/subject/2023-01-17-0.3698267942851394.jpg",
-    organisation_github: "https://github.com/code100x",
+    organisation_github: "https://github.com/code100x/job-board",
     contribution: [
       {
         title: "Created the notification system & web app ",
@@ -544,7 +544,7 @@ export const contriubutionData = [
   },
   {
     organisation: "Sanity",
-    logo: "https://www.toornify.com/sanity_esports_logo.jpg",
+    logo: "https://www.toornify.com/logo.svg",
     organisation_github: "https://github.com/dinxsh/sanity",
     contribution: [
       {

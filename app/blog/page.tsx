@@ -97,20 +97,26 @@ export default function BlogPage() {
           })}
         </div>
 
-        {filteredBlogs.map((e, i) => {
-          return (
-            <Link href={`/blog/${e.id}`} key={i}>
-              <BlogCard
-                title={e.title}
-                description={e.description}
-                id={e.id}
-                tag={e.tag}
-                createdAt={e.createdAt}
-                shortDes={e.shortDes}
-              />
-            </Link>
-          );
-        })}
+        <div className="flex flex-col gap-y-12 group [&:has(.blog-card:hover)_.blog-card:not(:hover)]:blur-xs">
+          {filteredBlogs.map((e, i) => {
+            return (
+              <Link
+                href={`/blog/${e.id}`}
+                key={i}
+                className="blog-card transition-all duration-200"
+              >
+                <BlogCard
+                  title={e.title}
+                  description={e.description}
+                  id={e.id}
+                  tag={e.tag}
+                  createdAt={e.createdAt}
+                  shortDes={e.shortDes}
+                />
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

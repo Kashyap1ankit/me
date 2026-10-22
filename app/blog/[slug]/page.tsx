@@ -10,6 +10,7 @@ import { HugeiconsIcon } from "@hugeicons/react";
 
 import Link from "next/link";
 import { ChevronsLeft } from "lucide-react";
+import ShareButton from "@/components/blog/share";
 
 export default function BlogPostPage({
   params,
@@ -44,7 +45,7 @@ export default function BlogPostPage({
   if (loading) return <div>Hi</div>;
 
   return (
-    <div className="flex flex-col gap-y-6 pt-8">
+    <div className="flex flex-col gap-y-6 pt-8 pb-16">
       <Link
         href={"/blog"}
         className="flex justify-start gap-x-1 items-center mx-2 group "
@@ -72,7 +73,7 @@ export default function BlogPostPage({
       </div>
 
       <div className="flex flex-row justify-between items-center px-2">
-        <div className="flex flex-row items-center justify-start gap-x-4 ">
+        {/* <div className="flex flex-row items-center justify-start gap-x-4 ">
           {res?.tag?.map((e: { label: string; value: string }, i: number) => {
             return (
               <p
@@ -83,7 +84,7 @@ export default function BlogPostPage({
               </p>
             );
           })}
-        </div>
+        </div> */}
 
         <div className="flex flex-row items-center justify-start gap-x-2">
           <HugeiconsIcon
@@ -99,7 +100,17 @@ export default function BlogPostPage({
               : ""}
           </p>
         </div>
+
+        <div>
+          <ShareButton
+            id={slug}
+            title={res?.title || "READ THIS BLOG FROM ANKIT KASHYAP "}
+            shortDes={res?.shortDes}
+          />
+        </div>
       </div>
+
+      <div className=" w-full border border-zinc-200 dark:border-zinc-800" />
 
       <Editor readOnly={true} markDownText={`${res?.description}`} />
     </div>

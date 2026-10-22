@@ -157,16 +157,20 @@ export default function Editor({
                 <p>Next</p>
               </button>
             </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Select Category for this blog</DialogTitle>
+            <DialogContent className={`dark:bg-[#171717]`}>
+              <DialogHeader className="">
+                <DialogTitle
+                  className={`text-black dark:text-white ${hanken.className}`}
+                >
+                  Select Category for this blog
+                </DialogTitle>
 
                 <DialogDescription>
                   Select one or more categories for this blog.
                 </DialogDescription>
               </DialogHeader>
 
-              <div className="flex flex-col gap-y-3 w-full min-w-0">
+              <div className="flex flex-col gap-y-3 w-full min-w-0 ">
                 <Select
                   items={blogTags}
                   multiple
@@ -186,16 +190,20 @@ export default function Editor({
                     setSelectedCategory(selected);
                   }}
                 >
-                  <SelectTrigger className="w-full min-w-0 overflow-hidden">
+                  <SelectTrigger className="w-full min-w-0 overflow-hidden dark:bg-[#212121] focus-0 dark:border-0">
                     <SelectValue
                       placeholder="Category"
-                      className="truncate block"
+                      className="truncate block dark:bg-[#212121] "
                     />
                   </SelectTrigger>
-                  <SelectContent className="max-h-60 overflow-y-auto">
+                  <SelectContent className="max-h-60 overflow-y-auto  dark:bg-[#212121]">
                     <SelectGroup>
                       {blogTags.map((item) => (
-                        <SelectItem key={item.value} value={item.value}>
+                        <SelectItem
+                          key={item.value}
+                          value={item.value}
+                          className={`text-black dark:text-white`}
+                        >
                           {item.label}
                         </SelectItem>
                       ))}

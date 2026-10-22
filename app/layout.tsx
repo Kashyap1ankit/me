@@ -7,6 +7,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/toast";
+import BlurComponent from "@/components/blur";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -61,6 +62,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange={false}
           >
+            <BlurComponent />
             <Navbar />
             {children}
             <Analytics />
