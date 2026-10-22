@@ -38,19 +38,23 @@ export const getAllBlogs = unstable_cache(
 
 export const getBlogWithId = unstable_cache(
   async (id: string) => {
-    const blog = await get(`blog/${id}`, {
-      access: "public",
-    });
+    try {
+      const blog = await get(`blog/${id}`, {
+        access: "public",
+      });
 
-    if (!blog) return null;
+      if (!blog) return null;
 
-    const response = await fetch(blog.blob.url);
+      const response = await fetch(blog.blob.url);
 
-    if (!response.ok) {
-      throw new Error(`Failed to fetch blog: ${id}`);
+      if (!response.ok) {
+        return null;
+      }
+
+      return response.json();
+    } catch {
+      return null;
     }
-
-    return response.json();
   },
   ["blog-content"],
   {

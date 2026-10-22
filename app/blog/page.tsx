@@ -1,6 +1,7 @@
 "use client";
 import BlogCard from "@/components/blog/blog-card";
 import BlogCardSkeleton from "@/components/blog/blog-card-skeleton";
+import NoBlogPost from "@/components/blog/no-blog-post";
 
 import { gabarito, hanken } from "@/public/font";
 import Link from "next/link";
@@ -49,7 +50,7 @@ export default function BlogPage() {
               } catch {
                 return null;
               }
-            })
+            }),
           )
         ).filter(Boolean) as blogDataType[];
 
@@ -68,8 +69,8 @@ export default function BlogPage() {
     activeTag === "All"
       ? allBlogs
       : allBlogs.filter((blog) =>
-        blog.tag?.some((tag) => tag.value === activeTag.toLowerCase()),
-      );
+          blog.tag?.some((tag) => tag.value === activeTag.toLowerCase()),
+        );
 
   function handleTagClick(label: string) {
     setActiveTag(label);
@@ -128,6 +129,13 @@ export default function BlogPage() {
               />
             ))}
           </div>
+        ) : filteredBlogs.length === 0 ? (
+          <NoBlogPost
+            type={allBlogs.length === 0 ? "empty" : "no-tag-match"}
+            tag={activeTag}
+            onResetFilter={() => setActiveTag("All")}
+            className="my-4"
+          />
         ) : (
           <div className="flex flex-col gap-y-12 group [&:has(.blog-card:hover)_.blog-card:not(:hover)]:blur-xs">
             {filteredBlogs.map((e, i) => {

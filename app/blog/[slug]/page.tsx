@@ -5,13 +5,13 @@ import BlogPostSkeleton from "@/components/blog/blog-post-skeleton";
 import { manrope, space } from "@/public/font";
 import { Calendar03Icon } from "@hugeicons/core-free-icons";
 import { use, useEffect, useState } from "react";
-import { toast } from "@/components/ui/toast";
 import { blogDataType } from "@/lib/types";
 import { HugeiconsIcon } from "@hugeicons/react";
 
 import Link from "next/link";
 import { ChevronsLeft } from "lucide-react";
 import ShareButton from "@/components/blog/share";
+import NoBlogPost from "@/components/blog/no-blog-post";
 
 export default function BlogPostPage({
   params,
@@ -20,21 +20,21 @@ export default function BlogPostPage({
 }) {
   const { slug } = use(params);
   const [loading, setLoading] = useState(true);
-  const [res, setRes] = useState<blogDataType | null>();
+  const [res, setRes] = useState<blogDataType | null>(null);
 
   useEffect(() => {
     async function fn() {
       try {
         setLoading(true);
         const text = await getBlogWithId(slug);
-        if (!text) return ``;
+        if (!text) {
+          setRes(null);
+          return;
+        }
 
         setRes(text);
       } catch {
-        toast.add({
-          type: "error",
-          title: "Error occured",
-        });
+        setRes(null);
       } finally {
         setLoading(false);
       }
@@ -59,6 +59,8 @@ export default function BlogPostPage({
 
       {loading ? (
         <BlogPostSkeleton />
+      ) : !res ? (
+        <NoBlogPost type="not-found" slug={slug} className="mt-4" />
       ) : (
         <>
           <div className="flex flex-col gap-y-4 mx-2">
