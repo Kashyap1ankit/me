@@ -1,7 +1,7 @@
 "use client";
 import { getBlogWithId } from "@/app/actions/storage";
 import Editor from "@/components/blog/editor";
-import { hanken, manrope, space } from "@/public/font";
+import { manrope, space } from "@/public/font";
 import { Calendar03Icon } from "@hugeicons/core-free-icons";
 import { use, useEffect, useState } from "react";
 import { toast } from "@/components/ui/toast";

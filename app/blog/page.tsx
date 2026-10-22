@@ -82,7 +82,7 @@ export default function BlogPage() {
           >
             All
           </p>
-          {blogTags.map((e, i) => {
+          {blogTags.map((e) => {
             return (
               <p
                 onClick={() => handleTagClick(e.label)}

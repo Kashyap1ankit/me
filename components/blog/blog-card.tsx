@@ -1,7 +1,7 @@
 "use client";
 
 import { blogDataType } from "@/lib/types";
-import { hanken, manrope, space } from "@/public/font";
+import { manrope, space } from "@/public/font";
 import {
   Calendar03Icon,
   SquareArrowUpRightIcon,
