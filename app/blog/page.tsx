@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getAllBlogs } from "../actions/storage";
 import { blogDataType } from "@/lib/types";
+import { blogTags } from "@/lib/constant";
 
 // interface prevType {
 //   title: string;
@@ -18,6 +19,7 @@ import { blogDataType } from "@/lib/types";
 export default function BlogPage() {
   const [allBlogs, setAllBlogs] = useState<blogDataType[] | []>([]);
   const [mounted, setMounted] = useState(false);
+  const [activeTag, setActiveTag] = useState("All");
 
   useEffect(() => {
     setMounted(true);
@@ -50,6 +52,10 @@ export default function BlogPage() {
     if (mounted) fn();
   }, [mounted]);
 
+  function handleTagClick(label: string) {
+    setActiveTag(label);
+  }
+
   return (
     <div className="mx-auto pt-6 text-black dark:text-white mb-12 ">
       <div
@@ -66,7 +72,32 @@ export default function BlogPage() {
         Personal Thoughts, Opinions And Learning dumping
       </p>
 
-      <div className="flex flex-col gap-y-12 mt-12 px-4">
+      <div className="flex flex-col gap-y-12 mt-10 px-4">
+        <div className="group/tag flex flex-wrap gap-2 justify-start">
+          <p
+            key={"All"}
+            onClick={() => handleTagClick("All")}
+            className={`${hanken.className} blog-tag cursor-pointer
+        bg-gray-200 dark:bg-gray-900 text-black/50 dark:text-white
+        py-1 px-2 rounded-lg text-sm transition-all duration-200 min-w-24 text-center  ${activeTag !== "All" ? "blur-xs" : ""}`}
+          >
+            All
+          </p>
+          {blogTags.map((e, i) => {
+            return (
+              <p
+                onClick={() => handleTagClick(e.label)}
+                key={e.label}
+                className={`${hanken.className} blog-tag cursor-pointer
+        bg-gray-200 dark:bg-gray-900 text-black/50 dark:text-white
+        py-1 px-2 rounded-lg text-sm transition-all duration-200 min-w-24 text-center ${activeTag !== e.label && activeTag !== "All" ? "blur-xs" : ""}`}
+              >
+                {e.label}
+              </p>
+            );
+          })}
+        </div>
+
         {allBlogs.map((e, i) => {
           return (
             <Link href={`/blog/${e.id}`} key={i}>
